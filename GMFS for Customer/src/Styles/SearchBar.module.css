@@ -1,0 +1,24 @@
+.searchBarContainer {
+  border-radius: 10vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.search_input {
+  font-size: 2vh;
+  width: 13vw;
+  padding: 1vh 1vw;
+  border-radius: 10vh;
+  color: white;
+  background: linear-gradient(to right, #76aee9, #a378d9);
+}
+.search_icon {
+  position: absolute;
+  top: 2vh;
+  right: 2vh;
+  color: white;
+  cursor: pointer;
+}
+.search_input::placeholder {
+  color: white;
+}

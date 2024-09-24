@@ -1,0 +1,84 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  /* background-color: #76aee9; */
+  background: linear-gradient(to right, #76aee9, #a378d9);
+  color: white;
+}
+
+.para {
+  margin-left: 0vw;
+}
+/* .logo {
+  display: block;
+  margin-left: 2vw; 
+  width: 80px;
+  height: auto; 
+  margin-bottom: 1rem; 
+} */
+
+.links {
+  display: flex;
+
+  display: flex;
+  gap: 3vh;
+  align-items: center;
+}
+
+.link {
+  margin-left: 2rem;
+  color: white;
+  text-decoration: none;
+  /* float: left;
+  margin-right: auto;
+  overflow: hidden; */
+  /* display: block; */
+  /* text-align: center; */
+
+  /* text-decoration: none; */
+}
+.search_bar {
+  position: relative;
+  bottom: 2.8vh;
+  left: 4.5vh;
+}
+
+.link:hover {
+  text-decoration: underline;
+}
+.button {
+  background-color: #021f3858;
+  color: white;
+  padding: 10px 20px;
+  display: flex;
+  justify-content: center; /* Centers content horizontally */
+  align-items: center; /* Centers content vertically */
+  border: none;
+  cursor: pointer;
+  width: 100px;
+  margin-left: 30px;
+
+  border-radius: 5px;
+}
+.click .link {
+  text-decoration: none;
+  color: white; /* Ensure the link text is visible */
+  font-size: 16px;
+  text-align: center;
+  margin-left: 0px;
+  margin-right: 0px;
+}
+
+.cartCount {
+  background-color: red;
+  color: white;
+  border-radius: 50%;
+  padding: 1px;
+  margin-left: 1px;
+  font-size: 12px;
+  display: inline-block;
+  min-width: 3px;
+  text-align: top;
+}

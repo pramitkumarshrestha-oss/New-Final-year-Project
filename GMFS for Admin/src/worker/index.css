@@ -1,0 +1,61 @@
+.c-wrapper-worker{
+    background-color: white;
+    min-height: calc(100vh - 66px);
+    display: grid;
+    grid-template-columns: 23% 23% 23% 23%;
+    grid-gap: 2%;
+    padding: 3rem;
+    margin-left: 2rem;
+}
+
+.worker-card{
+    position: relative;
+    border: 2px solid #909090;
+    width: 100%;
+    overflow: hidden;
+    background-color: #1b1b1b;
+    color: white;
+    border-radius: .5rem;
+    height: max-content;
+    font-family: 'inherit';
+}
+
+.worker-card img{
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    max-height: 200px;
+    background-color: gray;
+}
+
+.worker-card span{
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: .35rem;
+    border-bottom: 1px solid #909090;
+    border-left: 1px solid #909090;
+    border-radius: 0 0 0 .5rem;
+    font-size: .875rem;
+    color: #1b1b1b;
+    font-weight: bold;
+}
+
+.worker-card div{
+    height: fit-content;
+    padding: 0 .7rem;
+}
+
+.worker-card div p{
+    font-weight: bold;
+    line-height: 2.5;
+    margin: 0;
+}
+
+.work-incomlete{
+    background-color: red;
+}
+
+.work-comlete{
+    background-color: rgb(46, 231, 0);
+}
