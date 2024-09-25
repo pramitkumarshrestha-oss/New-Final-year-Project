@@ -18,8 +18,8 @@ const SearchBar = () => {
   };
   return (
     <>
-      <div className={styles.searchBarContainer}>
-        {showSearchBar && (
+      {showSearchBar && (
+        <div className={styles.searchBarContainer}>
           <input
             type="text"
             placeholder="Search fabric"
@@ -27,8 +27,8 @@ const SearchBar = () => {
             onChange={handleInputChange}
             className={styles.search_input}
           />
-        )}
-      </div>
+        </div>
+      )}
 
       <FontAwesomeIcon
         icon={faSearch}

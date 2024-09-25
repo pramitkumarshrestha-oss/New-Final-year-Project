@@ -12,6 +12,7 @@ import Gallery from "./Components/TabMenu/Gallery";
 import { Cart } from "./Pages/Cart";
 import { OrderPlaced } from "./Pages/OrderPlaced";
 
+
 const App = () => {
   return (
     <Router>

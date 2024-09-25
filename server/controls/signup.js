@@ -63,10 +63,10 @@ const signuppage = async (req, res) => {
       let checkUserName = await user.findOne({ userName: userName });
       if (result) {
         console.log("user already exist");
-        res.status(400).send("user already exist");
+        res.send("user already exist");
       } else if (checkUserName) {
         console.log("userName already exist");
-        res.status(401).send("userName already exist");
+        res.send("userName already exist");
       } else {
         const hashPassword = async (password) => {
           const saltRounds = Number(process.env.SALT);
