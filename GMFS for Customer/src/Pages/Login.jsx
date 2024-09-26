@@ -2,8 +2,11 @@ import { useState } from "react";
 import { FaEye, FaEyeSlash, FaUserCircle } from "react-icons/fa";
 import { RiLockPasswordFill } from "react-icons/ri";
 import styles from "../Styles/Login.module.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+import { useAuth } from "../Contexts/AuthContext";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -11,7 +14,7 @@ export const Login = () => {
     userName: "",
     password: "",
   });
-
+  const navigate = useNavigate();
   const [error, setError] = useState({});
 
   // Form validation
@@ -19,21 +22,10 @@ export const Login = () => {
     let formErrors = {};
     if (!formData.userName.trim()) {
       formErrors.userName = "Username is required *";
-    } else if (!/[A-Za-z]+[A-Za-z]*/.test(formData.userName)) {
-      formErrors.userName = "Invalid Username";
     }
 
     if (!formData.password.trim()) {
       formErrors.password = "Password is required *";
-    } else if (formData.password.length < 8) {
-      formErrors.password = "At least 8 characters";
-    } else if (
-      !/^(?=.*[A-Z])(?=.*[a-z])(?=.*[\d])(?=.*[\W_]).{8,}$/.test(
-        formData.password
-      )
-    ) {
-      formErrors.password =
-        "Must include an uppercase, lowercase, digit, and symbol";
     }
 
     return formErrors;
@@ -45,12 +37,30 @@ export const Login = () => {
     if (Object.keys(validationError).length > 0) {
       setError(validationError);
     } else {
-      const result = await axios.post("http://localhost:3010/login", formData);
-      setFormData({
-        userName: "",
-        password: "",
-      });
-      console.log("Successfully submitted");
+      try {
+        console.log("Ok");
+        const result = await axios.post(
+          "http://localhost:3010/login",
+          formData
+        );
+        console.log(result.data);
+        if (result.data === "Login Successful") {
+          toast.success(result.data);
+          console.log("hello");
+
+          // Login();
+          setTimeout(() => {
+            navigate("/");
+          }, 2000);
+        } else if (result.data === "incorrect password") {
+          toast.error(result.data);
+        } else if (result.data === "user doesnt exist please register first") {
+          toast.error(result.data);
+        }
+      } catch (error) {
+        console.log(error);
+        // setMessage("error");
+      }
     }
   };
 
@@ -70,6 +80,7 @@ export const Login = () => {
 
   return (
     <>
+      <ToastContainer />
       <div className={styles.main_container}>
         <div className={styles.login_container}>
           {/* Left container */}

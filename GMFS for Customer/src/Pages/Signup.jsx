@@ -8,19 +8,25 @@ import {
   FaPhone,
 } from "react-icons/fa";
 import { RiLockPasswordFill } from "react-icons/ri";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import styles from "../Styles/Signup.module.css"; // Adjust the path as per your directory structure
+import { useAuth } from "../Contexts/AuthContext";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Signup = () => {
-  const [showPassword, setShowPassword] = useState(false);
+  // const { message, setMessage } = useAuth();
+  const navigate = useNavigate();
+
+  //user details
   const [formData, setFormData] = useState({
     userName: "",
     email: "",
     phoneNumber: "",
     password: "",
   });
-
   const [error, setError] = useState({});
+  const [showPassword, setShowPassword] = useState(false);
 
   // Form validation function
   const validate = () => {
@@ -69,16 +75,31 @@ const Signup = () => {
     if (Object.keys(validationErrors).length > 0) {
       setError(validationErrors);
     } else {
-      const result = await axios.post("http://localhost:3010/signup", formData);
-      // setMessage(result.data);
-      // setShowNotification(true);
-      setFormData({
-        userName: "",
-        email: "",
-        phoneNumber: "",
-        password: "",
-      });
-      console.log("Successfully submitted");
+      try {
+        console.log("ok");
+        const result = await axios.post(
+          "http://localhost:3010/signup",
+          formData
+        );
+        console.log(result.data);
+        if (result.data === "user registered successfully") {
+          toast.success(result.data);
+          console.log(result.data);
+          setTimeout(() => {
+            navigate("/login");
+          }, 2000);
+        } else if (result.data === "user already exist") {
+          console.log("hello");
+          toast.error(result.data);
+        } else if (result.data === "userName already exist") {
+          console.log("hello");
+          toast.error(result.data);
+        }
+      } catch (err) {
+        if (err.status === 401) {
+          toast.error(err.data);
+        }
+      }
     }
   };
 
@@ -99,6 +120,7 @@ const Signup = () => {
 
   return (
     <div className={styles.main_container}>
+      <ToastContainer />
       <div className={styles.signup_container}>
         {/* Left side with Garment Management System branding */}
         <div className={styles.left_container}>

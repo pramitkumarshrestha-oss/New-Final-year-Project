@@ -25,11 +25,11 @@ const loginpage = async (req, res) => {
           .send("Login Successful");
       } else {
         console.log("Incorrect Password");
-        res.status(400).send("incorrect password");
+        res.send("incorrect password");
       }
     } else {
       console.log("User doesnt exist");
-      res.status(401).send("user doesnt exist please register first");
+      res.send("user doesnt exist please register first");
     }
   } catch (err) {
     console.log(err);

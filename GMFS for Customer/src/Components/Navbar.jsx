@@ -12,9 +12,9 @@ const Navbar = () => {
 
   return (
     <nav className={styles.navbar}>
-      {/* <img src={logo} alt="Logo" className={styles.logo} /> */}
       <div className={styles.para}>
-      <h2>Garment Management System</h2>
+        <img src={logo} alt="Logo" className={styles.logo} />
+        {/* <h2>Garment Management System</h2> */}
       </div>
       <div className={styles.links}>
         <Link to="/" className={styles.link}>
@@ -37,9 +37,7 @@ const Navbar = () => {
           )}
         </Link>
 
-        <div className={styles.search_bar}>
-          <SearchBar />
-        </div>
+        <SearchBar />
 
         <Link to="/login" className={styles.link}>
           Login
