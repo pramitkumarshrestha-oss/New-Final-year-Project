@@ -78,3 +78,23 @@
   min-width: 3px;
   text-align: top;
 }
+
+/* Apply same styles for logout button to look like links */
+.link,
+.logoutButton {
+  margin-left: 2rem;
+  color: white;
+  text-decoration: none;
+  background: none; /* Remove button's default background */
+  border: none; /* Remove button border */
+  cursor: pointer; /* Make cursor pointer like a link */
+  font-size: inherit; /* Make sure font size matches */
+  display: inline-block; /* Ensures it behaves like a link */
+  padding:0;
+  line-height: inherit;
+}
+
+.link:hover,
+.logoutButton:hover {
+  text-decoration: underline;
+}

@@ -1,27 +1,24 @@
-import { createContext, useContext, useState } from "react";
+import React, { createContext, useState, useContext } from "react";
 
+// Create the authentication context
 const AuthContext = createContext();
-export const useAuth = () => useContext(AuthContext);
 
-export const AuthContextProvider = ({ children }) => {
-  //for user signup and login and message
-  const [message, setMessage] = useState("");
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+export const AuthProvider = ({ children }) => {
+  const [isLoggedIn, setIsLoggedIn] = useState(false); // State to track login status
 
-  const login = () => setIsLoggedIn(true);
-  const logout = () => setIsLoggedIn(false);
+  const login = () => {
+    setIsLoggedIn(true); // Log in the user
+  };
 
-  const authValue = {
-    isLoggedIn,
-    login,
-    logout,
-    showNotification,
-    setShowNotification,
-    message,
-    setMessage,
+  const logout = () => {
+    setIsLoggedIn(false); // Log out the user
   };
 
   return (
-    <AuthContext.Provider value={authValue}>{children}</AuthContext.Provider>
+    <AuthContext.Provider value={{ isLoggedIn, login, logout }}>
+      {children}
+    </AuthContext.Provider>
   );
 };
+
+export const useAuth = () => useContext(AuthContext);
