@@ -1,29 +1,88 @@
 .footer {
-  text-align: center;
-  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
   background: linear-gradient(to right, #76aee9, #a378d9);
   height: 100px;
   position: fixed;
   bottom: 0;
   width: 100%;
-  display: flex;
-  flex-direction: column; /* Stack items vertically */
-  justify-content: flex-end; /* Align items to the bottom */
 }
 
-.footer p {
-  margin: 0;
+.socialMedia {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-size: large;
+}
+
+.icons {
+  display: flex;
+}
+
+.icon {
+  font-size: 24px;
+  color: black;
+  margin-right: 40px;
+  cursor: pointer;
+}
+
+.icon:hover {
+  color: antiquewhite;
+}
+
+.copyright {
+  flex: 1;
+  text-align: center;
+}
+
+.newsletter {
+  flex: 1;
+  display: flex;
+  flex-direction: column; /* Align items vertically */
+  justify-content: center;
+  align-items: flex-end;
+  font-size: large;
+  
+}
+.par{
+  margin-right: 2.6vw;
+  
+}
+
+.newsletterForm {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  
+}
+
+.input {
+  padding: 5px;
+  margin-right: 10px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+.button {
+  padding: 5px 10px;
+  background-color: #76aee9;
   color: white;
-  font-size: 1rem;
-  margin-top: 5px;
- 
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.button:hover {
+  background-color: goldenrod;
 }
 
 .line {
   border: none;
-  height: 1px;
-  background-color: #ccc; /* Change line color */
-  width: 100%; /* Make the line full width */
-  
-  
+  height: 2px;
+  background-color: #ccc;
+  width: 100%;
+  margin-top: 4vw;
 }

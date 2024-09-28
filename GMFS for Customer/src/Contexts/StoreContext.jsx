@@ -2,6 +2,7 @@ import Menu from "../Components/TabMenu/menu.jsx";
 import { createContext, useState, useContext } from "react";
 
 export const StoreContext = createContext(null);
+
 export const StoreContextProvider = (props) => {
   
   //For search Items
@@ -13,7 +14,15 @@ export const StoreContextProvider = (props) => {
   //for cart items
 
   const [cartItems, setCartItems] = useState({});
+
+  // const {isLoggedIn}=useAuth();//line added
+
   const addToCart = (itemId) => {
+// if (!isLoggedIn) {  // Line 16: Check if user is logged in before adding to cart.
+//       window.location.href = "/login";  // Line 17: Redirect to login if not logged in.
+//       return;
+//     }
+
     if (!cartItems[itemId]) {
       setCartItems((prev) => ({ ...prev, [itemId]: 1 }));
     } else {
