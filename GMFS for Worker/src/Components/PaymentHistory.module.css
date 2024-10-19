@@ -1,0 +1,56 @@
+/* src/Components/PaymentHistory.module.css */
+.paymentHistory {
+  background-color: #ffffff; /* White background for the container */
+  border-radius: 12px; /* More rounded corners */
+  padding: 30px; /* Inner spacing */
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15); /* More pronounced shadow */
+  margin-bottom: 30px; /* Space below the payment history container */
+  transition: transform 0.3s ease; /* Smooth transform transition */
+  
+}
+.heading
+{
+  text-align: center;
+}
+
+.paymentHistory:hover {
+  transform: scale(1.02); /* Slight scale effect on hover */
+}
+
+.paymentList {
+  margin-top: 20px; /* Space above the payment list */
+  animation: fadeIn 0.5s ease-in; /* Fade-in effect for the payment list */
+}
+
+@keyframes fadeIn {
+  from {
+      opacity: 0; /* Start with opacity 0 */
+  }
+  to {
+      opacity: 1; /* End with full opacity */
+  }
+}
+
+.paymentItem {
+  background-color: #e3f2fd; /* Soft blue background for each payment record */
+  border-radius: 8px; /* Rounded corners */
+  padding: 20px; /* Inner spacing */
+  margin-bottom: 15px; /* Space between payment records */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  transition: transform 0.3s, box-shadow 0.3s; /* Smooth transitions */
+}
+
+.paymentItem:hover {
+  transform: translateY(-5px); /* Lift effect on hover */
+  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.2); /* Enhanced shadow on hover */
+  background-color: #bbdefb; /* Slightly darker blue background on hover */
+}
+
+.paymentItem p {
+  margin: 5px 0; /* Margin for paragraphs within payment item */
+}
+
+.paymentItem strong {
+  color: #1976d2; /* Strong blue color for emphasis */
+  font-size: 1.1rem; /* Slightly larger font for strong text */
+}

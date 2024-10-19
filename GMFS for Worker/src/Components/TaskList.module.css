@@ -1,0 +1,62 @@
+/* src/Components/TaskList.module.css */
+.taskList {
+  background-color: #e0f7fa; /* Soft cyan background for a fresh look */
+  border-radius: 8px; /* Rounded corners */
+  padding: 20px; /* Spacing inside the container */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Softer shadow for depth */
+  margin-bottom: 20px; /* Space below the task list */
+  animation: fadeIn 0.5s ease-in; /* Fade-in animation on load */
+}
+
+.title {
+  margin-bottom: 15px; /* Space below the title */
+  color: #004d40; /* Darker teal for better contrast */
+  font-size: 1.8rem; /* Larger title for emphasis */
+  text-align: center; /* Center the title */
+}
+
+.taskItem {
+  background-color:#e3f2fd; /* White background for each task */
+  border-radius: 5px; /* Rounded corners */
+  margin: 10px 0; /* Space between tasks */
+  padding: 15px; /* Spacing inside each task */
+  transition: transform 0.3s, box-shadow 0.3s, background-color 0.3s; /* Smooth transitions */
+  cursor: pointer; /* Change cursor to pointer */
+}
+
+.taskItem:hover {
+  transform: translateY(-5px); /* Lift effect on hover */
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15); /* Enhanced shadow on hover */
+  background-color: #b2ebf2; /* Change background color on hover */
+}
+
+.statusSelect {
+  margin-top: 10px; /* Space above the select */
+  padding: 5px; /* Padding inside the select */
+  border: 1px solid #00796b; /* Teal border for the select */
+  border-radius: 5px; /* Rounded corners */
+  transition: border-color 0.3s, background-color 0.3s; /* Smooth transition */
+  background-color: #ffffff; /* White background for select */
+}
+
+.statusSelect:hover {
+  border-color: #004d40; /* Darker teal on hover */
+  background-color: #e0f2f1; /* Light teal background on hover */
+}
+
+.statusSelect:focus {
+  outline: none; /* Remove default outline */
+  border-color: #00695c; /* Darker teal border on focus */
+}
+
+/* Fade-in animation for the task list */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px); /* Slight upward movement */
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
