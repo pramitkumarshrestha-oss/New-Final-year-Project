@@ -17,9 +17,11 @@ connectToMongoDB(mongo)
 
 const signupRoute = require("./routes/signuppage");
 const loginRoute = require("./routes/loginpage");
+const cartRoute = require("./routes/cartRoute");
 
 app.use("/signup", signupRoute);
 app.use("/login", loginRoute);
+app.use("/cart", cartRoute);
 
 app.listen(port, () => {
   console.log(`Server Started At ${port}`);

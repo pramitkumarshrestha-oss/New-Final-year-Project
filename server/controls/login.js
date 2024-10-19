@@ -1,6 +1,6 @@
 const express = require("express");
 const user = require("../models/user");
-const mongoose = require("mongoose");
+// const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
 const loginpage = async (req, res) => {
   const { userName, password } = req.body;
