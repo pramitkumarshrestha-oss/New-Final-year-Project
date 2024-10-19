@@ -1,27 +1,21 @@
-import { createContext, useContext, useState } from "react";
+
+import React, { createContext, useState } from 'react';
 
 const AuthContext = createContext();
-export const useAuth = () => useContext(AuthContext);
 
-export const AuthContextProvider = ({ children }) => {
-  //for user signup and login and message
-  const [message, setMessage] = useState("");
+export const AuthProvider = ({ children }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const login = () => setIsLoggedIn(true);
   const logout = () => setIsLoggedIn(false);
 
-  const authValue = {
-    isLoggedIn,
-    login,
-    logout,
-    showNotification,
-    setShowNotification,
-    message,
-    setMessage,
-  };
-
   return (
-    <AuthContext.Provider value={authValue}>{children}</AuthContext.Provider>
+    <AuthContext.Provider value={{ isLoggedIn, login, logout }}>
+      {children}
+    </AuthContext.Provider>
   );
+};
+
+export const useAuth = () => {
+  return React.useContext(AuthContext);
 };

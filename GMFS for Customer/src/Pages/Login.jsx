@@ -17,6 +17,8 @@ export const Login = () => {
   const navigate = useNavigate();
   const [error, setError] = useState({});
 
+  const { login } = useAuth(); // <-- Destructure login from AuthContext
+
   // Form validation
   const validate = () => {
     let formErrors = {};
@@ -48,7 +50,7 @@ export const Login = () => {
           toast.success(result.data);
           console.log("hello");
 
-          // Login();
+          login();
           setTimeout(() => {
             navigate("/");
           }, 2000);

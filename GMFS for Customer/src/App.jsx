@@ -11,24 +11,27 @@ import Signup from "./Pages/Signup";
 import Gallery from "./Components/TabMenu/Gallery";
 import { Cart } from "./Pages/Cart";
 import { OrderPlaced } from "./Pages/OrderPlaced";
-
+import { AuthProvider } from "./Contexts/AuthContext";
 
 const App = () => {
   return (
-    <Router>
-      <Navbar />
-      <Routes>
-        <Route path="/" element={<Landing/>} />
-        <Route path="/about" element={<About />} />
-        <Route path="/products" element={<Gallery />} />
-        <Route path="/orders" element={<Orders />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/Signup" element={<Signup />} />
-        <Route path="/cart" element={<Cart />} />
-        <Route path="/orderplaced" element={<OrderPlaced />} />
-      </Routes>
-      <Footer />
-    </Router>
+    <AuthProvider>
+      <Router>
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<Landing />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/products" element={<Gallery />} />
+          <Route path="/orders" element={<Orders />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/logout" element={<Landing/>} />
+          <Route path="/Signup" element={<Signup />} />
+          <Route path="/cart" element={<Cart />} />
+          <Route path="/orderplaced" element={<OrderPlaced />} />
+        </Routes>
+        <Footer />
+      </Router>
+    </AuthProvider>
   );
 };
 

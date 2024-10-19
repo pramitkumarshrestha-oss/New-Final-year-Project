@@ -4,17 +4,18 @@ import styles from "../Styles/Navbar.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch, faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 import SearchBar from "./SearchBar";
+import { useAuth } from "../Contexts/AuthContext";
 import { useStore } from "../Contexts/StoreContext";
 import logo from "../assets/image1/logofirst.png";
 
 const Navbar = () => {
-  const { cartItemCount } = useStore(); //Destructuring
+  const { cartItemCount } = useStore(); // Destructuring to get cart item count
+  const { isLoggedIn, logout } = useAuth(); // Destructure isLoggedIn and logout from AuthContext
 
   return (
     <nav className={styles.navbar}>
       <div className={styles.para}>
         <img src={logo} alt="Logo" className={styles.logo} />
-        {/* <h2>Garment Management System</h2> */}
       </div>
       <div className={styles.links}>
         <Link to="/" className={styles.link}>
@@ -30,18 +31,29 @@ const Navbar = () => {
           My Orders
         </Link>
 
-        <Link to="/cart" className={styles.link}>
-          <FontAwesomeIcon icon={faShoppingCart} />
-          {cartItemCount > 0 && (
-            <span className={styles.cartCount}>{cartItemCount}</span>
-          )}
-        </Link>
+        {isLoggedIn && (
+          <Link to="/cart" className={styles.link}>
+            <FontAwesomeIcon icon={faShoppingCart} />
+            {cartItemCount > 0 && (
+              <span className={styles.cartCount}>{cartItemCount}</span>
+            )}
+          </Link>
+        )}
 
         <SearchBar />
 
-        <Link to="/login" className={styles.link}>
-          Login
-        </Link>
+        {isLoggedIn ? (
+          <button
+            className={`${styles.link} ${styles.logoutButton}`}
+            onClick={logout}
+          >
+            Logout
+          </button>
+        ) : (
+          <Link to="/login" className={styles.link}>
+            Login
+          </Link>
+        )}
       </div>
     </nav>
   );
