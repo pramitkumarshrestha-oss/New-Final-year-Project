@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import Sidebar from './Components/SideBar'; // Correct import path
+import Sidebar from './Components/SideBar'; 
 import WorkerHomePage from './Pages/WorkerHomePage';  
 import TaskList from './Components/TaskList';  
 import ShiftSchedule from './Components/ShiftSchedule';  
