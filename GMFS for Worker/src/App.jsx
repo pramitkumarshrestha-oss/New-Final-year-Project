@@ -8,6 +8,9 @@ import Messages from './Components/Messages';
 import PerformanceMetrics from './Components/PerformanceMetrics';  
 import PaymentHistory from './Components/PaymentHistory';  
 import Notifications from './Components/Notifications';  
+import DashBoard from './Navbar/DashBoard';
+import Help from './Navbar/Help';
+import Profile from './Navbar/Profile';
 
 const App = () => {
   return (
@@ -23,6 +26,9 @@ const App = () => {
             <Route path="/performance" element={<PerformanceMetrics />} />
             <Route path="/payments" element={<PaymentHistory />} />
             <Route path="/notifications" element={<Notifications />} />
+            <Route path="/dashboard" element={<DashBoard />} />
+            <Route path='/help' element={<Help/>} />
+            <Route path='/profile' element={<Profile/>} />
           </Routes>
         </div>
       </div>

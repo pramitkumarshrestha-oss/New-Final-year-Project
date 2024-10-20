@@ -1,52 +1,101 @@
-/* src/Components/Sidebar.module.css */
-
+/* Sidebar styling */
 .sidebar {
-  background: linear-gradient(to right, #76aee9, #a378d9); /* Dark green background */
-  color:rgb(11, 10, 11);
+  background: linear-gradient(to right, #76aee9, #a378d9);
+  color: #fff;
   width: 250px;
   padding: 20px;
-  height: 100vh; /* Full height */
+  height: 100vh;
   display: flex;
   flex-direction: column;
-  position:fixed; 
+  position: fixed;
   top: 0;
   left: 0;
-  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
-  transition: background-color 0.3s;
-  border-radius: 5px;
+  box-shadow: 2px 0 15px rgba(0, 0, 0, 0.2); /* Stronger shadow for depth */
+  border-radius: 10px; /* Rounded corners for a smoother look */
+  overflow: hidden;
+  transition: transform 0.3s ease-in-out; /* Animation for slide effect */
 }
 
-.sidebar h2 {
+.sidebar:hover {
+  transform: translateX(0); /* Sidebar will slide back in */
+}
+
+/* Logo Section */
+.logoContainer {
   text-align: center;
-  margin-bottom: 20px;
-  font-size: 24px;
+  margin-bottom: 0px;
 }
 
-.sidebar ul {
+.logo {
+  width: 150px;
+  margin-right: 8vh;
+}
+
+/* Hover and transition effects for links */
+.navList {
   list-style: none;
-  padding: 10px;
+  padding: 0;
 }
 
-.sidebar li {
-  margin: 15px 0;
-  font-size: large;
+.navList li {
+  margin: 20px 0;
+  transition: margin-left 0.3s ease; /* Adds spacing animation when hovered */
 }
 
-.sidebar a {
-  color: rgb(18, 17, 17);
+.navList li:hover {
+  margin-left: 10px; /* Move the list item slightly to the right on hover */
+}
+
+.navList a {
+  color: whitesmoke;
   text-decoration: none;
-  padding: 10px 15px;
-  border-radius: 5px;
- 
-  display: block; /* Make link fill the entire area */
-  transition: background-color 0.3s, transform 0.3s;
+  padding: 12px 20px;
+  display: flex;
+  align-items: center;
+  border-radius: 8px;
+  font-size: 1.5rem;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  font-weight: 100; /* Makes the text slightly bolder */
 }
 
-.sidebar a:hover {
-  background-color: rgb(203, 160, 108); /* Darker green on hover */
-  transform: scale(1.05); /* Slightly enlarge on hover */
+.navList a:hover {
+  background-color: rgba(255, 255, 255, 0.2); /* Light hover effect */
+  transform: scale(1.05); /* Slightly enlarge the link on hover */
 }
 
-.sidebar a.active {
-  background-color: #388e3c; /* Medium green for active link */
+.navList a.active {
+  background-color: #4caf50; /* Green active background */
+}
+
+/* Icon Styling */
+.icon {
+  margin-right: 20px; /* Slightly increased space between icon and text */
+  font-size: 1.7rem; /* Larger icon size */
+  transition: transform 0.3s ease; /* Smooth transition for icon */
+}
+
+.navList a:hover .icon {
+  transform: rotate(30deg); /* Slight rotation effect on hover */
+}
+
+/* Custom Hover Effects */
+.navList a:hover {
+  background-color: #ffcc00; /* Bright yellow hover effect */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Added shadow on hover for depth */
+}
+
+.navList a:active {
+  background-color: #ff9800; /* Active link color */
+}
+
+/* Fade-in Animation */
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }

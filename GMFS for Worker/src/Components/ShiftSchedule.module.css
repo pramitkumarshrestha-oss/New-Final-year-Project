@@ -1,10 +1,11 @@
 /* src/Components/ShiftSchedule.module.css */
 .shiftSchedule {
-  background-color: #e9f5ff; /* Soft light blue background to match your sidebar */
-  border-radius: 8px; /* Rounded corners */
-  padding: 20px; /* Spacing inside the container */
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Soft shadow */
-  margin-bottom: 20px; /* Space below the schedule */
+  padding: 20px;
+  background-color: rgb(194, 221, 221);
+  min-height: 90vh;
+  margin-left: 4vh;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .title {
@@ -15,7 +16,7 @@
 }
 
 .shiftItem {
-  background-color: #e3f2fd; 
+  background-color: white; 
   border-radius: 5px; /* Rounded corners */
   margin: 10px 0; /* Space between shifts */
   padding: 15px; /* Spacing inside each shift */
@@ -26,8 +27,8 @@
 .shiftItem:hover {
   transform: translateY(-5px); /* Lift effect on hover */
   box-shadow: 0 8px 20px rgba(118, 174, 233, 0.3); /* Shadow matching the blue gradient */
-  /* background: linear-gradient(to right, #76aee9, #a378d9); Gradient background on hover */
-  background-color: bisque;
+  background: linear-gradient(to right, #76aee9, #a378d9);
+  
   color: white; /* White text to pop against the gradient */
 }
 

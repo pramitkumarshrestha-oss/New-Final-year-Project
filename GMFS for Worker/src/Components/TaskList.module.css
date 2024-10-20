@@ -1,11 +1,13 @@
 /* src/Components/TaskList.module.css */
 .taskList {
-  background-color: #e0f7fa; /* Soft cyan background for a fresh look */
-  border-radius: 8px; /* Rounded corners */
-  padding: 20px; /* Spacing inside the container */
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Softer shadow for depth */
-  margin-bottom: 20px; /* Space below the task list */
+  padding: 20px;
+  background-color: rgb(194, 221, 221);
+  min-height: 90vh;
+  margin-left: 4vh;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   animation: fadeIn 0.5s ease-in; /* Fade-in animation on load */
+  
 }
 
 .title {
@@ -16,7 +18,7 @@
 }
 
 .taskItem {
-  background-color:#e3f2fd; /* White background for each task */
+  background-color:white; /* White background for each task */
   border-radius: 5px; /* Rounded corners */
   margin: 10px 0; /* Space between tasks */
   padding: 15px; /* Spacing inside each task */
@@ -27,7 +29,7 @@
 .taskItem:hover {
   transform: translateY(-5px); /* Lift effect on hover */
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15); /* Enhanced shadow on hover */
-  background-color: #b2ebf2; /* Change background color on hover */
+  background: linear-gradient(to right, #76aee9, #a378d9); /* Change background color on hover */
 }
 
 .statusSelect {

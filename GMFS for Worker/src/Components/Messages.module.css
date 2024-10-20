@@ -1,21 +1,22 @@
 /* src/Components/Messages.module.css */
 .messages {
-  background-color: #e2f6d5; /* Soft mint background for the main container */
-  border-radius: 8px; /* Rounded corners */
-  padding: 20px; /* Inner spacing */
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-  margin-bottom: 20px; /* Space below the messages container */
+    padding: 10px;
+    background-color: rgb(194, 221, 221);
+    min-height: 90vh;
+    margin-left: 4vh;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .title {
-  margin-bottom: 15px; /* Space below the title */
+  margin-bottom: 5px; /* Space below the title */
   color: #2e3b4e; /* Dark navy text color for better contrast */
-  font-size: 1.5rem; /* Increased font size for the title */
+  font-size: 2.5rem; /* Increased font size for the title */
   text-align: center; /* Center title for emphasis */
 }
 
 .messageItem {
-  background-color:#e3f2fd; /* Slightly transparent white background */
+  background-color:white; /* Slightly transparent white background */
   border-radius: 5px; /* Rounded corners */
   margin: 10px 0; /* Space between messages */
   padding: 15px; /* Inner spacing */
@@ -26,7 +27,7 @@
 .messageItem:hover {
   transform: translateY(-5px); /* Lift effect on hover */
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2); /* Enhanced shadow on hover */
-  background-color: #d3f4cc; /* Light green background on hover */
+  background: linear-gradient(to right, #76aee9, #a378d9);; /* Light green background on hover */
 }
 
 .messageItem:hover::after {

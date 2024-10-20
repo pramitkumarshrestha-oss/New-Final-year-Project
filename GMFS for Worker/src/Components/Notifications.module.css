@@ -1,15 +1,16 @@
 /* src/Components/Notifications.module.css */
 .notifications {
-  background-color: #7d8fae; /* Darker background for better contrast */
-  border-radius: 12px; /* Rounded corners */
-  padding: 20px; /* Inner spacing */
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4); /* Softer shadow for depth */
-  margin-bottom: 20px; /* Space below the notifications container */
+  padding: 20px;
+  background-color: rgb(194, 221, 221);
+  min-height: 90vh;
+  margin-left: 4vh;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease; /* Smooth transform transition */
 }
 
 .notifications h2 {
-  color: #fbbf24; /* Bright yellow color for heading */
+  color: black; /* Bright yellow color for heading */
   margin-bottom: 15px; /* Space below the heading */
   text-align: center; /* Center the heading */
 }
@@ -20,7 +21,7 @@
 }
 
 .notificationItem {
-  background-color: #e3f2fd; /* Darker gray background for each notification */
+  background-color: white; /* Darker gray background for each notification */
   border-radius: 8px; /* Rounded corners */
   padding: 15px; /* Inner spacing */
   margin-bottom: 10px; /* Space between notifications */
@@ -30,7 +31,7 @@
 }
 
 .notificationItem:hover {
-  background-color: #38b2ac; /* Teal background on hover */
+  background: linear-gradient(to right, #76aee9, #a378d9); /* Teal background on hover */
   transform: translateY(-3px); /* Slight lift effect on hover */
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); /* Enhanced shadow on hover */
 }

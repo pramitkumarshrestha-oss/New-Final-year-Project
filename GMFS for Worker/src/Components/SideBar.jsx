@@ -1,31 +1,41 @@
-// src/Components/Sidebar.jsx
 import React from "react";
 import { Link } from "react-router-dom";
-import styles from "./Sidebar.module.css"; // Import the CSS module
+import { FaTachometerAlt, FaUserCog, FaQuestionCircle, FaSignOutAlt } from "react-icons/fa"; // Importing icons
+import logo from "../assets/logofirst.png";
+import styles from "./Sidebar.module.css";
 
 const Sidebar = () => {
   return (
     <div className={styles.sidebar}>
-      <h2>Worker Dashboard</h2>
-      <ul>
+      {/* Logo section */}
+      <div className={styles.logoContainer}>
+        <img src={logo} alt="Logo" className={styles.logo} />
+      </div>
+
+      {/* Sidebar Navigation Links */}
+      <ul className={styles.navList}>
         <li>
-          <Link to="/tasks">Task List</Link>
+          <Link to="/dashboard">
+            <FaTachometerAlt className={styles.icon} /> Dashboard
+          </Link>
         </li>
+     
         <li>
-          <Link to="/shifts">Shift Schedule</Link>
-        </li>{" "}
-        {/* Corrected the path */}
-        <li>
-          <Link to="/messages">Messages</Link>
+          <Link to="/help">
+            <FaQuestionCircle className={styles.icon} /> Help/Support
+          </Link>
         </li>
+
         <li>
-          <Link to="/performance">Performance Metrics</Link>
+          <Link to="/profile">
+            <FaUserCog className={styles.icon} /> Profile Settings
+          </Link>
         </li>
+        
         <li>
-          <Link to="/payments">Payment History</Link>
-        </li>
-        <li>
-          <Link to="/notifications">Notifications</Link>
+          <Link to="/logout">
+            <FaSignOutAlt className={styles.icon} /> Logout
+          </Link>
         </li>
       </ul>
     </div>
