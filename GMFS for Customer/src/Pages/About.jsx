@@ -5,7 +5,7 @@ import fabricPic from "../assets/image1/homeimage.jpg";
 const About = () => {
   return (
     <div className={styles.container}>
-      <div className={styles.imagewrapper}>
+      
         <img className={styles.fabric} src={fabricPic} alt="fabric" />
         <div className={styles.text}>
         <h1 className={styles.heading}>About Us</h1>
@@ -20,7 +20,7 @@ const About = () => {
         <button className={styles.learn}>Learn More</button>
       </div>
       </div>
-    </div>
+   
   );
 };
 

@@ -1,15 +1,28 @@
 import React, { useContext } from "react";
 import { StoreContext } from "../../Contexts/StoreContext";
+import { useAuth } from "../../Contexts/AuthContext"; // Import AuthContext
+import { useNavigate } from "react-router-dom"; // Import useNavigate for redirection
 
 const MenuItems = ({ items }) => {
-  // Defining the MenuItems component that receives 'items' as props
-  const { addToCart, removeFromCart, cartItems } = useContext(StoreContext); // Destructuring 'addToCart', 'removeFromCart', and 'cartItems' from StoreContext using useContext hook
-  console.log(cartItems);
+  // Destructure functions and values from contexts
+  const { addToCart, cartItems } = useContext(StoreContext);
+  const { isLoggedIn } = useAuth(); // Get login status from AuthContext
+  const navigate = useNavigate();   // Initialize navigate for routing
+
+  const handleAddToCart = (id) => {
+    if (!isLoggedIn) {
+      // Redirect to login page if user is not logged in
+      navigate("/login");
+    } else {
+      // Add to cart if the user is logged in
+      addToCart(id);
+    }
+  };
 
   return (
     <>
-      <div className="menu-items contanier-fluid mt-5">
-        <div className="row1">
+      <div className="menu-items container-fluid mt-5">
+        <div className="row">
           <div className="col-11 mx-auto">
             <div className="row my-5 flex-row">
               {items.map((elem) => {
@@ -18,29 +31,27 @@ const MenuItems = ({ items }) => {
                 return (
                   <div className="item1" key={id}>
                     <div className="Item-inside">
-                      {/*For Images*/}
+                      {/* Image section */}
                       <div className="col-12 col-md-12 col-lg-4 img-div">
                         <img src={image} alt={name} className="img-fluid" />
                       </div>
-                      {/* For Menu items description*/}
+                      {/* Item description section */}
                       <div className="col-12 col-md-12 col-lg-8">
-                        <div className="main-ttile pt-4 pb-3">
+                        <div className="main-title pt-4 pb-3">
                           <h1>{name}</h1>
                           <p>{description}</p>
                         </div>
                         <div className="menu-price-book">
-                          <div className="price-book-divide d-flex justify-content-between ">
+                          <div className="price-book-divide d-flex justify-content-between">
                             <h2>{price}</h2>
-                            <a href="#">
-                              <button
-                                className="btn btn-primary"
-                                onClick={() => addToCart(id)}
-                              >
-                                Add to cart
-                              </button>
-                            </a>
+                            <button
+                              className="btn btn-primary"
+                              onClick={() => handleAddToCart(id)} // Use handleAddToCart for button click
+                            >
+                              Add to cart
+                            </button>
                           </div>
-                          <p>*Prices may vary on bulk of quantity.</p>
+                          <p>*Prices may vary on bulk quantity.</p>
                         </div>
                       </div>
                     </div>
