@@ -4,7 +4,7 @@ import { FaTachometerAlt, FaUserCog, FaQuestionCircle, FaSignOutAlt } from "reac
 import logo from "../assets/logofirst.png";
 import styles from "./Sidebar.module.css";
 
-const Sidebar = () => {
+const Sidebar = ({ onLogout }) => {
   return (
     <div className={styles.sidebar}>
       {/* Logo section */}
@@ -33,7 +33,7 @@ const Sidebar = () => {
         </li>
         
         <li>
-          <Link to="/logout">
+        <Link to="/logout" onClick={onLogout}> {/* Call onLogout on click */}
             <FaSignOutAlt className={styles.icon} /> Logout
           </Link>
         </li>
