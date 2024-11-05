@@ -7,6 +7,7 @@
   /* background-color: #76aee9; */
   background: linear-gradient(to right, #76aee9, #a378d9);
   color: white;
+  /* position: fixed; */
 }
 
 .para {
@@ -90,7 +91,7 @@
   cursor: pointer; /* Make cursor pointer like a link */
   font-size: inherit; /* Make sure font size matches */
   display: inline-block; /* Ensures it behaves like a link */
-  padding:0;
+  padding: 0;
   line-height: inherit;
 }
 
@@ -98,4 +99,3 @@
 .logoutButton:hover {
   text-decoration: underline;
 }
-

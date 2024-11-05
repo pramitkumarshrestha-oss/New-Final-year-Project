@@ -1,0 +1,55 @@
+/* src/Components/PaymentHistory.module.css */
+.paymentHistory {
+  padding: 20px;
+    background-color: rgb(194, 221, 221);
+    min-height: 90vh;
+    margin-left: 4vh;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+.heading
+{
+  text-align: center;
+}
+
+.paymentHistory:hover {
+  transform: scale(1.02); /* Slight scale effect on hover */
+}
+
+.paymentList {
+  margin-top: 20px; /* Space above the payment list */
+  animation: fadeIn 0.5s ease-in; /* Fade-in effect for the payment list */
+}
+
+@keyframes fadeIn {
+  from {
+      opacity: 0; /* Start with opacity 0 */
+  }
+  to {
+      opacity: 1; /* End with full opacity */
+  }
+}
+
+.paymentItem {
+  background-color: white; /* Soft blue background for each payment record */
+  border-radius: 8px; /* Rounded corners */
+  padding: 20px; /* Inner spacing */
+  margin-bottom: 15px; /* Space between payment records */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  transition: transform 0.3s, box-shadow 0.3s; /* Smooth transitions */
+}
+
+.paymentItem:hover {
+  transform: translateY(-5px); /* Lift effect on hover */
+  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.2); /* Enhanced shadow on hover */
+  background: linear-gradient(to right, #76aee9, #a378d9);/* Slightly darker blue background on hover */
+}
+
+.paymentItem p {
+  margin: 5px 0; /* Margin for paragraphs within payment item */
+}
+
+.paymentItem strong {
+  color: #1976d2; /* Strong blue color for emphasis */
+  font-size: 1.1rem; /* Slightly larger font for strong text */
+}

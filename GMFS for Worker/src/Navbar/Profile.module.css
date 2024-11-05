@@ -1,0 +1,177 @@
+/* Profile.module.css */
+.profileContainer {
+    padding: 20px;
+    background-color: rgb(194, 221, 221);
+    min-height: 90vh;
+    margin-left: 4vh;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  .profileheading {
+    font-weight: bold;
+    text-decoration:underline;
+  }
+  
+  .header {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+  
+  .title {
+    font-size: 2.5rem;
+    color: #444;
+  }
+  
+  .subtitle {
+    font-size: 1.2rem;
+    color: #888;
+  }
+  
+  .profileImageContainer {
+    position: relative;
+    margin-bottom: 30px;
+    text-align: center;
+  }
+  
+  .profileImage {
+    width:200px;
+    height: 320px;
+    border-radius: 15%;
+    object-fit: cover;
+    border: 4px solid #ddd;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .profileImageContainer label {
+    position: absolute;
+    bottom: 15px;
+    right: 5px;
+    background-color: #76aee9;
+    color: #fff;
+    padding: 6px 12px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: background-color 0.3s ease;
+  }
+  
+  .profileImageContainer label:hover {
+    background-color: #55a7da;
+  }
+  
+  .profileInfo {
+    font-size: 2.5rem;
+    color: #444;
+    margin-bottom: 30px;
+  }
+  
+  .profileInfo p {
+    margin: 10px 0;
+  }
+  
+  .editButton {
+    background-color: #76aee9;
+    color: white;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+  }
+  
+  .editButton:hover {
+    background-color: #55a7da;
+  }
+  
+  .editForm {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 30px;
+  }
+  
+  .editForm label {
+    font-size: 1rem;
+    color: #333;
+    text-align: left;
+  }
+  
+  .editForm input {
+    width: 100%;
+    padding: 12px;
+    font-size: 1.1rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #fff;
+  }
+  
+  .editForm input:focus {
+    border-color: #76aee9;
+    outline: none;
+  }
+  .uploadSection {
+    display: flex;
+    justify-content: center;
+    gap: 15px; /* Gap between the buttons */
+  }
+  
+  .uploadLabel {
+    font-size: 1.2rem;
+    color: #76aee9; /* Default color for label */
+    cursor: pointer;
+    background-color: #fff;
+    padding: 12px 25px;
+    border-radius: 25px;
+    border: 2px solid #76aee9;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.3s ease, color 0.3s ease;
+    margin-left: 5vh; /* Adding space between the buttons */
+  }
+  
+  .uploadLabel:hover {
+    color: #55a7da; /* Color change on hover */
+    background-color: #f0f0f08b; /* Background color change on hover */
+    transform: scale(1.05); /* Slight enlarge effect */
+  }
+  
+  .uploadSection input {
+    display: none; /* Hide the default file input */
+  }
+  
+  .buttons {
+    display: flex;
+    justify-content:flex-start;
+    gap: 15px;
+    margin-top: 30px;
+  }
+  
+  .saveButton,
+  .cancelButton {
+    padding: 12px 25px;
+    font-size: 1.1rem;
+    border-radius: 25px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .saveButton {
+    background-color: #388e3c;
+    color: white;
+  }
+  
+  .saveButton:hover {
+    background-color: #2e7d32;
+  }
+  
+  .cancelButton {
+    background-color: #dc3545;
+    color: white;
+  }
+  
+  .cancelButton:hover {
+    background-color: #c82333;
+  }
+  

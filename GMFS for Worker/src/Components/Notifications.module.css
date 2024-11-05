@@ -1,0 +1,47 @@
+/* src/Components/Notifications.module.css */
+.notifications {
+  padding: 20px;
+  background-color: rgb(194, 221, 221);
+  min-height: 90vh;
+  margin-left: 4vh;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease; /* Smooth transform transition */
+}
+
+.notifications h2 {
+  color: black; /* Bright yellow color for heading */
+  margin-bottom: 15px; /* Space below the heading */
+  text-align: center; /* Center the heading */
+}
+
+.notificationList {
+  list-style-type: none; /* Remove default list styling */
+  padding: 0; /* Remove default padding */
+}
+
+.notificationItem {
+  background-color: white; /* Darker gray background for each notification */
+  border-radius: 8px; /* Rounded corners */
+  padding: 15px; /* Inner spacing */
+  margin-bottom: 10px; /* Space between notifications */
+  transition: background-color 0.3s, transform 0.3s; /* Smooth transitions */
+  position: relative; /* Positioning for the hover effect */
+  color: black; /* White text for better contrast */
+}
+
+.notificationItem:hover {
+  background: linear-gradient(to right, #76aee9, #a378d9); /* Teal background on hover */
+  transform: translateY(-3px); /* Slight lift effect on hover */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); /* Enhanced shadow on hover */
+}
+
+.notificationItem::before {
+  
+  position: absolute; /* Absolute positioning */
+  left: -10px; /* Position it to the left of the notification */
+  top: 50%; /* Center vertically */
+  transform: translateY(-50%); /* Adjust for vertical centering */
+  
+  
+}

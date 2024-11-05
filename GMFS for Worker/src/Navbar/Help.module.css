@@ -1,0 +1,57 @@
+.helpContainer {
+    padding: 15px;
+    max-width: 1600px;
+    margin-left: 4vh;
+    
+    background-color: rgb(194, 221, 221);
+    display: block;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(81, 165, 88, 0.1);
+  }
+  
+  .heading {
+    text-align: center;
+    font-size: 2rem;
+    color: #333;
+  }
+  
+  .intro {
+    text-align: center;
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+    color: #666;
+  }
+  
+  .section {
+    margin: 20px 0;
+  }
+  
+  .section h2 {
+    font-size: 1.5rem;
+    color: #333;
+  }
+  
+  .section p {
+    font-size: 1rem;
+    color: #555;
+  }
+  
+  .link {
+    display: inline-block;
+    margin-top: 10px;
+    font-size: 1rem;
+    color: #007BFF;
+    text-decoration: none;
+    border: 1px solid #007BFF;
+    padding: 5px 10px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  
+  .link:hover {
+    background-color: #007BFF;
+    color: #fff;
+  }
+  
+
+  

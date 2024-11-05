@@ -1,0 +1,51 @@
+/* src/Components/PerformanceMetrics.module.css */
+.performanceMetrics {
+  background-color: #e0f7fa; /* Soft aqua background for the main container */
+  border-radius: 10px; /* More rounded corners for a softer look */
+  padding: 20px; /* Inner spacing */
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Soft shadow */
+  margin-bottom: 20px; /* Space below the performance metrics container */
+}
+
+.title {
+  margin-bottom: 20px; /* Space below the title */
+  color: #1a237e; /* Dark indigo text color for contrast */
+  text-align: center; /* Centered title */
+  font-size: 1.8rem; /* Increased font size for the title */
+}
+
+.metricsContainer {
+  display: flex; /* Flexbox for layout */
+  justify-content: space-around; /* Space around cards */
+  flex-wrap: wrap; /* Wrap on smaller screens */
+}
+
+.metricCard {
+  background-color:#e8d4a2; /* White background for each card */
+  border-radius: 10px; /* Rounded corners */
+  padding: 20px; /* Inner spacing */
+  flex: 1 1 calc(30% - 20px); /* Flex basis for responsiveness */
+  margin: 10px; /* Space around cards */
+  text-align: center; /* Centered text */
+  transition: transform 0.3s, box-shadow 0.3s, background-color 0.3s; /* Smooth transitions */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+}
+
+.metricCard:hover {
+  transform: translateY(-8px); /* Lift effect on hover */
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3); /* Enhanced shadow on hover */
+  background-color: #95bea7; /* Light greenish background on hover */
+}
+
+.metricValue {
+  font-size: 2rem; /* Larger font size for value */
+  color: #388e3c; /* Green color for the metric value */
+  font-weight: bold; /* Bold font for emphasis */
+  margin-top: 10px; /* Space above the value */
+}
+
+.metricDescription {
+  font-size: 1rem; /* Smaller font size for descriptions */
+  color: #616161; /* Dark gray for descriptions */
+  margin-top: 5px; /* Space above the description */
+}

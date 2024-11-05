@@ -1,0 +1,62 @@
+/* src/Components/WorkerDashboard.module.css */
+
+.dashboard {
+  
+  padding: 20px;
+  margin-left: 20px; /* Space for the sidebar */
+  height: 100vh; /* Full height */
+  overflow-y:inherit; /* Scrollable if content overflows */
+  top: 0;
+  left: 0;
+  
+}
+
+.dashboard h1 {
+  color: #131413a0; /* Dark green for the heading */
+  font-size: 40px;
+  text-align: center;
+  margin-bottom: 10px;
+  font-weight: bold;
+  padding: 20px;
+  border-radius: 8px;
+  background-color:#77a6c7;
+  
+}
+
+.dashboard > div {
+  background-color:rgba(151, 145, 145, 0.659); /* White background for each component */
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin: 10px 0; /* Space between components */
+  transition: transform 0.3s;
+}
+
+.dashboard > div:hover {
+  transform: translateY(-3px); /* Lift effect on hover */
+}
+
+.dashboard .component-title {
+  font-size: 22px;
+  color: #388e3c; /* Medium green for component titles */
+  margin-bottom: 10px;
+}
+
+.dashboard p {
+  color: #555; /* Darker gray for text */
+}
+
+.dashboard button {
+  background-color: #2e7d32; /* Dark green for buttons */
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+.dashboard button:hover {
+  background-color: #1b5e20; /* Darker green on hover */
+  transform: scale(1.05); /* Slightly enlarge on hover */
+}

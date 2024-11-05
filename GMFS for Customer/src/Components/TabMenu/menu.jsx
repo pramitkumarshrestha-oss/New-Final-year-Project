@@ -168,14 +168,7 @@ const Menu = [
     price: "1500",
     description: "Quality fabric for u.",
   },
-  {
-    id: 20,
-    image: "images/Chiffon6.jpg",
-    name: "Chiffon",
-    category: "class",
-    price: "1500",
-    description: "Quality fabric for u.",
-  },
+ 
 ];
 
 export default Menu;

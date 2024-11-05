@@ -2,7 +2,8 @@ import React, { useContext } from "react";
 import { StoreContext } from "../../Contexts/StoreContext";
 
 const MenuItems = ({ items }) => {
-  const { addToCart, removeFromCart, cartItems } = useContext(StoreContext);
+  // Defining the MenuItems component that receives 'items' as props
+  const { addToCart, removeFromCart, cartItems } = useContext(StoreContext); // Destructuring 'addToCart', 'removeFromCart', and 'cartItems' from StoreContext using useContext hook
   console.log(cartItems);
 
   return (
@@ -34,7 +35,7 @@ const MenuItems = ({ items }) => {
                               <button
                                 className="btn btn-primary"
                                 onClick={() => addToCart(id)}
-                              > 
+                              >
                                 Add to cart
                               </button>
                             </a>

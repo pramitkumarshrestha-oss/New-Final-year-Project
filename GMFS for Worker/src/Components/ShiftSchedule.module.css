@@ -1,0 +1,39 @@
+/* src/Components/ShiftSchedule.module.css */
+.shiftSchedule {
+  padding: 20px;
+  background-color: rgb(194, 221, 221);
+  min-height: 90vh;
+  margin-left: 4vh;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.title {
+  margin-bottom: 15px; /* Space below the title */
+  color: #0d1f44; /* Dark navy for better contrast */
+  font-size: 1.5rem; /* Slightly larger title for emphasis */
+  text-align: center; /* Centering the title */
+}
+
+.shiftItem {
+  background-color: white; 
+  border-radius: 5px; /* Rounded corners */
+  margin: 10px 0; /* Space between shifts */
+  padding: 15px; /* Spacing inside each shift */
+  transition: transform 0.3s, box-shadow 0.3s, background-color 0.3s; /* Smooth transitions */
+  cursor: pointer; /* Change cursor to pointer */
+}
+
+.shiftItem:hover {
+  transform: translateY(-5px); /* Lift effect on hover */
+  box-shadow: 0 8px 20px rgba(118, 174, 233, 0.3); /* Shadow matching the blue gradient */
+  background: linear-gradient(to right, #76aee9, #a378d9);
+  
+  color: white; /* White text to pop against the gradient */
+}
+
+.shiftItem p {
+  margin: 5px 0; /* Space between paragraphs */
+  color: #333; /* Dark gray text for readability */
+  font-size: 1rem; /* Consistent font size */
+}
