@@ -15,7 +15,7 @@
     "barchart": "^0.6.1",
     "canvasjs": "^1.8.3",
     "chart.js": "^4.2.0",
-    "gms-client": "file:",
+    "gms-client": "file:../GMFS for Admin",
     "qs": "^6.11.0",
     "react": "^18.2.0",
     "react-chartjs-2": "^5.2.0",

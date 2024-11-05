@@ -1,10 +1,10 @@
+import axios from "axios";
 import Menu from "../Components/TabMenu/menu.jsx";
 import { createContext, useState, useContext } from "react";
 
 export const StoreContext = createContext(null);
 
 export const StoreContextProvider = (props) => {
-  
   //For search Items
   const [searchItem, setSearchItem] = useState("");
   const handleSearchItem = (e) => {
@@ -17,23 +17,35 @@ export const StoreContextProvider = (props) => {
 
   // const {isLoggedIn}=useAuth();//line added
 
-  const addToCart = (itemId) => {
-// if (!isLoggedIn) {  // Line 16: Check if user is logged in before adding to cart.
-//       window.location.href = "/login";  // Line 17: Redirect to login if not logged in.
-//       return;
-//     }
+  const addToCart = async (itemId) => {
+    // if (!isLoggedIn) {  // Line 16: Check if user is logged in before adding to cart.
+    //       window.location.href = "/login";  // Line 17: Redirect to login if not logged in.
+    //       return;
+    //     }
 
     if (!cartItems[itemId]) {
       setCartItems((prev) => ({ ...prev, [itemId]: 1 }));
     } else {
       setCartItems((prev) => ({ ...prev, [itemId]: prev[itemId] + 1 }));
     }
+    try {
+      console.log("Sandesh");
+      await axios.post("http://localhost:3010/cart/add", { itemId });
+    } catch (error) {
+      console.log(error);
+    }
   };
 
-  const removeFromCart = (itemId) => {
-    console.log(itemId);
+  //remove cart
+  const removeFromCart = async (itemId) => {
+    // console.log(itemId);
 
     setCartItems((prev) => ({ ...prev, [itemId]: prev[itemId] - 1 }));
+    try {
+      await axios.post("http://localhost:3010/cart/remove", { itemId });
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   // Calculate total number of items in cart
