@@ -12,11 +12,11 @@ import Gallery from "./Components/TabMenu/Gallery";
 import { Cart } from "./Pages/Cart";
 import { OrderPlaced } from "./Pages/OrderPlaced";
 import { AuthProvider } from "./Contexts/AuthContext";
+import { PaymentSuccess } from "./Pages/PaymentSuccess";
 
 const App = () => {
   return (
-    
-      <Router>
+    <Router>
       <AuthProvider>
         <Navbar />
         <Routes>
@@ -25,15 +25,15 @@ const App = () => {
           <Route path="/products" element={<Gallery />} />
           <Route path="/orders" element={<Orders />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/logout" element={<Landing/>} />
+          <Route path="/logout" element={<Landing />} />
           <Route path="/Signup" element={<Signup />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/orderplaced" element={<OrderPlaced />} />
+          <Route path="/payment-success" element={<PaymentSuccess />} />
         </Routes>
         <Footer />
-        </AuthProvider>
-      </Router>
-    
+      </AuthProvider>
+    </Router>
   );
 };
 
