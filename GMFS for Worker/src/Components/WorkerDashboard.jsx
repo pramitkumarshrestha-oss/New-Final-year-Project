@@ -1,5 +1,5 @@
 //The main component that consolidates all worker-related features
-// src/Components/WorkerDashboard.jsx
+
 import React, { useContext } from 'react';
 import { WorkerContext } from '../Contexts/WorkerContext';
 import TaskList from './TaskList';

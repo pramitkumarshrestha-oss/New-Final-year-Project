@@ -1,46 +1,54 @@
 .container {
   padding: 3.5rem;
-  background-color: #fff;
+  background-color: #ffffff;
   text-align: center;
   margin-bottom: 4vw;
-}
-
-.heading {
-  font-size: 2rem;
-  font-style:oblique;
-
-  font-family: "Times New Roman", Times, serif;
-  color: burlywood;
-}
-
-.aboutus_content {
-  font-size: 1.2rem;
-  color: white;
-}
-
-.imagewrapper {
   position: relative;
-  display: inline-block;
 }
+
 .fabric {
   width: 100%;
   height: 550px;
   object-fit: cover;
 }
+
 .text {
-  position: absolute; /* Position text above the image */
-  top: 35vh; /* Center text vertically */
-  left: 50%; /* Center text horizontally */
-  transform: translate(-50%, -50%); /*Adjust text position to be centered */
-  color: white; /* Text color for contrast */
-  font-size: 24px; /* Adjust font size as needed */
-  text-align: center; /* Center text horizontally */
-  padding: 10px; /* Optional padding */
-  background: rgba(10, 189, 25, 0.177);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  text-align: center;
+  max-width: 70%;
 }
+
+.heading {
+  font-size: 3rem;
+  font-weight: bold;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #deb887;
+  margin-bottom: 1rem;
+}
+
+.aboutus_content {
+  font-size: 1.2rem;
+  color: white;
+  font-style: italic;
+  line-height: 1.8;
+  margin-bottom: 1.5rem;
+}
+
 .learn {
-  font-size: 2.5vh;
-  padding: 2px;
-  border-radius: 10px;
-  background-color:cornsilk;
+  font-size: 1rem;
+  padding: 0.5rem 1.5rem;
+  border-radius: 5px;
+  background-color:  #deb887;
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.learn:hover {
+  background-color: rgb(100, 150, 110);
 }

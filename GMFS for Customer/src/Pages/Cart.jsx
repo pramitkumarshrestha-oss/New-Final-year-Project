@@ -13,7 +13,6 @@ export const Cart = () => {
     removeFromCart,
     Menu,
     getTotalCartAmount,
-  
   } = useContext(StoreContext);
   const navigate = useNavigate();
 

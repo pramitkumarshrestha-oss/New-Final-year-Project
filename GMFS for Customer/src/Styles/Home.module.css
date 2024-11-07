@@ -1,25 +1,19 @@
 .container {
   text-align: center;
-  /* background-color: rgb(175, 175, 62); */
   display: flex;
   flex-direction: row;
   gap: 33vw;
   margin-bottom: 11vw;
 }
 
-/* h1 {
-  font-size: 2.5rem;
-  color: #333;
-} */
-
 .taglines {
   margin-left: 20px;
   text-align: left;
-  /* color: #c9a0ed; */
   color: #c9a0ed;
   font-family: Poppins;
   font-size: 20px;
 }
+
 .tagline {
   font-size: 70px;
   font-weight: bolder;
@@ -29,10 +23,10 @@
   font-family: Poppins;
 }
 
-.fabric {
+.fabric,
+.fabric1 {
   width: 450px;
   height: 500px;
-  /* bottom: 150px; */
   border-top-left-radius: 100px;
   border-bottom-right-radius: 100px;
   border-top-right-radius: 30px;
@@ -42,18 +36,11 @@
 }
 
 .fabric1 {
-  width: 450px;
-  height: 500px;
-  /* bottom: 150px; */
-  border-top-left-radius: 100px;
-  border-bottom-right-radius: 100px;
-  border-top-right-radius: 30px;
-  border-bottom-left-radius: 30px;
-  margin-top: 7vw;
-  position: absolute;
   margin-left: 4vw;
   margin-top: 2vw;
 }
+
+/* Positioning for the overlapping images */
 .overlap {
   position: relative;
 }

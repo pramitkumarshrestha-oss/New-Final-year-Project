@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import styles from "./Help.module.css"; // Assuming you have a separate CSS file for styling
+import styles from "./Help.module.css"; 
 
 const Help = () => {
   return (

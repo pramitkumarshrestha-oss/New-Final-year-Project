@@ -11,29 +11,22 @@ import "react-toastify/dist/ReactToastify.css";
 export const Login = () => {
   const [token, setToken] = useState("");
   const [showPassword, setShowPassword] = useState(false);
-  const [formData, setFormData] = useState({
-    userName: "",
-    password: "",
-  });
-  const navigate = useNavigate();
+  const [formData, setFormData] = useState({ userName: "", password: "" });
   const [error, setError] = useState({});
+  const navigate = useNavigate();
+  const { login } = useAuth();
 
-  const { login } = useAuth(); // <-- Destructure login from AuthContext
-
-  // Form validation
+  // Validation function
   const validate = () => {
     let formErrors = {};
-    if (!formData.userName.trim()) {
+    if (!formData.userName.trim())
       formErrors.userName = "Username is required *";
-    }
-
-    if (!formData.password.trim()) {
+    if (!formData.password.trim())
       formErrors.password = "Password is required *";
-    }
-
     return formErrors;
   };
 
+  // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
     const validationError = validate();
@@ -71,6 +64,7 @@ export const Login = () => {
     }
   };
 
+  // Handle input changes
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevVal) => ({
@@ -91,10 +85,7 @@ export const Login = () => {
       <div className={styles.main_container}>
         <div className={styles.login_container}>
           {/* Left container */}
-          <div className={styles.left_container}>
-            {/* <div className={styles.overlay}></div> */}
-            {/* <div className={styles.text_overlay}></div> */}
-          </div>
+          <div className={styles.left_container}></div>
 
           {/* Right container */}
           <div className={styles.right_container}>
@@ -117,7 +108,9 @@ export const Login = () => {
                       <input
                         type="text"
                         id="login_username"
-                        className={styles.input_field}
+                        className={`${styles.input_field} ${
+                          error.userName ? styles.error : ""
+                        }`}
                         placeholder="Enter Your Username"
                         name="userName"
                         value={formData.userName}
@@ -143,7 +136,9 @@ export const Login = () => {
                       <input
                         type={showPassword ? "text" : "password"}
                         id="login_password"
-                        className={styles.input_field}
+                        className={`${styles.input_field} ${
+                          error.password ? styles.error : ""
+                        }`}
                         placeholder="Enter Your Password"
                         name="password"
                         value={formData.password}
@@ -154,34 +149,36 @@ export const Login = () => {
                         <FaEye
                           className={styles.password_eye}
                           onClick={handleShowPassword}
+                          aria-label="Hide password"
                         />
                       ) : (
                         <FaEyeSlash
                           className={styles.password_eye}
                           onClick={handleShowPassword}
+                          aria-label="Show password"
                         />
                       )}
-                      {/* Login Button */}
-                      <div className={styles.login_btn}>
-                        <button type="submit" className={styles.submit_button}>
-                          Login
-                        </button>
-                      </div>
                     </div>
                     {error.password && (
                       <p className={styles.input_error}>{error.password}</p>
                     )}
-                    <p className={styles.forgot_password}>
-                      Forgot your password?
-                    </p>
                   </div>
+
+                  {/* Login Button */}
+                  <div className={styles.login_btn}>
+                    <button type="submit" className={styles.submit_button}>
+                      Login
+                    </button>
+                  </div>
+
+                  <p className={styles.forgot_password}>
+                    Forgot your password?
+                  </p>
                 </form>
 
                 {/* Signup Link */}
-
                 <p className={styles.haveAccount}>
-                  Don{`'`}t have an account? <br></br>
-                  <Link to="/signup">Sign Up Now</Link>{" "}
+                  Don’t have an account? <Link to="/signup">Sign Up Now</Link>
                 </p>
               </div>
             </div>
@@ -191,4 +188,5 @@ export const Login = () => {
     </>
   );
 };
+
 export default Login;
