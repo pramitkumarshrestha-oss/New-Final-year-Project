@@ -10,6 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "gmfs-for-worker": "file:../GMFS for Worker",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-icons": "^5.3.0",

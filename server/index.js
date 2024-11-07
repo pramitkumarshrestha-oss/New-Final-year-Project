@@ -18,10 +18,12 @@ connectToMongoDB(mongo)
 const signupRoute = require("./routes/signuppage");
 const loginRoute = require("./routes/loginpage");
 const cartRoute = require("./routes/cartRoute");
+// const addItemsRoute = require("./routes/addProductRoute");
 
 app.use("/signup", signupRoute);
 app.use("/login", loginRoute);
 app.use("/cart", cartRoute);
+// app.use("/addProduct", addItemsRoute);
 
 app.listen(port, () => {
   console.log(`Server Started At ${port}`);

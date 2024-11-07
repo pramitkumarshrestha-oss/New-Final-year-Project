@@ -1,8 +1,11 @@
 const express = require("express");
 const user = require("../models/user");
+const jwt = require("jsonwebtoken");
+require("dotenv").config();
 // const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
 const loginpage = async (req, res) => {
+  const secretKey = process.env.JWT_SECRET;
   const { userName, password } = req.body;
   try {
     const result = await user.findOne({ userName: userName });
@@ -17,15 +20,17 @@ const loginpage = async (req, res) => {
       };
       const matched = await comparePasswords(password, result.password);
       if (matched) {
-        // const token = jwt.sign({ userName }, process.env.JWT_SECRET, {
-        //   expiresIn: "1h",
-        // });
+        const token = jwt.sign(
+          { userId: result.id, userName: userName },
+          secretKey,
+          { expiresIn: "1h" }
+        );
+
         console.log("Login Successful");
-        res /*.status(200)*/
-          .send("Login Successful");
+        res.status(200).json({ message: "login sucessfully", token: token });
       } else {
         console.log("Incorrect Password");
-        res.send("incorrect password");
+        res.json({ message: "incorrect password" });
       }
     } else {
       console.log("User doesnt exist");

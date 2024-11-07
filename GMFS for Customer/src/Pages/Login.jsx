@@ -9,6 +9,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 export const Login = () => {
+  const [token, setToken] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [formData, setFormData] = useState({
     userName: "",
@@ -46,15 +47,19 @@ export const Login = () => {
           formData
         );
         console.log(result.data);
-        if (result.data === "Login Successful") {
-          toast.success(result.data);
+        if (result.data.message === "login sucessfully") {
+          toast.success(result.data.message);
           console.log("hello");
+          const token = result.data.token;
+          localStorage.setItem("token", token);
+          setToken(token);
+          console.log(token);
 
           login();
           setTimeout(() => {
             navigate("/");
           }, 2000);
-        } else if (result.data === "incorrect password") {
+        } else if (result.data.message === "incorrect password") {
           toast.error(result.data);
         } else if (result.data === "user doesnt exist please register first") {
           toast.error(result.data);

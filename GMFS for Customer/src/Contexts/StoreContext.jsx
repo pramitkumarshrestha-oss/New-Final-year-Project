@@ -5,6 +5,8 @@ import { createContext, useState, useContext } from "react";
 export const StoreContext = createContext(null);
 
 export const StoreContextProvider = (props) => {
+  // const [token, setToken] = useState("");
+  const token = localStorage.getItem("token");
   //For search Items
   const [searchItem, setSearchItem] = useState("");
   const handleSearchItem = (e) => {
@@ -28,11 +30,20 @@ export const StoreContextProvider = (props) => {
     } else {
       setCartItems((prev) => ({ ...prev, [itemId]: prev[itemId] + 1 }));
     }
-    try {
-      console.log("Sandesh");
-      await axios.post("http://localhost:3010/cart/add", { itemId });
-    } catch (error) {
-      console.log(error);
+    // try {
+    //   console.log("Sandesh");
+    //   await axios.post("http://localhost:3010/cart/add", { itemId });
+    // } catch (error) {
+    //   console.log(error);
+    // }
+
+    if (token) {
+      // console.log(token);
+      await axios.post(
+        "http://localhost:3010/cart/add",
+        { itemId },
+        { headers: { Authorization: `Bearer ${token}` } }
+      );
     }
   };
 
@@ -41,10 +52,13 @@ export const StoreContextProvider = (props) => {
     // console.log(itemId);
 
     setCartItems((prev) => ({ ...prev, [itemId]: prev[itemId] - 1 }));
-    try {
-      await axios.post("http://localhost:3010/cart/remove", { itemId });
-    } catch (error) {
-      console.log(error);
+
+    if (token) {
+      await axios.post(
+        "http://localhost:3010/cart/remove",
+        { itemId },
+        { headers: { token } }
+      );
     }
   };
 
