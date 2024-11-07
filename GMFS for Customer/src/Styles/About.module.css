@@ -31,10 +31,10 @@
 }
 
 .aboutus_content {
-  font-size: 1.6rem;
-  color: rgba(255, 255, 255, 0.9);
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  line-height: 1.6;
+  font-size: 1.2rem;
+  color: white;
+  font-style: italic;
+  line-height: 1.8;
   margin-bottom: 1.5rem;
 }
 
@@ -42,7 +42,7 @@
   font-size: 1rem;
   padding: 0.5rem 1.5rem;
   border-radius: 5px;
-  background-color: rgb(123, 175, 128);
+  background-color:  #deb887;
   color: white;
   border: none;
   cursor: pointer;

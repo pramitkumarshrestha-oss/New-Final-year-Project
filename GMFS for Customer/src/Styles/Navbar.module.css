@@ -80,22 +80,98 @@
   text-align: top;
 }
 
-/* Apply same styles for logout button to look like links */
+/* Apply same styles for logout button to look like links
 .link,
 .logoutButton {
   margin-left: 2rem;
   color: white;
   text-decoration: none;
   background: none; /* Remove button's default background */
-  border: none; /* Remove button border */
-  cursor: pointer; /* Make cursor pointer like a link */
-  font-size: inherit; /* Make sure font size matches */
-  display: inline-block; /* Ensures it behaves like a link */
-  padding: 0;
-  line-height: inherit;
-}
+  /* border: none; /* Remove button border */
+  /* cursor: pointer; /* Make cursor pointer like a link */
+  /*font-size: inherit; /* Make sure font size matches */
+  /*display: inline-block; /* Ensures it behaves like a link */
+  /*padding: 0;
+  line-height: inherit; */ 
+/*}
 
 .link:hover,
 .logoutButton:hover {
   text-decoration: underline;
+} */
+
+/* Add to Navbar.module.css */
+
+/* Profile Menu Container */
+.profileMenu {
+  position: relative;
+  display: inline-block;
+  margin-left: 50px;
+}
+
+/* Icon Button (Profile Icon) */
+.iconButton {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 18.5px;
+  color: #fff;
+  padding: 10px;
+  border-radius: 50%;
+  transition: color 0.3s ease;
+  margin-right: -15px;
+  margin-top: 1px;
+}
+
+.iconButton:hover {
+  color: #ccc; /* Hover color for profile icon */
+}
+
+/* Dropdown Menu */
+.dropdown {
+  display: none; /* Hidden by default */
+  position: absolute;
+  top: 40px;
+  left:11px;
+  background-color: whitesmoke;
+  color: black;
+  border-radius: 8px;
+  padding: 5px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  width: 70px;
+  z-index: 10;
+}
+
+/* Show dropdown when dropdownVisible class is added */
+.dropdownVisible {
+  display: block;
+}
+
+/* Dropdown Items */
+.dropdownItem {
+  display: block;
+  padding: 10px;
+  text-decoration: none;
+  color: black;
+  font-size: 14px;
+  cursor: pointer;
+  width: 100%;
+  text-align: left;
+  background-color: transparent;
+  border: none;
+}
+
+.dropdownItem:hover {
+  background-color: rgb(233, 170, 13); /* Hover effect for dropdown items */
+}
+
+/* Style for button elements in dropdown */
+button.dropdownItem {
+  background: none;
+  border: none;
+  color: black;
+  width: 100%;
+  text-align: left;
+  padding: 10px;
+  cursor: pointer;
 }

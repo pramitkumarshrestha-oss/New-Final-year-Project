@@ -1,16 +1,27 @@
-import React, { useContext } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import styles from "../Styles/Navbar.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSearch, faShoppingCart } from "@fortawesome/free-solid-svg-icons";
+import {
+  faShoppingCart,
+  faUserCircle,
+} from "@fortawesome/free-solid-svg-icons";
 import SearchBar from "./SearchBar";
 import { useAuth } from "../Contexts/AuthContext";
 import { useStore } from "../Contexts/StoreContext";
 import logo from "../assets/image1/logofirst.png";
 
 const Navbar = () => {
-  const { cartItemCount } = useStore(); // Destructuring to get cart item count
-  const { isLoggedIn, logout } = useAuth(); // Destructure isLoggedIn and logout from AuthContext
+  const { cartItemCount } = useStore(); // Get cart item count
+  const { isLoggedIn, logout } = useAuth(); // Get login status and logout function
+
+  // State for dropdown visibility
+  const [dropdownVisible, setDropdownVisible] = useState(false);
+
+  // Toggle dropdown visibility
+  const toggleDropdown = () => {
+    setDropdownVisible(!dropdownVisible);
+  };
 
   return (
     <nav className={styles.navbar}>
@@ -42,13 +53,31 @@ const Navbar = () => {
 
         <SearchBar />
 
+        {/* If user is logged in, show profile icon and dropdown */}
         {isLoggedIn ? (
-          <button
-            className={`${styles.link} ${styles.logoutButton}`}
-            onClick={logout}
-          >
-            Logout
-          </button>
+          <div className={styles.profileMenu}>
+            <button className={styles.iconButton} onClick={toggleDropdown}>
+              <FontAwesomeIcon icon={faUserCircle} />
+            </button>
+            <div
+              className={`${styles.dropdown} ${
+                dropdownVisible ? styles.dropdownVisible : ""
+              }`}
+            >
+              <Link to="/profile" className={styles.dropdownItem}>
+                Profile
+              </Link>
+              <button
+                className={styles.dropdownItem}
+                onClick={() => {
+                  logout();
+                  setDropdownVisible(false); // Close dropdown after logout
+                }}
+              >
+                Logout
+              </button>
+            </div>
+          </div>
         ) : (
           <Link to="/login" className={styles.link}>
             Login

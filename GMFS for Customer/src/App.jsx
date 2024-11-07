@@ -15,8 +15,9 @@ import { AuthProvider } from "./Contexts/AuthContext";
 
 const App = () => {
   return (
-    <AuthProvider>
+    
       <Router>
+      <AuthProvider>
         <Navbar />
         <Routes>
           <Route path="/" element={<Landing />} />
@@ -30,8 +31,9 @@ const App = () => {
           <Route path="/orderplaced" element={<OrderPlaced />} />
         </Routes>
         <Footer />
+        </AuthProvider>
       </Router>
-    </AuthProvider>
+    
   );
 };
 
