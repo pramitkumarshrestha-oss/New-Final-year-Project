@@ -20,16 +20,9 @@ import Logout from '@mui/icons-material/Logout';
 import { BsShieldFillExclamation } from "react-icons/bs";
 import Divider from '@mui/material/Divider';
 
-
-
-
-
-
-
-
-
-
 const Header = () => {
+  
+
     const [anchorEl, setAnchorEl] = useState(null);
     const [isOpennotificationDrop, setisOpennotificationDrop] = useState(null);
 
@@ -48,8 +41,8 @@ const Header = () => {
   }
   const handleClosenotificationsDrop=()=>{
     setisOpennotificationDrop(false)
+}
 
-  }
     return(
        <>
         <header className="d-flex align-items-center ">
@@ -61,15 +54,14 @@ const Header = () => {
             <img src={img}/>
             <span className="ml-2">Garment Management System</span>
             </Link> 
-
-            </div>
+          </div>
             <div className="col-sm-3 d-flex align-items-center part2 pl-4">
                 <Button className="rounded-circle mr-3"><MdMenuOpen/></Button>
                 <SearchBox/>
-                
-            </div>
+                 </div>
             <div className="col-sm-7 d-flex align-items-center justify-content-end part3">
-                <Button className="rounded-circle mr-3"><MdLightMode/></Button>
+                <Button className="rounded-circle mr-3">
+                <MdLightMode/></Button>
                 <Button className="rounded-circle mr-3" ><IoMdCart/>
                 
                 </Button>
@@ -360,5 +352,6 @@ const Header = () => {
         
        
     )
+  
 };
 export default Header;
