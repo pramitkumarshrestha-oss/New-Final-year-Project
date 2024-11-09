@@ -46,7 +46,7 @@ export const Login = () => {
           const token = result.data.token;
           localStorage.setItem("token", token);
           setToken(token);
-          console.log(token);
+          // console.log(token);
 
           login();
           setTimeout(() => {

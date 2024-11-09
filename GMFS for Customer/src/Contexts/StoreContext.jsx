@@ -38,7 +38,7 @@ export const StoreContextProvider = (props) => {
     // }
 
     if (token) {
-      // console.log(token);
+      console.log(token);
       await axios.post(
         "http://localhost:3010/cart/add",
         { itemId },
@@ -52,10 +52,11 @@ export const StoreContextProvider = (props) => {
     setCartItems((prev) => ({ ...prev, [itemId]: prev[itemId] - 1 }));
 
     if (token) {
+      // console.log(token);
       await axios.post(
         "http://localhost:3010/cart/remove",
         { itemId },
-        { headers: { token } }
+        { headers: { Authorization: `Bearer ${token}` } }
       );
     }
   };
