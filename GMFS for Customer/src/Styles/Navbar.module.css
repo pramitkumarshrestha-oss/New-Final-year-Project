@@ -43,7 +43,12 @@
 }
 
 .link:hover {
-  text-decoration: underline;
+  transition: transform 0.3s ease, color 0.3s ease, background-color 0.3s ease; /* Adding transitions for color and background */
+  transform: translateY(-5px); /* Moves the icon slightly up */
+  color: #76aee9; /* New color for the icon when hovered */
+  background-color: white; /* Background color change on hover */
+  border-radius: 10%; /* Optional: Adds a circular background effect */
+  padding: 8px; /* Adjust padding to make space around the icon */
 }
 .button {
   background-color: #021f3858;
@@ -123,9 +128,24 @@
   margin-top: 1px;
 }
 
-.iconButton:hover {
-  color: #ccc; /* Hover color for profile icon */
+.iconButton:hover{
+
+  
+  color: #76aee9; /* New color for the icon when hovered */
+  background-color: white; /* Background color change on hover */
+  border-radius: 10%;
+  padding: 10px;
+ 
+
 }
+
+
+/* Show dropdown when hovering over profile menu or dropdown */
+.profileMenu:hover .dropdown,
+.dropdown:hover {
+  display: block; /* Make the dropdown visible */
+}
+
 
 /* Dropdown Menu */
 .dropdown {
@@ -142,10 +162,6 @@
   z-index: 10;
 }
 
-/* Show dropdown when dropdownVisible class is added */
-.dropdownVisible {
-  display: block;
-}
 
 /* Dropdown Items */
 .dropdownItem {

@@ -4,31 +4,33 @@ import { useNavigate } from "react-router-dom";
 import { StoreContext } from "../Contexts/StoreContext";
 import styles from "../Styles/PaymentSuccess.module.css";
 
-//Function declare garera setCartItems lai
-// destructure gareko kinaki access garna lai from storecontext bata ,
-//reset cart haru garna useful hos vanera
 export const PaymentSuccess = () => {
   const { setCartItems } = useContext(StoreContext);
   const navigate = useNavigate();
 
-  //Retrieve garna use huncha payment haru
   useEffect(() => {
     const storedPaymentDetails = localStorage.getItem("paymentDetails");
 
-    //yesle lai payment vhako cha ki nai check garxa if vhako cha vane chai cart lai reset garera empty banaidincha
+    // Check if payment was successful
     if (storedPaymentDetails) {
-      setCartItems({});
-      //popharu dekhaune if payment vhayo vhane
-      Swal.fire({
-        title: "Payment Successful!",
-        text: "Your order has been placed successfully.",
-        icon: "success",
-        confirmButtonText: "OK",
-      }).then((result) => {
-        if (result.isConfirmed) {
-          navigate("/");
-        }
-      });
+      const paymentDetails = JSON.parse(storedPaymentDetails);
+
+      if (paymentDetails.success) {
+        // Reset cart items after payment
+        setCartItems({});
+
+        // Show success alert
+        Swal.fire({
+          title: "Payment Successful!",
+          text: "Your order has been placed successfully.",
+          icon: "success",
+          confirmButtonText: "OK",
+        }).then((result) => {
+          if (result.isConfirmed) {
+            navigate("/"); // Redirect to home page after confirmation
+          }
+        });
+      }
     }
   }, [navigate, setCartItems]);
 

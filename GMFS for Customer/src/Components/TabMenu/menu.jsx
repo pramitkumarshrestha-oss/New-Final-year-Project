@@ -1,7 +1,7 @@
 const Menu = [
   {
     id: 1,
-    image: "images/Bluesilk.jpg",
+    image: "/images/Bluesilk.jpg",
     name: "BlueSilk",
     category: "Silk",
     price: "500",
@@ -9,7 +9,7 @@ const Menu = [
   },
   {
     id: 2,
-    image: "images/Darkgreensilk.jpg",
+    image: "/images/Darkgreensilk.jpg",
     name: "DarkgreenSilk",
     category: "Silk",
     price: "600",
@@ -18,7 +18,7 @@ const Menu = [
 
   {
     id: 3,
-    image: "images/Dustypinksilk.jpg",
+    image: "/images/Dustypinksilk.jpg",
     name: "DustypinkSilk",
     category: "Silk",
     price: "500",
@@ -27,7 +27,7 @@ const Menu = [
 
   {
     id: 4,
-    image: "images/Goldensilk.jpg",
+    image: "/images/Goldensilk.jpg",
     name: "GoldenpinkSilk",
     category: "Silk",
     price: "500",
@@ -36,7 +36,7 @@ const Menu = [
 
   {
     id: 5,
-    image: "images/Redsilk.jpg",
+    image: "/images/Redsilk.jpg",
     name: "Redsilk",
     category: "Silk",
     price: "700",
@@ -45,7 +45,7 @@ const Menu = [
 
   {
     id: 6,
-    image: "images/Whitesilk.jpg",
+    image: "/images/Whitesilk.jpg",
     name: "WhiteSilk",
     category: "Silk",
     price: "400",
@@ -54,7 +54,7 @@ const Menu = [
 
   {
     id: 7,
-    image: "images/cotton1.jpg",
+    image: "/images/cotton1.jpg",
     name: "cotton",
     category: "cotton",
     price: "500",
@@ -63,7 +63,7 @@ const Menu = [
 
   {
     id: 8,
-    image: "images/cotton2.jpg",
+    image: "/images/cotton2.jpg",
     name: "cotton",
     category: "cotton",
     price: "200",
@@ -72,7 +72,7 @@ const Menu = [
 
   {
     id: 9,
-    image: "images/cotton3.jpg",
+    image: "/images/cotton3.jpg",
     name: "cotton",
     category: "cotton",
     price: "500",
@@ -81,7 +81,7 @@ const Menu = [
 
   {
     id: 10,
-    image: "images/cotton4.jpg",
+    image: "/images/cotton4.jpg",
     name: "cotton",
     category: "cotton",
     price: "250",
@@ -90,7 +90,7 @@ const Menu = [
 
   {
     id: 11,
-    image: "images/cotton5.jpg",
+    image: "/images/cotton5.jpg",
     name: "cotton",
     category: "cotton",
     price: "350",
@@ -99,7 +99,7 @@ const Menu = [
 
   {
     id: 12,
-    image: "images/cotton6.jpg",
+    image: "/images/cotton6.jpg",
     name: "cotton",
     category: "cotton",
     price: "150",
@@ -108,7 +108,7 @@ const Menu = [
 
   {
     id: 13,
-    image: "images/Chiffon1.jpg",
+    image: "/images/Chiffon1.jpg",
     name: "Chiffon",
     category: "Chiffon",
     price: "1000",
@@ -117,7 +117,7 @@ const Menu = [
 
   {
     id: 14,
-    image: "images/Chiffon2.jpg",
+    image: "/images/Chiffon2.jpg",
     name: "Chiffon",
     category: "Chiffon",
     price: "1100",
@@ -126,7 +126,7 @@ const Menu = [
 
   {
     id: 15,
-    image: "images/Chiffon3.jpg",
+    image: "/images/Chiffon3.jpg",
     name: "Chiffon",
     category: "Chiffon",
     price: "1200",
@@ -135,7 +135,7 @@ const Menu = [
 
   {
     id: 16,
-    image: "images/Chiffon4.jpg",
+    image: "/images/Chiffon4.jpg",
     name: "Chiffon",
     category: "Chiffon",
     price: "1500",
@@ -144,7 +144,7 @@ const Menu = [
 
   {
     id: 17,
-    image: "images/Chiffon5.jpg",
+    image: "/images/Chiffon5.jpg",
     name: "Chiffon",
     category: "Chiffon",
     price: "800",
@@ -153,7 +153,7 @@ const Menu = [
 
   {
     id: 18,
-    image: "images/Chiffon6.jpg",
+    image: "/images/Chiffon6.jpg",
     name: "Chiffon",
     category: "Chiffon",
     price: "1500",
@@ -162,7 +162,7 @@ const Menu = [
 
   {
     id: 19,
-    image: "images/Chiffon6.jpg",
+    image: "/images/Chiffon6.jpg",
     name: "Chiffon",
     category: "random",
     price: "1500",

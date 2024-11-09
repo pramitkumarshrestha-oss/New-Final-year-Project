@@ -1,24 +1,86 @@
+/* Container for the search input and dropdown */
 .searchBarContainer {
-  border-radius: 10vh;
+  position: relative; /* To position dropdown relative to this container */
   display: flex;
   justify-content: center;
   align-items: center;
+  border-radius: 10vh;
 }
+
+/* Style for search input */
 .search_input {
   font-size: 2vh;
-  width: 13vw;
+  width: 14vw;
   padding: 1vh 1vw;
   border-radius: 10vh;
   color: white;
-  background: linear-gradient(to right, #76aee9, #a378d9);
+  border: none;
+  outline: none;
+  background-color: #76aee9;
+  
+  margin-left: 2vh;
+  /* background: linear-gradient(to right, #76aee9, #a378d9); */
 }
+
+/* Style for search icon */
 .search_icon {
   position: absolute;
-  top: 5.8vh;
-  right: 6vw;
+  top: 2.6vw;
+  right: 6vw; /* Adjust as needed to align with input */
+  font-size: 16px;
   color: white;
   cursor: pointer;
 }
+
+.search_icon:hover {
+  transition: transform 0.3s ease, color 0.3s ease, background-color 0.3s ease; /* Adding transitions for color and background */
+  transform: translateY(-10px); /* Moves the icon slightly up */
+  color: #76aee9; /* New color for the icon when hovered */
+  background-color: white; /* Background color change on hover */
+  border-radius: 10%; /* Optional: Adds a circular background effect */
+  padding: 8px; /* Adjust padding to make space around the icon */
+}
+
+/* Placeholder style for input */
 .search_input::placeholder {
   color: white;
+}
+
+/* Dropdown styling */
+.dropdown {
+  position: absolute;
+  top: 100%; /* Position directly below the input */
+  left: 0;
+  width: 100%; /* Match input width */
+  background-color: #fff; /* White background */
+  border-radius: 8px; /* Smooth rounded corners */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
+  z-index: 10; /* Ensure dropdown is above other content */
+  max-height: 250px; /* Max height for overflow */
+  overflow-y: auto; /* Allow scrolling if content exceeds max height */
+  padding: 0; /* Remove padding for neatness */
+}
+
+/* Dropdown items */
+.dropdownItem {
+  padding: 12px 15px; /* Comfortable padding */
+  font-size: 1.2rem; /* Readable text size */
+  color:black; /* Dark text for good contrast */
+  cursor: pointer; /* Pointer cursor to indicate clickability */
+  border-bottom: 1px solid #f0f0f0; /* Subtle separator line */
+  transition: background-color 0.3s ease, color 0.3s ease; /* Smooth hover effect */
+}
+
+/* Hover effect on dropdown items */
+.dropdownItem:hover {
+  background-color: #f5f5f548; /* Light grey background on hover */
+  color: #007bff; /* Blue color on hover for better visibility */
+}
+
+/* No results message */
+.noResults {
+  padding: 10px;
+  text-align: center;
+  color: #d1132c; /* Red color to indicate no results */
+  font-size: 1.1rem; /* Slightly smaller font size */
 }
