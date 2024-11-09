@@ -49,8 +49,6 @@ export const StoreContextProvider = (props) => {
 
   //remove cart
   const removeFromCart = async (itemId) => {
-    // console.log(itemId);
-
     setCartItems((prev) => ({ ...prev, [itemId]: prev[itemId] - 1 }));
 
     if (token) {
