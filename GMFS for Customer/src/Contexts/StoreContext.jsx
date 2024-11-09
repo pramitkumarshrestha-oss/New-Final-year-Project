@@ -18,10 +18,6 @@ export const StoreContextProvider = (props) => {
     }
 
     if (token) {
-<<<<<<< HEAD
-      console.log(token);
-=======
->>>>>>> 449ddbbcac138013a8511d41418a386dec0de36d
       await axios.post(
         "http://localhost:3010/cart/add",
         { itemId },
@@ -31,17 +27,6 @@ export const StoreContextProvider = (props) => {
   };
 
   const removeFromCart = async (itemId) => {
-<<<<<<< HEAD
-    setCartItems((prev) => ({ ...prev, [itemId]: prev[itemId] - 1 }));
-
-    if (token) {
-      // console.log(token);
-      await axios.post(
-        "http://localhost:3010/cart/remove",
-        { itemId },
-        { headers: { Authorization: `Bearer ${token}` } }
-      );
-=======
     if (cartItems[itemId] > 1) {
       setCartItems((prev) => ({ ...prev, [itemId]: prev[itemId] - 1 }));
     } else {
