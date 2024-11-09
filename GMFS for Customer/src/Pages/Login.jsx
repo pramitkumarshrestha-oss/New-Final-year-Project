@@ -1,32 +1,28 @@
 import { useState } from "react";
 import { FaEye, FaEyeSlash, FaUserCircle } from "react-icons/fa";
 import { RiLockPasswordFill } from "react-icons/ri";
-import styles from "../Styles/Login.module.css";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import axios from "axios";
-import { useAuth } from "../Contexts/AuthContext";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import styles from "../Styles/Login.module.css"; // Update path if needed
+import { useAuth } from "../Contexts/AuthContext";
 
-export const Login = () => {
-  const [token, setToken] = useState("");
-  const [showPassword, setShowPassword] = useState(false);
+const Login = () => {
   const [formData, setFormData] = useState({ userName: "", password: "" });
+  const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState({});
   const navigate = useNavigate();
   const { login } = useAuth();
 
-  // Validation function
   const validate = () => {
     let formErrors = {};
-    if (!formData.userName.trim())
-      formErrors.userName = "Username is required *";
-    if (!formData.password.trim())
-      formErrors.password = "Password is required *";
+    if (!formData.userName.trim()) formErrors.userName = "Username is required *";
+    if (!formData.password.trim()) formErrors.password = "Password is required *";
     return formErrors;
   };
 
-  // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
     const validationError = validate();
@@ -34,49 +30,34 @@ export const Login = () => {
       setError(validationError);
     } else {
       try {
-        console.log("Ok");
-        const result = await axios.post(
-          "http://localhost:3010/login",
-          formData
-        );
-        console.log(result.data);
-        if (result.data.message === "login sucessfully") {
+        const result = await axios.post("http://localhost:3010/login", formData);  // API for customer login
+        if (result.data.message === "login successful") {
           toast.success(result.data.message);
-          console.log("hello");
           const token = result.data.token;
-          localStorage.setItem("token", token);
-          setToken(token);
-          console.log(token);
-
-          login();
-          setTimeout(() => {
-            navigate("/");
-          }, 2000);
-        } else if (result.data.message === "incorrect password") {
-          toast.error(result.data);
-        } else if (result.data === "user doesnt exist please register first") {
-          toast.error(result.data);
+          localStorage.setItem("token", token); // Save token
+          login(); // Call auth context's login function
+          setTimeout(() => navigate("/home"), 2000); // Redirect to home page
+        } else {
+          toast.error(result.data.message || "Login failed");
         }
       } catch (error) {
-        console.log(error);
-        // setMessage("error");
+        toast.error("An error occurred. Please try again.");
       }
     }
   };
 
-  // Handle input changes
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData((prevVal) => ({
-      ...prevVal,
-      [name]: value,
-    }));
-
+    setFormData((prevVal) => ({ ...prevVal, [name]: value }));
     setError((prevError) => ({ ...prevError, [name]: "" }));
   };
 
-  const handleShowPassword = () => {
-    setShowPassword(!showPassword);
+  const handleShowPassword = () => setShowPassword(!showPassword);
+
+  // Function to redirect to the Worker Login page running on port 5174
+  const navigateToWorkerLogin = () => {
+    const workerAppUrl = "http://localhost:5174/workerlogin"; // Point to the Worker app running on port 5174
+    window.location.href = workerAppUrl;
   };
 
   return (
@@ -84,10 +65,7 @@ export const Login = () => {
       <ToastContainer />
       <div className={styles.main_container}>
         <div className={styles.login_container}>
-          {/* Left container */}
           <div className={styles.left_container}></div>
-
-          {/* Right container */}
           <div className={styles.right_container}>
             <div className={styles.inner_right}>
               <h1>WELCOME</h1>
@@ -95,22 +73,14 @@ export const Login = () => {
 
               <div className={styles.input_details}>
                 <form onSubmit={handleSubmit} noValidate>
-                  {/* Username */}
                   <div className={styles.form_group}>
                     <div className={styles.input_icon_wrapper}>
-                      <label
-                        htmlFor="login_username"
-                        className={styles.floating_label}
-                      >
-                        Username:
-                      </label>
+                      <label htmlFor="login_username" className={styles.floating_label}>Username:</label>
                       <FaUserCircle className={styles.input_icon} />
                       <input
                         type="text"
                         id="login_username"
-                        className={`${styles.input_field} ${
-                          error.userName ? styles.error : ""
-                        }`}
+                        className={`${styles.input_field} ${error.userName ? styles.error : ""}`}
                         placeholder="Enter Your Username"
                         name="userName"
                         value={formData.userName}
@@ -118,27 +88,17 @@ export const Login = () => {
                         required
                       />
                     </div>
-                    {error.userName && (
-                      <p className={styles.input_error}>{error.userName}</p>
-                    )}
+                    {error.userName && <p className={styles.input_error}>{error.userName}</p>}
                   </div>
 
-                  {/* Password */}
                   <div className={styles.form_group}>
                     <div className={styles.input_icon_wrapper}>
-                      <label
-                        htmlFor="login_password"
-                        className={styles.floating_label}
-                      >
-                        Password:
-                      </label>
+                      <label htmlFor="login_password" className={styles.floating_label}>Password:</label>
                       <RiLockPasswordFill className={styles.input_icon} />
                       <input
                         type={showPassword ? "text" : "password"}
                         id="login_password"
-                        className={`${styles.input_field} ${
-                          error.password ? styles.error : ""
-                        }`}
+                        className={`${styles.input_field} ${error.password ? styles.error : ""}`}
                         placeholder="Enter Your Password"
                         name="password"
                         value={formData.password}
@@ -146,39 +106,29 @@ export const Login = () => {
                         required
                       />
                       {showPassword ? (
-                        <FaEye
-                          className={styles.password_eye}
-                          onClick={handleShowPassword}
-                          aria-label="Hide password"
-                        />
+                        <FaEye className={styles.password_eye} onClick={handleShowPassword} aria-label="Hide password" />
                       ) : (
-                        <FaEyeSlash
-                          className={styles.password_eye}
-                          onClick={handleShowPassword}
-                          aria-label="Show password"
-                        />
+                        <FaEyeSlash className={styles.password_eye} onClick={handleShowPassword} aria-label="Show password" />
                       )}
                     </div>
-                    {error.password && (
-                      <p className={styles.input_error}>{error.password}</p>
-                    )}
+                    {error.password && <p className={styles.input_error}>{error.password}</p>}
                   </div>
 
-                  {/* Login Button */}
                   <div className={styles.login_btn}>
-                    <button type="submit" className={styles.submit_button}>
-                      Login
-                    </button>
+                    <button type="submit" className={styles.submit_button}>Login</button>
                   </div>
 
-                  <p className={styles.forgot_password}>
-                    Forgot your password?
-                  </p>
+                  <p className={styles.forgot_password}>Forgot your password?</p>
                 </form>
 
-                {/* Signup Link */}
                 <p className={styles.haveAccount}>
                   Don’t have an account? <Link to="/signup">Sign Up Now</Link>
+                </p>
+
+                <p className={styles.loginAsWorker}>
+                  <button onClick={navigateToWorkerLogin} className={styles.workerButton}>
+                    Login as Worker
+                  </button>
                 </p>
               </div>
             </div>

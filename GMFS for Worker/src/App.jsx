@@ -51,7 +51,7 @@ const App = () => {
         <div style={{ marginLeft: isAuthenticated ? '250px' : '0',marginTop:'-3px', padding: '20px', width: '100%' }}>
           <Routes>
             <Route path="/" element={isAuthenticated ? <WorkerHomePage /> : <Login onLoginSuccess={handleLoginSuccess} />} />
-            <Route path="/login" element={<Login onLoginSuccess={handleLoginSuccess} />} />
+            <Route path="/workerlogin" element={<Login onLoginSuccess={handleLoginSuccess} />} />
             <Route path="/tasks" element={isAuthenticated ? <TaskList /> : <Login onLoginSuccess={handleLoginSuccess} />} />
             <Route path="/shifts" element={isAuthenticated ? <ShiftSchedule /> : <Login onLoginSuccess={handleLoginSuccess} />} />
             <Route path="/messages" element={isAuthenticated ? <Messages /> : <Login onLoginSuccess={handleLoginSuccess} />} />

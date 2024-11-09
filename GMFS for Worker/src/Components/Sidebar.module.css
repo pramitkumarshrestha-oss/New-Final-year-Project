@@ -2,7 +2,7 @@
 .sidebar {
   background: linear-gradient(to right, #76aee9, #a378d9);
   color: #fff;
-  width: 250px;
+  width: 240px;
   padding: 20px;
   height: 100vh;
   display: flex;
@@ -11,7 +11,7 @@
   top: 0;
   left: 0;
   box-shadow: 2px 0 15px rgba(0, 0, 0, 0.2); /* Stronger shadow for depth */
-  border-radius: 10px; /* Rounded corners for a smoother look */
+  border-radius: 0px; /* Rounded corners for a smoother look */
   overflow: hidden;
   transition: transform 0.3s ease-in-out; /* Animation for slide effect */
 }
