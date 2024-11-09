@@ -9,20 +9,25 @@ import "react-toastify/dist/ReactToastify.css";
 import styles from "../Styles/Login.module.css"; // Update path if needed
 import { useAuth } from "../Contexts/AuthContext";
 
-const Login = () => {
+export const Login = () => {
+  const [token, setToken] = useState("");
   const [formData, setFormData] = useState({ userName: "", password: "" });
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState({});
   const navigate = useNavigate();
   const { login } = useAuth();
 
+  // For validation function
   const validate = () => {
     let formErrors = {};
-    if (!formData.userName.trim()) formErrors.userName = "Username is required *";
-    if (!formData.password.trim()) formErrors.password = "Password is required *";
+    if (!formData.userName.trim())
+      formErrors.userName = "Username is required *";
+    if (!formData.password.trim())
+      formErrors.password = "Password is required *";
     return formErrors;
   };
 
+  // Handling Form Submission
   const handleSubmit = async (e) => {
     e.preventDefault();
     const validationError = validate();
@@ -30,29 +35,31 @@ const Login = () => {
       setError(validationError);
     } else {
       try {
-        const result = await axios.post("http://localhost:3010/login", formData);  // API for customer login
+        const result = await axios.post(
+          "http://localhost:3010/login",
+          formData
+        ); // API for customer login
+        console.log(result.data); // Log the response to check its structure
+
         if (result.data.message === "login successful") {
           toast.success(result.data.message);
           const token = result.data.token;
-          localStorage.setItem("token", token);
-          setToken(token);
-          // console.log(token);
-
-          login();
+          localStorage.setItem("token", token); // Save token in localStorage
+          login(); // Call auth context's login function
           setTimeout(() => {
-            navigate("/");
+            navigate("/"); // Redirect to homepage after 2 seconds
           }, 2000);
         } else if (result.data.message === "incorrect password") {
-          toast.error(result.data);
-        } else if (result.data === "user doesnt exist please register first") {
-          toast.error(result.data);
-          localStorage.setItem("token", token); // Save token
-          login(); // Call auth context's login function
-          setTimeout(() => navigate("/home"), 2000); // Redirect to home page
+          toast.error(result.data.message); // Show incorrect password message
+        } else if (
+          result.data.message === "user doesnt exist please register first"
+        ) {
+          toast.error(result.data.message); // Show user doesn't exist message
         } else {
           toast.error(result.data.message || "Login failed");
         }
       } catch (error) {
+        console.log(error); // Log the error for debugging
         toast.error("An error occurred. Please try again.");
       }
     }
@@ -87,12 +94,19 @@ const Login = () => {
                 <form onSubmit={handleSubmit} noValidate>
                   <div className={styles.form_group}>
                     <div className={styles.input_icon_wrapper}>
-                      <label htmlFor="login_username" className={styles.floating_label}>Username:</label>
+                      <label
+                        htmlFor="login_username"
+                        className={styles.floating_label}
+                      >
+                        Username:
+                      </label>
                       <FaUserCircle className={styles.input_icon} />
                       <input
                         type="text"
                         id="login_username"
-                        className={`${styles.input_field} ${error.userName ? styles.error : ""}`}
+                        className={`${styles.input_field} ${
+                          error.userName ? styles.error : ""
+                        }`}
                         placeholder="Enter Your Username"
                         name="userName"
                         value={formData.userName}
@@ -100,17 +114,26 @@ const Login = () => {
                         required
                       />
                     </div>
-                    {error.userName && <p className={styles.input_error}>{error.userName}</p>}
+                    {error.userName && (
+                      <p className={styles.input_error}>{error.userName}</p>
+                    )}
                   </div>
 
                   <div className={styles.form_group}>
                     <div className={styles.input_icon_wrapper}>
-                      <label htmlFor="login_password" className={styles.floating_label}>Password:</label>
+                      <label
+                        htmlFor="login_password"
+                        className={styles.floating_label}
+                      >
+                        Password:
+                      </label>
                       <RiLockPasswordFill className={styles.input_icon} />
                       <input
                         type={showPassword ? "text" : "password"}
                         id="login_password"
-                        className={`${styles.input_field} ${error.password ? styles.error : ""}`}
+                        className={`${styles.input_field} ${
+                          error.password ? styles.error : ""
+                        }`}
                         placeholder="Enter Your Password"
                         name="password"
                         value={formData.password}
@@ -118,19 +141,33 @@ const Login = () => {
                         required
                       />
                       {showPassword ? (
-                        <FaEye className={styles.password_eye} onClick={handleShowPassword} aria-label="Hide password" />
+                        <FaEye
+                          className={styles.password_eye}
+                          onClick={handleShowPassword}
+                          aria-label="Hide password"
+                        />
                       ) : (
-                        <FaEyeSlash className={styles.password_eye} onClick={handleShowPassword} aria-label="Show password" />
+                        <FaEyeSlash
+                          className={styles.password_eye}
+                          onClick={handleShowPassword}
+                          aria-label="Show password"
+                        />
                       )}
                     </div>
-                    {error.password && <p className={styles.input_error}>{error.password}</p>}
+                    {error.password && (
+                      <p className={styles.input_error}>{error.password}</p>
+                    )}
                   </div>
 
                   <div className={styles.login_btn}>
-                    <button type="submit" className={styles.submit_button}>Login</button>
+                    <button type="submit" className={styles.submit_button}>
+                      Login
+                    </button>
                   </div>
 
-                  <p className={styles.forgot_password}>Forgot your password?</p>
+                  <p className={styles.forgot_password}>
+                    Forgot your password?
+                  </p>
                 </form>
 
                 <p className={styles.haveAccount}>
@@ -138,7 +175,10 @@ const Login = () => {
                 </p>
 
                 <p className={styles.loginAsWorker}>
-                  <button onClick={navigateToWorkerLogin} className={styles.workerButton}>
+                  <button
+                    onClick={navigateToWorkerLogin}
+                    className={styles.workerButton}
+                  >
                     Login as Worker
                   </button>
                 </p>
