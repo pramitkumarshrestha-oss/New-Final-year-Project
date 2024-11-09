@@ -44,11 +44,13 @@ export const StoreContextProvider = (props) => {
       } catch (error) {
         console.log("Error removing item from cart:", error);
       }
->>>>>>> 449ddbbcac138013a8511d41418a386dec0de36d
     }
   };
 
-  const cartItemCount = Object.values(cartItems).reduce((total, count) => total + count, 0);
+  const cartItemCount = Object.values(cartItems).reduce(
+    (total, count) => total + count,
+    0
+  );
 
   const getTotalCartAmount = () => {
     let totalAmount = 0;
@@ -73,7 +75,11 @@ export const StoreContextProvider = (props) => {
     cartItemCount,
   };
 
-  return <StoreContext.Provider value={contextValue}>{props.children}</StoreContext.Provider>;
+  return (
+    <StoreContext.Provider value={contextValue}>
+      {props.children}
+    </StoreContext.Provider>
+  );
 };
 
 export const useStore = () => useContext(StoreContext);
