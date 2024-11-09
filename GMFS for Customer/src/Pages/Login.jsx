@@ -17,7 +17,8 @@ export const Login = () => {
   const navigate = useNavigate();
   const { login } = useAuth();
 
-  // For validation function
+  const [token, setToken] = useState("");
+
   const validate = () => {
     let formErrors = {};
     if (!formData.userName.trim())
@@ -39,22 +40,29 @@ export const Login = () => {
           "http://localhost:3010/login",
           formData
         ); // API for customer login
-        console.log(result.data); // Log the response to check its structure
-
-        if (result.data.message === "login successful") {
+        // console.log(result.data);
+        if (result.data.message === "login sucessfully") {
+          // console.log("hello");
           toast.success(result.data.message);
+          // console.log("hello");
           const token = result.data.token;
-          localStorage.setItem("token", token); // Save token in localStorage
-          login(); // Call auth context's login function
+          localStorage.setItem("token", token);
+          setToken(token);
+          console.log(token);
+
+          login();
           setTimeout(() => {
             navigate("/"); // Redirect to homepage after 2 seconds
           }, 2000);
         } else if (result.data.message === "incorrect password") {
-          toast.error(result.data.message); // Show incorrect password message
+          toast.error(result.data.message);
         } else if (
           result.data.message === "user doesnt exist please register first"
         ) {
-          toast.error(result.data.message); // Show user doesn't exist message
+          toast.error(result.data.message);
+          localStorage.setItem("token", token); // Save token
+          login(); // Call auth context's login function
+          setTimeout(() => navigate("/home"), 2000); // Redirect to home page
         } else {
           toast.error(result.data.message || "Login failed");
         }
