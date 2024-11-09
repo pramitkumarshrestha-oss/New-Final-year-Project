@@ -30,6 +30,7 @@ const removeFromCart = async (req, res) => {
     if (cartData[req.body.itemId] > 0) {
       cartData[req.body.itemId] -= 1;
     }
+    
     await user.findByIdAndUpdate(req.user.userId, { cart: cartData });
     console.log("Removed From Cart");
     res.send("removed from cart");
