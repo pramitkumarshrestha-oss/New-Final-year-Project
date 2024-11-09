@@ -17,7 +17,7 @@ export const Login = () => {
   const navigate = useNavigate();
   const { login } = useAuth();
 
-  const [token, setToken] = useState("");
+
 
   const validate = () => {
     let formErrors = {};
