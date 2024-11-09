@@ -34,6 +34,18 @@ const Login = () => {
         if (result.data.message === "login successful") {
           toast.success(result.data.message);
           const token = result.data.token;
+          localStorage.setItem("token", token);
+          setToken(token);
+          // console.log(token);
+
+          login();
+          setTimeout(() => {
+            navigate("/");
+          }, 2000);
+        } else if (result.data.message === "incorrect password") {
+          toast.error(result.data);
+        } else if (result.data === "user doesnt exist please register first") {
+          toast.error(result.data);
           localStorage.setItem("token", token); // Save token
           login(); // Call auth context's login function
           setTimeout(() => navigate("/home"), 2000); // Redirect to home page

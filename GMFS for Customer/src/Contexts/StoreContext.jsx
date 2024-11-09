@@ -47,7 +47,10 @@ export const StoreContextProvider = (props) => {
     }
   };
 
-  const cartItemCount = Object.values(cartItems).reduce((total, count) => total + count, 0);
+  const cartItemCount = Object.values(cartItems).reduce(
+    (total, count) => total + count,
+    0
+  );
 
   const getTotalCartAmount = () => {
     let totalAmount = 0;
@@ -72,7 +75,11 @@ export const StoreContextProvider = (props) => {
     cartItemCount,
   };
 
-  return <StoreContext.Provider value={contextValue}>{props.children}</StoreContext.Provider>;
+  return (
+    <StoreContext.Provider value={contextValue}>
+      {props.children}
+    </StoreContext.Provider>
+  );
 };
 
 export const useStore = () => useContext(StoreContext);
