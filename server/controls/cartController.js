@@ -3,8 +3,9 @@ const mongoose = require("mongoose");
 
 //add items to cart
 // const userId = "671936e5563606ce2c60c24a";
-
+// console.log("sasasa");
 const addToCart = async (req, res) => {
+  console.log("hello MF");
   try {
     let userData = await user.findById(req.user.userId);
     let cartData = await userData.cart;
@@ -30,7 +31,7 @@ const removeFromCart = async (req, res) => {
     if (cartData[req.body.itemId] > 0) {
       cartData[req.body.itemId] -= 1;
     }
-    
+
     await user.findByIdAndUpdate(req.user.userId, { cart: cartData });
     console.log("Removed From Cart");
     res.send("removed from cart");

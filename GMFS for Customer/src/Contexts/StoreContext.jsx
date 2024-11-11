@@ -1,12 +1,17 @@
-import React, { createContext, useState, useContext } from "react";
+import React, { createContext, useState, useContext, useEffect } from "react";
 import axios from "axios";
 import Menu from "../Components/TabMenu/menu.jsx";
 
 export const StoreContext = createContext(null);
 
 export const StoreContextProvider = (props) => {
-  const token = localStorage.getItem("token");
-  // const [token, setToken] = useState("");
+  const [token, setToken] = useState("");
+  useEffect(() => {
+    // console.log(token);
+    const savedToken = localStorage.getItem("token");
+    console.log(savedToken);
+    setToken(savedToken);
+  }, [token]);
 
   const [searchItem, setSearchItem] = useState(""); // Manage search term
   const [cartItems, setCartItems] = useState({});
@@ -31,6 +36,7 @@ export const StoreContextProvider = (props) => {
     }
 
     if (token) {
+      console.log(token);
       await axios.post(
         "http://localhost:3010/cart/add",
         { itemId },
@@ -81,6 +87,7 @@ export const StoreContextProvider = (props) => {
     addToCart,
     removeFromCart,
     token,
+    setToken,
     cartItems,
     setCartItems,
     getTotalCartAmount,
