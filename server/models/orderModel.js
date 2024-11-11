@@ -1,5 +1,4 @@
 const mongoose = require("mongoose");
-const { type } = require("server/reply");
 const orderSchema = new mongoose.Schema({
   userId: { types: String },
   orderedItems: { types: Array },
