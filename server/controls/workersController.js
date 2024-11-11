@@ -23,7 +23,7 @@ const getWorkerHandler = async (req, res, next) => {
     return res.status(200).json("Invalid Id Format"); // Return invalid ID format message
   }
   try {
-    const worker = await getCustomer(workerId); // Fetch customer by ID
+    const worker = await getWorker(workerId); // Fetch customer by ID
     res.status(200).json(worker); // Send back customer data
   } catch (error) {
     return next(error); // Pass error to the next middleware
@@ -33,7 +33,7 @@ const postWorkerHandler = async (req, res, next) => {
   const workerBody = req.body;
 
   try {
-    const worker = await postCustomer(workerBody); // Add a new customer to the database
+    const worker = await postWorker(workerBody); // Add a new customer to the database
     return res.status(200).json(worker); // Return the newly added customer data
   } catch (error) {
     return next(error); // Pass error to the next middleware
@@ -44,7 +44,7 @@ const updateWorkerHandler = async (req, res, next) => {
   const workerDetials = req.body;
 
   try {
-    const wokerUpadtes = await updateCustomer(workerId, workerDetials); // Update customer data
+    const wokerUpadtes = await updateWorker(workerId, workerDetials); // Update customer data
     return res.status(200).json(wokerUpadtes); // Send back updated customer data
   } catch (error) {
     return next(error); // Pass error to the next middleware
@@ -54,7 +54,7 @@ const deleteWorkerHandler = async (req, res, next) => {
   const { workerId } = req.params;
   if (workerId.match(/^[0-9a-fA-F]{24}$/)) {
     // Validate customer ID format
-    const workerToDelete = await deleteCustomer(workerId); // Delete customer by ID
+    const workerToDelete = await deleteWorker(workerId); // Delete customer by ID
     if (!(Object.keys(workerToDelete || {}).length === 0)) {
       // Check if customer exists before deleting
       return res
@@ -69,10 +69,7 @@ const deleteWorkerHandler = async (req, res, next) => {
 };
 const verifyWorkerValidator = async (req, res, next) => {
   const workerCred = req.body;
-  const worker = await validateCustomer(
-    workerCred.userName,
-    workerCred.password
-  ); // Validate credentials
+  const worker = await validateWorker(workerCred.userName, workerCred.password); // Validate credentials
   return res.status(200).send(worker); // Send validation result
 };
 module.exports = {

@@ -17,8 +17,6 @@ export const Login = () => {
   const navigate = useNavigate();
   const { login } = useAuth();
 
-
-
   const validate = () => {
     let formErrors = {};
     if (!formData.userName.trim())
@@ -47,7 +45,8 @@ export const Login = () => {
           // console.log("hello");
           const token = result.data.token;
           localStorage.setItem("token", token);
-          setToken(token);
+          console.log(localStorage.getItem("token"));
+          // setToken(token);
           console.log(token);
 
           login();
