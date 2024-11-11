@@ -6,9 +6,22 @@ export const StoreContext = createContext(null);
 
 export const StoreContextProvider = (props) => {
   const token = localStorage.getItem("token");
+  // const [token, setToken] = useState("");
 
   const [searchItem, setSearchItem] = useState(""); // Manage search term
   const [cartItems, setCartItems] = useState({});
+  const [cartData, setCartData] = useState({
+    items: [],
+    totalAmount: 0,
+    deliveryFee: 100,
+  });
+  const [deliveryInfo, setDeliveryInfo] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    phoneNumber: "",
+    deliveryLocation: "",
+  });
 
   const addToCart = async (itemId) => {
     if (!cartItems[itemId]) {
@@ -67,12 +80,17 @@ export const StoreContextProvider = (props) => {
     Menu,
     addToCart,
     removeFromCart,
+    token,
     cartItems,
     setCartItems,
     getTotalCartAmount,
     searchItem, // Expose searchItem in context
     setSearchItem, // Expose setSearchItem in context
     cartItemCount,
+    setCartData,
+    cartData,
+    deliveryInfo,
+    setDeliveryInfo,
   };
 
   return (

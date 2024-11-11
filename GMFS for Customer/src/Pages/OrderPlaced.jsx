@@ -2,13 +2,28 @@ import React, { useContext } from "react";
 import { StoreContext } from "../Contexts/StoreContext";
 import styles from "../Styles/OrderPlaced.module.css";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 export const OrderPlaced = () => {
   // Destructure setCartItems and getTotalCartAmount from StoreContext
-  const { getTotalCartAmount, setCartItems } = useContext(StoreContext);
+  const { getTotalCartAmount, setCartItems, cartData, deliveryInfo, token } =
+    useContext(StoreContext);
+  // console.log("sandesh");
+  console.log(deliveryInfo);
   const navigate = useNavigate(); // Initialize useNavigate
 
-  const handleProceedToPayment = () => {
+  const handleProceedToPayment = async () => {
+    try {
+      console.log(token);
+      await axios.post(
+        "http://localhost:3010/api/orderSchedule/",
+        { cartData, deliveryInfo },
+        { headers: { Authorization: `Bearer ${token}` } }
+      );
+      // console.log(cartData);
+    } catch (error) {
+      console.log(error);
+    }
     // Store payment details in localStorage (you can store order-related information)
     localStorage.setItem("paymentDetails", JSON.stringify({ success: true }));
 
