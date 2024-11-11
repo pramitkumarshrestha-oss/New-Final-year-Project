@@ -7,6 +7,7 @@ export const StoreContext = createContext(null);
 export const StoreContextProvider = (props) => {
   const token = localStorage.getItem("token");
   // const [token, setToken] = useState("");
+  // const [token, setToken] = useState("");
 
   const [searchItem, setSearchItem] = useState(""); // Manage search term
   const [cartItems, setCartItems] = useState({});
@@ -81,12 +82,17 @@ export const StoreContextProvider = (props) => {
     addToCart,
     removeFromCart,
     token,
+    token,
     cartItems,
     setCartItems,
     getTotalCartAmount,
     searchItem, // Expose searchItem in context
     setSearchItem, // Expose setSearchItem in context
     cartItemCount,
+    setCartData,
+    cartData,
+    deliveryInfo,
+    setDeliveryInfo,
     setCartData,
     cartData,
     deliveryInfo,

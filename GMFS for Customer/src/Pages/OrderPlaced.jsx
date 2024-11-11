@@ -1,7 +1,8 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { StoreContext } from "../Contexts/StoreContext";
 import styles from "../Styles/OrderPlaced.module.css";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 import axios from "axios";
 
 export const OrderPlaced = () => {
@@ -12,18 +13,7 @@ export const OrderPlaced = () => {
   console.log(deliveryInfo);
   const navigate = useNavigate(); // Initialize useNavigate
 
-  const handleProceedToPayment = async () => {
-    try {
-      console.log(token);
-      await axios.post(
-        "http://localhost:3010/api/orderSchedule/",
-        { cartData, deliveryInfo },
-        { headers: { Authorization: `Bearer ${token}` } }
-      );
-      // console.log(cartData);
-    } catch (error) {
-      console.log(error);
-    }
+  const handleProceedToPayment = () => {
     // Store payment details in localStorage (you can store order-related information)
     localStorage.setItem("paymentDetails", JSON.stringify({ success: true }));
 
@@ -40,15 +30,66 @@ export const OrderPlaced = () => {
         <form className={styles.place_order_form}>
           <h2>Delivery Information</h2>
           <div className={styles.multi_fields}>
-            <input type="text" placeholder="First name" />
-            <input type="text" placeholder="Last name" />
+            <div className={styles.firstName}>
+              <input
+                type="text"
+                name="firstName"
+                placeholder="First name"
+                value={deliveryInfo.firstName}
+                required
+                onChange={(e) => handleDeliveryInfo(e)}
+              />
+              {error.firstName && (
+                <p className={styles.input_error}>{error.firstName}</p>
+              )}
+            </div>
+            <div className={styles.lastName}>
+              <input
+                type="text"
+                name="lastName"
+                placeholder="Last  name"
+                value={deliveryInfo.lastName}
+                onChange={(e) => handleDeliveryInfo(e)}
+              />
+              {error.lastName && (
+                <p className={styles.input_error}>{error.lastName}</p>
+              )}
+            </div>
           </div>
-          <input type="email" placeholder="Email address" />
-          <input type="text" placeholder="Phone Number" />
-          <input type="text" placeholder="Delivery Location" />
+          <div className={styles.email}>
+            <input
+              type="email"
+              name="email"
+              onChange={(e) => handleDeliveryInfo(e)}
+              placeholder="Email address"
+            />
+            {error.email && <p className={styles.input_error}>{error.email}</p>}
+          </div>
+          <div className={styles.phnNumber}>
+            <input
+              type="text"
+              name="phoneNumber"
+              onChange={(e) => handleDeliveryInfo(e)}
+              placeholder="Phone Number"
+            />
+            {error.phoneNumber && (
+              <p className={styles.input_error}>{error.phoneNumber}</p>
+            )}
+          </div>
+
+          <div className={styles.address}>
+            <input
+              type="text"
+              name="address"
+              onChange={handleDeliveryInfo}
+              placeholder="Delivery Address"
+            />
+            {error.address && (
+              <p className={styles.input_error}>{error.address}</p>
+            )}
+          </div>
         </form>
       </div>
-
       <div className={styles.place_order_right}>
         <div className={styles.cart_bottom}>
           <div className={styles.cart_total}>
@@ -64,11 +105,11 @@ export const OrderPlaced = () => {
             </div>
             <hr />
             <div className={styles.cart_total_details}>
-              <p>Total</p>
+              <p> Total</p>
               <p>Rs.{getTotalCartAmount() ? getTotalCartAmount() + 50 : "0"}</p>
             </div>
             <hr />
-            <button type="button" onClick={handleProceedToPayment}>
+            <button type="submit" onClick={handleProceedToPayment}>
               Proceed To Payment
             </button>
           </div>

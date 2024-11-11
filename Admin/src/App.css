@@ -1,0 +1,773 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+
+*{margin: 0px; padding: 0px;}
+
+body{font-family: "Open Sans", sans-serif !important; background-color: #e0dcdc;}
+
+::-webkit-scrollbar{
+  width: 5px !important;
+  height: 5px !important;
+}
+
+::-webkit-scrollbar-thumb{
+  background: #a378d9 !important;
+}
+
+::-webkit-scrollbar-thumb track{
+  background:transparent !important;
+}
+
+.btn-blue{
+  background: #a378d9 !important;
+  font-size: 14px !important;
+  font-weight: 600 !important;
+  color: white !important;
+  text-transform: capitalize !important;
+}
+
+
+header{
+  background: rgba(255, 255, 255, 0.7);
+  width: 100%; 
+  height: 70px; 
+  background: linear-gradient(to right, #76aee9, #a378d9);
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  z-index: 1000;
+  -webkit-backdrop-filter: blur(5px);
+  backdrop-filter: blur(5px);
+}
+
+header .logo{
+  text-decoration: none;
+}
+
+header .logo img{
+  width: 40px;
+}
+
+header .logo span{
+  color: rgb(59, 57, 57);
+  font-size: 15px;
+  font-weight: 700;
+}
+
+header button.rounded-circle{
+  min-width:40px !important;
+  width: 40px !important;
+  height: 40px !important;
+  background: #c0dfee !important;
+  color: rgb(59, 57, 57);
+  font-size: 18px !important;
+  transition: all 02s ease-in-out;
+}
+
+header button.rounded-circle:hover svg{
+  color: rgb(33, 130, 241);
+}
+
+.searchBox{
+  width: 400px;
+  height: 40px;
+  background: #c0dfee;
+  border-radius: 6px;
+  padding: 3px 15px;
+}
+
+.searchBox input{
+  background: transparent;
+  border: 0px;
+  outline: none;
+  padding-left: 0px;
+  font-size: 14px;
+  color:  rgb(59, 57, 57);
+}
+
+.searchBox input::-webkit-inout-placeholder{
+  color: rgb(59, 57, 57);
+}
+
+.searchBox svg{
+  font-size: 18px;
+  color:  rgb(59, 57, 57);
+}
+
+.myAcc{
+  text-align: left !important;
+  color: rgb(33, 130, 241) !important;
+  text-transform: capitalize !important;
+}
+.userImg .rounded-circle{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+  position: relative;
+ 
+}
+.userImg .rounded-circle img{
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+
+}
+
+.myAcc .userInfo{
+  padding-left: 10px;
+}
+
+.myAcc .userInfo h4{
+  font-size: 15px;
+  font-weight: 500;
+  margin-bottom: 0px;
+  color: black;
+}
+
+.myAcc .userInfo p{
+  margin-top: 0px;
+  font-size: 12px;
+  color: rgb(59, 57, 57);
+  opacity: 0.7;
+}
+
+#account-menu li{
+  font-size: 15px !important;
+  padding: 12px 15px !important;
+}
+
+#account-menu svg{
+  font-size: 20px !important;
+}
+
+#notifications .MuiPaper-elevation{
+  right: 190px !important;
+  width: 300px !important;
+  left: auto !important;
+  top: 60px !important;
+
+}
+
+.dropdown_list .head{
+  padding: 10px 0px;
+}
+.dropdown_list .head h4{
+  font-size: 17px;
+  font-weight: 600;
+
+}
+
+.dropdown_list li.MuiButtonBase-root{
+  background: #ebf6ff;
+  color: black !important;
+  padding: 10px 15px;
+}
+
+.dropdown_list li.MuiButtonBase-root:hover{
+  background: #d4e4f0 !important;
+}
+
+.dropdownInfo {
+  padding-left: 15px;
+}
+
+.dropdownInfo h4{
+  font-size: 13px;
+  font-weight: 500;
+  white-space: break-spaces;
+  line-height: 21px;
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
+.dropdownInfo{
+  font-size: 12px;
+  font-weight: 500;
+  margin-top: 0px;
+}
+
+.text-sky{
+  color: #a378d9 !important;
+}
+
+.dropdownInfo h4 b{
+  font-weight: 600;
+  margin-right: 5px;
+}
+
+.dropdown_list .scroll{
+  max-height: 300px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+.main .sidebarWrapper{
+  width: 20%;
+  flex: 0 0 20%;
+  transition: all 0.3s ease-in-out;
+}
+
+.main .sidebarWrapper .sidebar{
+  width: 20%;
+  height: 100vh;
+  max-height: calc(100% - 70px);
+  position: fixed;
+  top: 70px;
+  left: 0px;
+  background: white;
+  position: fixed;
+  overflow-y: scroll;
+  overflow-x: hidden;
+
+}
+
+/* .main .sidebarWrapper::-webkit-scrollbar{
+  width: 3px !important;
+}
+
+.main .sidebarWrapper::-webkit-scrollbar{
+  background: transparent !important;
+}
+
+.main .sidebarWrapper:hover .sidebar::-webkit-scrollbar{
+  background:rgb(199, 97, 199) !important;
+}  */
+
+.main .sidebarWrapper .sidebar ul{
+  margin-bottom: 0px;
+  padding: 10px 15px;
+}
+
+.main .sidebarWrapper .sidebar ul li{
+  list-style: none;
+}
+
+.main .sidebarWrapper .sidebar ul li button{
+  color: rgba(0, 0, 0, 0.7);
+  text-align: left;
+  justify-content: left;
+  border-radius: 10px !important;
+  padding: 12px 10px !important;
+  align-items: center;
+  text-transform: capitalize !important;
+  font-weight: 600;
+  font-family: "Open Sans", sans-serif !important;
+  font-size: 15px;
+}
+
+.main .sidebarWrapper .sidebar ul li button .icon{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 25px;
+  height: 25px;
+  margin-right: 10px;
+}
+
+.main .sidebarWrapper .sidebar ul li button .icon svg{
+  color: black;
+  opacity: 0.7;
+  font-size: 22px;
+}
+
+.main .sidebarWrapper .sidebar ul li button .arrow{
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 25px;
+  height: 25px;
+  transition: all 0.3s ease-in-out;
+
+}
+
+.main .sidebarWrapper .sidebar ul li button:hover{
+  background: #f1f1f1 !important;
+}
+
+.main .sidebarWrappper .sidebar ul li button.active{
+  background: #f1f1f1 !important;
+}
+
+.main .sidebarWrapper .sidebar ul li button.active .icon svg{
+  color: #9852ea;
+}
+
+.main .sidebarWrapper .sidebar ul li button.active .arrow{
+  transform: rotate(90deg);
+}
+
+
+.main .sidebarWrapper .sidebar ul .submenu li{
+  width: 100%;
+  list-style: none;
+  padding-left: 25px;
+}
+
+.main .sidebarWrapper .sidebar ul .submenu{
+  padding-left: 23px;
+  position: relative;
+  transition: all 0.3s ease-in-out;
+}
+
+.main .sidebarWrapper .sidebar ul .submenu::before{
+  content: '';
+  width: 1px;
+  height: 95%;
+  position: absolute;
+  top: 0px;
+  left: 25px;
+  background: rgba(0,0,0,0.2);
+}
+
+.main .sidebarWrapper .sidebar ul .submenu li a{
+  color: rgba(0,0,0,0.7) ;
+  text-decoration: none;
+  display: block;
+  padding: 6px 0px;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.3s;
+}
+
+.main .sidebarWrapper .sidebar ul .submenu li a:hover{
+  color: #a378d9;
+}
+
+.main .sidebarWrapper .sidebar ul .submenuWrapper{
+  transition: all 0.3s;
+  height: 0px;
+  overflow: hidden;
+}
+
+
+.main .sidebarWrapper .sidebar ul .submenuWrapper.colapsed .submenu{
+  opacity: 0;
+}
+
+.main .sidebarWrapper .sidebar ul .submenuWrapper.colapse{
+  height: auto;
+  overflow: inherit;
+}
+
+.main .sidebarWrapper .sidebar ul .submenuWrapper.colapse .submenu{
+  opacity: 1;
+  height: auto;
+}
+
+.logoutWrapper{
+  padding:0px 25px;
+}
+
+.logoutWrapper .logoutBox{
+  width: 100%;
+  height: 130px;
+  padding: 25px;
+  background: linear-gradient(to right, #76aee9, #a378d9);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.logoutWrapper .logoutBox::before{
+  content: '';
+  width: 70px;
+  height: 70px;
+  background: #2b89d5;
+  border-radius: 100%;
+  position: absolute;
+  top: -20px;
+  right: -20px;
+  opacity: 0.5;
+}
+
+.logoutWrapper .logoutBox::after{
+  content: '';
+  width: 30px;
+  height: 30px;
+  background: #9c5ce6;
+  border-radius: 100%;
+  position: absolute;
+  top: 20px;
+  left: 10px;
+  opacity: 0.5;
+}
+
+.logoutWrapper .logoutBox button{
+  font-size: 14px !important;
+  font-weight: 600 !important;
+  background-color: rgb(44, 132, 221);
+}
+
+.logoutWrapper .logoutBox button svg{
+  margin-right: 10px !important;
+  font-size: 18px !important;
+}
+
+.main .content{
+  width: 80%;
+  flex: 0 0 80%;
+}
+.right-content{
+  padding: 85px 25px;
+}
+
+.dashboardBoxWrapper{
+  gap: 20px;
+  width: 100%;
+  flex-wrap: wrap;
+}
+
+.dashboardBoxWrapper .dashboardBox{
+  width: 48%;
+  height: 170px;
+  background:#76aee9;
+  border-radius: 10px;
+  overflow: hidden;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  text-align: left !important;
+  position: relative;
+  color: white;
+  text-transform: capitalize !important;
+}
+
+
+.dashboardBoxWrapper .dashboardBox .col1 h4{
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.dashboardBoxWrapper .dashboardBox .col1 span{
+  font-size: 35px;
+  font-weight: bold;
+  line-height: 45px;
+}
+
+.dashboardBoxWrapper .dashboardBox .icon{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+  border-radius: 10px;
+  background-image: linear-gradient(to bottom right, rgba(0,0,0,0.0), rgba(0,0,0,0.2));
+}
+
+
+.dashboardBoxWrapper .dashboardBox .icon svg{
+  font-size: 36px;
+  opacity: 0.4 ;
+  color: #fff;
+}
+
+.dashboardBoxWrapper .dashboardBox .toggleIcon{
+  font-size: 22px;
+  color: rgba(0, 0, 0, 0.5);
+  cursor: pointer;
+  min-width: 40px !important;
+  width: 40px !important;
+  height: 40px !important;
+  border-radius: 50% !important;
+}
+
+.dashboardBoxWrapper .dashboardBox .chart{
+  font-size: 60px;
+  color: black;
+  opacity: 0.050;
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+}
+
+.dashboardBoxWrapper .dashboardBox .chart svg{
+  font-size: 110px;
+  color: black;
+}
+
+.dashboardBoxWrapper .dashboardBox .bottomEle{
+  position: relative;
+  top: 25px;
+}
+
+.dashboardBoxWrapperRow .box{
+  width: 100%;
+  height: 100%;
+  
+}
+
+.dashboardBoxWrapper .dashboardBox .MuiList-root svg{
+  color: black !important;
+  font-size: 17px !important;
+  margin-right: 10px !important;
+}
+
+.dropdown_menu .MuiButtonBase-root svg{
+  margin-right: 10px !important;
+}
+
+.graphBox{
+  background-image: linear-gradient(#1a50b5, #2a6ff7);
+  border-radius: 10px;
+  padding: 25px;
+}
+
+.toggleIcon{
+  font-size: 22px;
+  color: rgba(0, 0, 0, 0.5);
+  cursor: pointer;
+  min-width: 40px !important;
+  width: 40px !important;
+  height: 40px !important;
+  border-radius: 50% !important;
+}
+
+.graphBox .toggleIcon svg{
+  color: white !important; 
+  font-size: 20px !important; 
+  opacity: 1 !important;
+}
+
+.graphBox h4{
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.graphBox p{
+  font-size: 13px;
+  color: white;
+  opacity: 0.7;
+}
+
+.card{
+  margin: 20px 0px; 
+  border-radius: 10px;
+}
+
+.card .hd{
+  font-size: 18px;
+  font-weight: bold;
+  color: #403e57;
+}
+
+.cardFilters .col-md-3 h4{
+  font-size: 14px;
+  font-weight: 800;
+  text-transform: capitalize;
+  color: #403e57;
+}
+
+h1, h2, h3, h4, h5, h6{
+  color: #403e57;
+}
+
+.table .thead-dark th{
+  background: #1866ee !important;
+  border-color: rgba(255,255,255,0.1) !important;
+  font-size: 13px !important;
+}
+
+.table tbody td{
+  font-size: 14px !important;
+  color: #323044;
+  font-weight: 500;
+}
+
+.table tbody .actions button{
+  min-width: 32px !important;
+  width: 32px !important;
+  height: 32px !important;
+  margin: 0px 3px;
+}
+
+.table tbody .actions button.secondary{
+  background: rgba(203,60,231,0.2);
+}
+.table tbody .actions button.sucess{
+  background: rgba(26,159,83,0.2);
+}
+.table tbody .actions button.error{
+  background: rgba(241,17,51,0.2);
+}
+
+
+.table tbody .actions button svg{
+  font-size: 32px !important;
+}
+
+table.v-align{
+  vertical-align: middle !important;
+
+}
+
+.table td .old,.table td .new{
+  display: block;
+  width: 100%; 
+}
+
+table td .imgWrapper{
+  width: 20%;
+  flex: 0 0 20%;
+  padding-right: 10px;
+ 
+  
+}
+
+table td .info{
+  width: 65%;
+  flex: 0 0 65%;
+}
+
+table.v-align td .info h6{
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 0px;
+}
+
+table.v-align td .info p{
+  font-size: 13px;
+  line-height: 18px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: #5e5d72;
+  margin-bottom: 0px;
+}
+
+table.v-align td .productBox{
+  width: 300px;
+}
+
+.form .form-group{
+  margin-bottom: 25px;
+}
+
+.form .form-group h6{
+  margin-bottom: 10px;
+  font-size: 13px;
+} 
+
+.form .form-group input, .form .form-group textarea{
+  background: #fafafa;
+  width: 100%;
+  outline: none !important;
+  border: 1px solid rgba(0,0,0,0.1) !important;
+  height: 60px;
+  padding-left: 15px;
+  border-radius: 5px;
+  font-size: 14px;
+}
+
+.form .form-group textarea{
+  height: 120px;
+  padding-top: 15px;
+}
+
+.imgUploadBox{
+  width: 100%; 
+  flex-wrap: nowrap; 
+  gap: 10px;
+}
+.imgUploadBox .uploadBox{
+  width: 150px; 
+  height: 150px !important; 
+  padding: 0px; border-radius: 10px; 
+  border: 1px dashed  rgba(0,0,0,0.3); 
+  position:relative ; 
+  display: flex; 
+  align-items: center; 
+  justify-content: center; 
+  cursor: pointer; 
+  background: #fafafa; 
+  transition: all 0.3s;
+}
+ 
+.imgUploadBox .uploadBox .box{
+  width: 100%; 
+  height: 150px !important; 
+  overflow: hidden; 
+  border-radius: 7px; 
+  padding: 2px;}
+.imgUploadBox .uploadBox .box .lazy-load-image-background{
+  height: 100% !important; 
+  width: 100% !important;
+}
+
+.imgUploadBox .uploadBox .progressBar .MuiCircularProgress-root
+{width: 30px !important; 
+  height: 30px !important;
+}
+.imgUploadBox .uploadBox .progressBar span{
+  font-size: 14px;
+}
+
+
+.imgUploadBox .uploadBox .remove{
+  position: absolute; 
+  top: -7px; right: -7px; 
+  display: flex; 
+  align-items: center; 
+  justify-content: center; 
+  width: 20px; 
+  height: 20px; 
+  background: #d32f2f; 
+  border-radius: 50%;
+ cursor: pointer; z-index: 100;}
+
+.imgUploadBox .uploadBox .remove svg{
+  font-size: 18px; 
+  color: #fff;
+}
+
+
+.imgUploadBox .uploadBox .MuiBox-root{
+  position: absolute;
+ }
+
+
+.imgUploadBox .uploadBox:hover{
+  background: #f1f1f1;
+}
+
+.imgUploadBox .uploadBox img{
+  height: 100%; 
+  object-fit: cover;
+}
+.imgUploadBox .uploadBox input{
+  position: absolute; 
+  width: 100%; 
+  height: 100%; 
+  opacity: 0;
+}
+
+.imgUploadBox .uploadBox .info{
+  display: flex; 
+  align-items: center;
+  justify-content: center; 
+  flex-direction: column; 
+  pointer-events: none;
+}
+  .imgUploadBox .uploadBox .info svg{
+    font-size: 50px; 
+    opacity: 0.2;
+  }
+  .imgUploadBox .uploadBox .info h5{
+    font-size: 15px; 
+    text-align: center; 
+    opacity: 0.5;
+  }
+  .MuiRating-root *{
+    color: #faaf00 !important;
+  }

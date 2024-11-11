@@ -9,14 +9,15 @@ import "react-toastify/dist/ReactToastify.css";
 import styles from "../Styles/Login.module.css"; // Update path if needed
 import { useAuth } from "../Contexts/AuthContext";
 
-const Login = () => {
+export const Login = () => {
+  const [token, setToken] = useState("");
   const [formData, setFormData] = useState({ userName: "", password: "" });
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState({});
   const navigate = useNavigate();
   const { login } = useAuth();
 
-  const [token, setToken] = useState("");
+
 
   const validate = () => {
     let formErrors = {};
@@ -27,6 +28,7 @@ const Login = () => {
     return formErrors;
   };
 
+  // Handling Form Submission
   const handleSubmit = async (e) => {
     e.preventDefault();
     const validationError = validate();
@@ -50,7 +52,7 @@ const Login = () => {
 
           login();
           setTimeout(() => {
-            navigate("/");
+            navigate("/"); // Redirect to homepage after 2 seconds
           }, 2000);
         } else if (result.data.message === "incorrect password") {
           toast.error(result.data.message);
@@ -65,6 +67,7 @@ const Login = () => {
           toast.error(result.data.message || "Login failed");
         }
       } catch (error) {
+        console.log(error); // Log the error for debugging
         toast.error("An error occurred. Please try again.");
       }
     }

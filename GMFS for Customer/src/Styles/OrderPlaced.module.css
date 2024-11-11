@@ -3,83 +3,128 @@
   margin: auto;
   display: flex;
   justify-content: space-between;
-  display: flex;
+  align-items: flex-start;
+  gap: 2vw;
+  flex-wrap: wrap;
 }
+
 .place_order_left {
   text-align: center;
-  margin: 4vh 5vw;
-  width: 35vw;
+  margin: 4vh 0;
+  width: 100%;
+  max-width: 40vw;
   box-shadow: rgba(13, 210, 108, 0.25) 0px 6px 12px -2px,
     rgba(11, 7, 210, 0.3) 3px 3px 7px 3px;
-  border-radius: 1vh;
+  border-radius: 8px;
+  padding: 2vh 2vw;
+  background-color: #ffffff;
 }
+
 .place_order_form {
   display: flex;
   flex-direction: column;
   padding: 2vh;
-  gap: 4vh;
-  margin-top: 4vh;
-
-  & input {
-    font-size: 2.1vh;
-    padding: 1vh 1vw;
-    
-    
-    
-    border-bottom: 2px solid black;
-  }
+  gap: 2vh;
 }
+
+.place_order_form input {
+  font-size: 1.8vh;
+  padding: 1vh 1vw;
+  border: 1px solid black;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+  
+}
+
+
+.place_order_form input:focus {
+  border-color: #3d85c6;
+  outline: none;
+}
+
 .multi_fields {
   display: flex;
   justify-content: space-between;
+  gap: 2vw;
+  
 }
+
+.input_error {
+  color: #ff0000; /* Set the color to red or any color you prefer */
+  font-size: 1.5vh; /* Adjust font size as needed */
+  margin-top: 0.5vh; /* Add some space above the message */
+  font-weight: bold; /* Make the error message bold, if desired */
+}
+
+
 .place_order_right {
-  margin:4vh 5vw;
+  margin: 4vh 0;
+  width: 100%;
+  max-width: 35vw;
+  
 }
 
 .cart_bottom {
-  border-radius: 5vh;
-  width: 35vw;
-  margin-top: 0vh;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  text-align: center;
+  border-radius: 8px;
+  width: 100%;
   box-shadow: rgba(13, 210, 108, 0.25) 0px 6px 12px -2px,
-  rgba(11, 7, 210, 0.3) 3px 3px 7px 3px;
-  border-radius: 1vh;
- 
+    rgba(11, 7, 210, 0.3) 3px 3px 7px 3px;
+  background-color: #ffffff;
+  padding: 2vh 1vw;
 }
-.cart_total {
-  width: 50%;
-  padding: 7vh 1vw;
 
-  & p {
-    font-size: 2.2vh;
-    padding: 0vh 0vw;
-  }
+.cart_total {
+  width: 100%;
 }
+
+.cart_total h2 {
+  font-size: 2.5vh;
+  color: #444;
+  margin-bottom: 1vh;
+}
+
 .cart_total_details {
   display: flex;
   justify-content: space-between;
-  color:black;
-  padding: 0vh 1vw;
+  font-size: 2vh;
+  padding: 1vh 0;
+  color: #444;
 }
+
 .cart_total hr {
   margin: 12px 0px;
+  border: 0;
+  height: 1px;
+  background: #ccc;
 }
-.cart_bottom button {
-  margin: 5vh 0vw;
-  font-size: 2.5vh;
-  padding: 2vh 2vw;
-  background-color: rgb(255, 71, 191);
-  width: 15.9vw;
-  cursor: pointer;
-  border-radius: 2vh;
-  border: none;
-  transition: 0.4s ease;
 
-  &:hover {
-    background-color: rgb(97, 95, 204);
+.cart_bottom button {
+  font-size: 2vh;
+  padding: 1.5vh 3vw;
+  background-color: #ff47bf;
+  color: #ffffff;
+  width: 100%;
+  max-width: 20vw;
+  cursor: pointer;
+  border-radius: 8px;
+  border: none;
+  transition: background-color 0.4s ease, transform 0.2s ease;
+}
+
+.cart_bottom button:hover {
+  background-color: #6163cc;
+  transform: scale(1.05);
+}
+
+@media screen and (max-width: 768px) {
+  .place_order_container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .place_order_left,
+  .place_order_right {
+    width: 90%;
+    margin: 2vh 0;
   }
 }
