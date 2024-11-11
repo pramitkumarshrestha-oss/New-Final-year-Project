@@ -3,25 +3,87 @@ import { StoreContext } from "../Contexts/StoreContext";
 import styles from "../Styles/OrderPlaced.module.css";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import axios from "axios";
 
 export const OrderPlaced = () => {
   // Destructure setCartItems and getTotalCartAmount from StoreContext
-  const { getTotalCartAmount, setCartItems, cartData, deliveryInfo, token } =
-    useContext(StoreContext);
-  // console.log("sandesh");
+  const {
+    getTotalCartAmount,
+    setCartItems,
+    cartData,
+    deliveryInfo,
+    token,
+    setDeliveryInfo,
+  } = useContext(StoreContext);
   console.log(deliveryInfo);
   const navigate = useNavigate(); // Initialize useNavigate
 
-  const handleProceedToPayment = () => {
-    // Store payment details in localStorage (you can store order-related information)
-    localStorage.setItem("paymentDetails", JSON.stringify({ success: true }));
+  //Validation garna ko lagi delivery information ko
 
-    // Navigate to the PaymentSuccess page
-    navigate("/payment-success");
+  const [error, setError] = useState({});
+  const validate = () => {
+    let formErrors = {};
+    if (!deliveryInfo.firstName.trim()) {
+      formErrors.firstName = "First Name is Required *";
+    } else if (!/[A-Za-z]+[A-Za-z]*/.test(deliveryInfo.firstName)) {
+      formErrors.firstName = "Invalid first Name";
+    }
+    if (!deliveryInfo.lastName.trim()) {
+      formErrors.lastName = "Last Name is Required *";
+    } else if (!/[A-Za-z]+[A-Za-z]*/.test(deliveryInfo.lastName)) {
+      formErrors.lastName = "Invalid last Name";
+    }
 
-    // Reset the cart after payment
-    setCartItems({});
+    if (!deliveryInfo.email.trim()) {
+      formErrors.email = "Email is Required *";
+    } else if (
+      !/^([A-Za-z0-9]+(?:[.#_][A-Za-z\d]+)*@[A-Za-z]+)(\.[A-Za-z]{2,3})$/.test(
+        deliveryInfo.email
+      )
+    ) {
+      formErrors.email = "Incorrect email format ";
+    }
+
+    if (!deliveryInfo.phoneNumber.trim()) {
+      formErrors.phoneNumber = "Phone number is Required *";
+    } else if (!/^[0-9]{10}$/.test(deliveryInfo.phoneNumber)) {
+      formErrors.phoneNumber = "Invalid phone Number";
+    }
+
+    if (!deliveryInfo.address.trim()) {
+      formErrors.address = "Address is Required *";
+    }
+
+    return formErrors;
+  };
+
+  const handleDeliveryInfo = (e) => {
+    const { value, name } = e.target;
+    setDeliveryInfo((preVal) => ({ ...preVal, [name]: value }));
+    setError((prevErr) => ({ ...prevErr, [name]: "" }));
+  };
+
+  const handleProceedToPayment = async () => {
+    const validation = validate();
+    console.log(validation);
+
+    console.log(Object.keys(validation).length);
+
+    if (Object.keys(validation).length > 0) {
+      setError(validation);
+    } else {
+      try {
+        console.log(token);
+        await axios.post(
+          "http://localhost:3010/api/orderSchedule/",
+          { cartData, deliveryInfo },
+          { headers: { Authorization: `Bearer ${token}` } }
+        );
+        // console.log(cartData);
+      } catch (error) {
+        console.log(error);
+      }
+      navigate("/payment-success");
+    }
   };
 
   return (

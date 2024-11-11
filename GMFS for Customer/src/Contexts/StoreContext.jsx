@@ -5,8 +5,7 @@ import Menu from "../Components/TabMenu/menu.jsx";
 export const StoreContext = createContext(null);
 
 export const StoreContextProvider = (props) => {
-  const token = localStorage.getItem("token");
-  // const [token, setToken] = useState("");
+  const token = localStorage.getItem("");
   // const [token, setToken] = useState("");
 
   const [searchItem, setSearchItem] = useState(""); // Manage search term
@@ -21,7 +20,7 @@ export const StoreContextProvider = (props) => {
     lastName: "",
     email: "",
     phoneNumber: "",
-    deliveryLocation: "",
+    address: "",
   });
 
   const addToCart = async (itemId) => {
@@ -82,17 +81,12 @@ export const StoreContextProvider = (props) => {
     addToCart,
     removeFromCart,
     token,
-    token,
     cartItems,
     setCartItems,
     getTotalCartAmount,
     searchItem, // Expose searchItem in context
     setSearchItem, // Expose setSearchItem in context
     cartItemCount,
-    setCartData,
-    cartData,
-    deliveryInfo,
-    setDeliveryInfo,
     setCartData,
     cartData,
     deliveryInfo,
