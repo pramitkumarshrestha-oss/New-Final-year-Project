@@ -13,7 +13,7 @@ export const StoreContextProvider = (props) => {
   const [cartData, setCartData] = useState({
     items: [],
     totalAmount: 0,
-    deliveryFee: 100,
+    deliveryFee: 50,
   });
   const [deliveryInfo, setDeliveryInfo] = useState({
     firstName: "",
@@ -22,7 +22,7 @@ export const StoreContextProvider = (props) => {
     phoneNumber: "",
     address: "",
   });
-
+  // console.log("hello MF");
   const addToCart = async (itemId) => {
     if (!cartItems[itemId]) {
       setCartItems((prev) => ({ ...prev, [itemId]: 1 }));

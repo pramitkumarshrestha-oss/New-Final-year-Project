@@ -150,8 +150,6 @@ export const OrderPlaced = () => {
               <p className={styles.input_error}>{error.address}</p>
             )}
           </div>
-
-
         </form>
       </div>
       <div className={styles.place_order_right}>

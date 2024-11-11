@@ -4,7 +4,7 @@
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  gap: 2vw;
+  gap: 3vh;
   flex-wrap: wrap;
 }
 
@@ -25,6 +25,7 @@
   flex-direction: column;
   padding: 2vh;
   gap: 2vh;
+  width: 100%;
 }
 
 .place_order_form input {
@@ -33,35 +34,31 @@
   border: 1px solid black;
   border-radius: 4px;
   transition: all 0.3s ease;
-  
+  width: 100%;
 }
-
 
 .place_order_form input:focus {
   border-color: #3d85c6;
   outline: none;
 }
 
+/* Remove flex settings from multi_fields to stack vertically */
 .multi_fields {
-  display: flex;
-  justify-content: space-between;
-  gap: 2vw;
-  
+  display: block;
+  width: 100%;
 }
 
 .input_error {
-  color: #ff0000; /* Set the color to red or any color you prefer */
-  font-size: 1.5vh; /* Adjust font size as needed */
-  margin-top: 0.5vh; /* Add some space above the message */
-  font-weight: bold; /* Make the error message bold, if desired */
+  color: #ff0000;
+  font-size: 1.5vh;
+  margin-top: 0.5vh;
+  font-weight: bold;
 }
-
 
 .place_order_right {
   margin: 4vh 0;
   width: 100%;
   max-width: 35vw;
-  
 }
 
 .cart_bottom {
