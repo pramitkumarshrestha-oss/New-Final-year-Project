@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { FaEye, FaEyeSlash, FaUserCircle } from "react-icons/fa";
 import { RiLockPasswordFill } from "react-icons/ri";
 import { useNavigate } from "react-router-dom";
@@ -8,9 +8,10 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import styles from "../Styles/Login.module.css"; // Update path if needed
 import { useAuth } from "../Contexts/AuthContext";
+import { StoreContext } from "../Contexts/StoreContext";
 
 export const Login = () => {
-  const [token, setToken] = useState("");
+  const { token, setToken } = useContext(StoreContext);
   const [formData, setFormData] = useState({ userName: "", password: "" });
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState({});
@@ -43,10 +44,10 @@ export const Login = () => {
           // console.log("hello");
           toast.success(result.data.message);
           // console.log("hello");
-          const token = result.data.token;
-          localStorage.setItem("token", token);
+          const needToken = result.data.token;
+          localStorage.setItem("token", needToken);
           console.log(localStorage.getItem("token"));
-          setToken(token);
+          setToken(needToken);
           console.log(token);
 
           login();

@@ -44,9 +44,7 @@ export const AuthProvider = ({ children }) => {
   }, []);
 
   // Login function: save token to localStorage and update state
-  const login = (receivedToken) => {
-    setToken(receivedToken);
-    localStorage.setItem("token", receivedToken);
+  const login = () => {
     setIsLoggedIn(true);
   };
 

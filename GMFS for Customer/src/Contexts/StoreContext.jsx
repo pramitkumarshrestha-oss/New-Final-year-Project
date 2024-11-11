@@ -87,6 +87,7 @@ export const StoreContextProvider = (props) => {
     addToCart,
     removeFromCart,
     token,
+    setToken,
     cartItems,
     setCartItems,
     getTotalCartAmount,

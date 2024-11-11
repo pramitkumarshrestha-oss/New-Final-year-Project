@@ -1,8 +1,8 @@
 const orderModel = require("../models/orderModel");
 const orderSchedule = async (req, res) => {
-  console.log("mamamamamama");
+  // console.log("mamamamamama");
   const { userId } = req.user;
-  console.log("Hellooooooooooo");
+  // console.log("Hellooooooooooo");
   const { items, totalAmount, deliveryFee } = req.body.cartData;
   const deliveryInfo = req.body.deliveryInfo;
   const orderStatus = "Onprocess";
