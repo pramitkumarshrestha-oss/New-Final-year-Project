@@ -14,7 +14,8 @@
 /* Cart Items */
 .cart_items {
   width: 100%;
-  box-shadow: rgba(13, 210, 108, 0.25) 0px 6px 12px -2px, rgba(11, 7, 210, 0.3) 3px 3px 7px 3px;
+  box-shadow: rgba(13, 210, 108, 0.25) 0px 6px 12px -2px,
+    rgba(11, 7, 210, 0.3) 3px 3px 7px 3px;
   border-radius: 1vh;
   margin-bottom: 2vh;
 }
@@ -93,7 +94,8 @@
   flex-direction: row;
   justify-content: space-around;
   text-align: center;
-  box-shadow: rgba(13, 210, 108, 0.25) 0px 6px 12px -2px, rgba(11, 7, 210, 0.3) 3px 3px 7px 3px;
+  box-shadow: rgba(13, 210, 108, 0.25) 0px 6px 12px -2px,
+    rgba(11, 7, 210, 0.3) 3px 3px 7px 3px;
 }
 
 /* Cart Total Section */

@@ -18,7 +18,7 @@ export const StoreContextProvider = (props) => {
   const [cartData, setCartData] = useState({
     items: [],
     totalAmount: 0,
-    deliveryFee: 100,
+    deliveryFee: 50,
   });
   const [deliveryInfo, setDeliveryInfo] = useState({
     firstName: "",
