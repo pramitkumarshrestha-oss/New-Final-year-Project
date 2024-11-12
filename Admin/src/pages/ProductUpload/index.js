@@ -30,36 +30,35 @@ const ProductUplaod = () => {
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();
+    
     const formData = new FormData();
     formData.append("name", data.name);
     formData.append("description", data.description);
     formData.append("price", data.price);
     formData.append("category", data.category);
-    // formData.append("image", image);
-    // console.log(formData);
+    formData.append("image", image);
+
     for (let [key, value] of formData.entries()) {
       console.log(`Key: ${key}, Value: ${value}`);
     }
+  
     try {
-      const result = await axios.post(
-        "http://localhost:3010/addProduct",
-        formData,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data", // Axios will handle this, but this is just for reference
-          },
-        }
-      );
-      console.log("saasas");
+      const result = await axios.post("http://localhost:3010/addProduct", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data", 
+        },
+      });
+  
+      console.log(result);
       setData({
         name: "",
         description: "",
         price: "",
         category: "",
       });
-      setImage(false);
+      setImage(null);
     } catch (error) {
-      console.log(error);
+      console.error("Error uploading product:", error);
     }
   };
 

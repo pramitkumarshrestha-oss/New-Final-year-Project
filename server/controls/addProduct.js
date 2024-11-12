@@ -13,15 +13,18 @@ require("dotenv").config();
 // });
 // const upload = multer({ storage: storage });
 
-const addProduct = async (res, req) => {
+const addProduct = async (req, res) => {
   console.log(req.body);
+
   const { name, description, price, category } = req.body;
-  const imagePath = req.file.path;
+  const imagePath = req.file ? req.file.path : null;
+
   if (!name || !description || !price || !category) {
     return res.status(400).send("Missing required fields");
-  } else if (!req.file) {
+  } else if (!imagePath) {
     return res.status(400).send("No file uploaded");
   }
+
   try {
     const newItem = new productDetials({
       image: imagePath,
@@ -30,6 +33,7 @@ const addProduct = async (res, req) => {
       productCategory: category,
       productPrice: price,
     });
+
     await newItem.save();
     res.status(201).send("Food item added successfully");
     console.log("Product Added");
@@ -37,4 +41,5 @@ const addProduct = async (res, req) => {
     res.status(500).send("Error saving item to database");
   }
 };
+
 module.exports = { addProduct };
