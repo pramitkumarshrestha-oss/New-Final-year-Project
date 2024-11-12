@@ -8,6 +8,7 @@ import ProductUpload from './pages/ProductUpload';
 import React, {createContext, useState, useEffect } from 'react';
 import ProductView from './pages/ProductView';
 import ProductList from './pages/ProductList';
+import Workers from './pages/Workers';
 
 // export const MyContext = createContext();
 
@@ -46,6 +47,7 @@ function App() {
       <Route path="/product/view" exact={true} element={<ProductView/>}/>
       <Route path="/product/upload" exact={true} element={<ProductUpload/>}/>
       <Route path="/product/list" exact={true} element={<ProductList/>}/>
+      <Route path="/workers" exact={true} element={<Workers/>}></Route>
 
     </Routes>
     </div>
