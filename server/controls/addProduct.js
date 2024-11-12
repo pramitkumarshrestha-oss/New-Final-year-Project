@@ -2,17 +2,19 @@ const express = require("express");
 const mongoose = require("mongoose");
 const multer = require("multer");
 const productDetials = require("../models/addProduct");
-const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    return cb(null, "./uploads");
-  },
-  filename: function (req, file, cb) {
-    return cb(null, `${Date.now()}-${file.originalname}`);
-  },
-});
-const upload = multer({ storage: storage });
+require("dotenv").config();
+// const storage = multer.diskStorage({
+//   destination: function (req, file, cb) {
+//     return cb(null, "./uploads");
+//   },
+//   filename: function (req, file, cb) {
+//     return cb(null, `${Date.now()}-${file.originalname}`);
+//   },
+// });
+// const upload = multer({ storage: storage });
 
 const addProduct = async (res, req) => {
+  console.log(req.body);
   const { name, description, price, category } = req.body;
   const imagePath = req.file.path;
   if (!name || !description || !price || !category) {
@@ -30,8 +32,9 @@ const addProduct = async (res, req) => {
     });
     await newItem.save();
     res.status(201).send("Food item added successfully");
+    console.log("Product Added");
   } catch (error) {
     res.status(500).send("Error saving item to database");
   }
 };
-module.exports = { upload, addProduct };
+module.exports = { addProduct };
