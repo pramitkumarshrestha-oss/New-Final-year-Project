@@ -32,7 +32,6 @@ const ProductUplaod = ()=>{
             <form className="form" >
             <div className="row">
               <div className="col-sm-12">
-
                 <div className="card p-4">
                   <h5>Basic Information</h5>
 
@@ -77,7 +76,6 @@ const ProductUplaod = ()=>{
                         <input type="text" />
                       </div>
                     </div>
-                  
                   </div>
 
                   <div className='row'>
