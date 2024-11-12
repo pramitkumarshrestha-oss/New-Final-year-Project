@@ -1,8 +1,10 @@
 const orderModel = require("../models/orderModel");
-const orderSchedule = async (res, req) => {
+const orderSchedule = async (req, res) => {
+  // console.log("mamamamamama");
   const { userId } = req.user;
-  const { items, totalAmount, deliveryFee, date } = req.body.cartData;
-
+  // console.log("Hellooooooooooo");
+  const { items, totalAmount, deliveryFee } = req.body.cartData;
+  const deliveryInfo = req.body.deliveryInfo;
   const orderStatus = "Onprocess";
   try {
     const existingOrder = await orderModel.findOne({
@@ -14,23 +16,25 @@ const orderSchedule = async (res, req) => {
         existingOrder._id, // Find the order by its ID
         {
           $set: {
+            userId: userId,
             orderedItems: items,
             totalAmount: totalAmount,
             deliveryFee: deliveryFee,
-            date: date,
+            deliveryInfo: deliveryInfo,
           },
         },
         { new: true } // Return the updated document
       );
       res.status(200).send("Order updated successfully.");
     } else {
-      const newOrder = new Order({
+      const newOrder = new orderModel({
         userId: userId,
-        orderedItem: items,
+        orderedItems: items,
         totalAmount: totalAmount,
         deliveryFee: deliveryFee,
-        date: date,
+        deliveryInfo: deliveryInfo,
       });
+      console.log("order");
 
       await newOrder.save();
 

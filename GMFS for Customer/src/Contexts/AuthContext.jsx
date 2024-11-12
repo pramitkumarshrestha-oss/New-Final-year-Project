@@ -1,21 +1,63 @@
+// import React, { createContext, useState } from 'react';
+// import { useNavigate } from 'react-router-dom';
 
-import React, { createContext, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+// const AuthContext = createContext();
+
+// export const AuthProvider = ({ children }) => {
+//   const [isLoggedIn, setIsLoggedIn] = useState(false);
+//   const navigate = useNavigate(); // Initialize useNavigate
+
+//   const login = () => setIsLoggedIn(true);
+//   const logout = () => {
+//     setIsLoggedIn(false);
+//     navigate('/'); // Redirect to the home page after logging out
+//   };
+
+//   return (
+//     <AuthContext.Provider value={{ isLoggedIn, login, logout }}>
+//       {children}
+//     </AuthContext.Provider>
+//   );
+// };
+
+// export const useAuth = () => {
+//   return React.useContext(AuthContext);
+// };
+
+import React, { createContext, useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const navigate = useNavigate(); // Initialize useNavigate
+  const [token, setToken] = useState(null);
+  const navigate = useNavigate();
 
-  const login = () => setIsLoggedIn(true);
+  // Check for a token in localStorage on component mount
+  useEffect(() => {
+    const storedToken = localStorage.getItem("token");
+    if (storedToken) {
+      setToken(storedToken);
+      setIsLoggedIn(true);
+    }
+  }, []);
+
+  // Login function: save token to localStorage and update state
+  const login = () => {
+    setIsLoggedIn(true);
+  };
+
+  // Logout function: clear token from localStorage and reset state
   const logout = () => {
+    setToken(null);
+    localStorage.removeItem("token");
     setIsLoggedIn(false);
-    navigate('/'); // Redirect to the home page after logging out
+    navigate("/"); // Redirect to home page after logging out
   };
 
   return (
-    <AuthContext.Provider value={{ isLoggedIn, login, logout }}>
+    <AuthContext.Provider value={{ isLoggedIn, login, logout, token }}>
       {children}
     </AuthContext.Provider>
   );
