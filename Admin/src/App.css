@@ -570,9 +570,13 @@ h1, h2, h3, h4, h5, h6{
   color: #403e57;
 }
 
+.textField{
+  line-height: 15px;
+}
+
 .table .thead-dark th{
   background: #1866ee !important;
-  border-color: rgba(255,255,255,0.1) !important;
+  border-color: rgba(152, 81, 14, 0.1) !important;
   font-size: 13px !important;
 }
 
@@ -580,6 +584,7 @@ h1, h2, h3, h4, h5, h6{
   font-size: 14px !important;
   color: #323044;
   font-weight: 500;
+  background: white;
 }
 
 .table tbody .actions button{
@@ -771,3 +776,38 @@ table.v-align td .productBox{
   .MuiRating-root *{
     color: #faaf00 !important;
   }
+
+ .slick-slide::before{
+  outline: none !important;
+ } 
+
+.item img{
+  overflow: hidden;
+  border-radius: 7px;
+ }
+
+ .productDetailsSection .productInfo .icon{
+  width: 18%;
+  flex: 0 0 20%;
+ }
+
+ .productDetailsSection .productInfo .icon svg{
+  font-size: 22px;
+ }
+
+ .productDetailsSection .productInfo .name{
+  width: 82%;
+  flex: 0 0 80%;
+  font-weight: bold;
+  font-size: 15px;
+ }
+
+ .productDetailsSection .productInfo .row{
+  margin-bottom: 10px !important;
+ }
+
+ .productDetailsSection .productInfo .row .col-sm-7 span{
+  opacity: 0.8;
+  font-size: 15px;
+  padding-left: 10px;
+ }
