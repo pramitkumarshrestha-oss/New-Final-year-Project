@@ -7,7 +7,7 @@ const {
   updateWorkerHandler,
   deleteWorkerHandler,
 } = require("../controls/workersController");
-const workerRouter = Router();
+const workerRouter = express.Router();
 workerRouter.get("/", getAllWorkerHandler);
 workerRouter.get("/:WorkerId", getWorkerHandler);
 workerRouter.post("/verify", verifyWorkerValidator);
