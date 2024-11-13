@@ -22,6 +22,7 @@ const cartRoute = require("./routes/cartRoute");
 const addItemsRoute = require("./routes/addProductRoute");
 const orderRoute = require("./routes/orderroute");
 const { khalti, khaltiCallback } = require("./khalti");
+const workersRouters = require("./routes/workersRouters");
 app.use("/signup", signupRoute);
 app.use("/login", loginRoute);
 app.use("/cart", cartRoute);
@@ -30,6 +31,7 @@ app.use("/uploads", express.static("uploads"));
 app.use("/api/orderSchedule", orderRoute);
 app.use("/api/khalti/init", khalti);
 app.use("/api/khalti/init/verify", khaltiCallback);
+app.use("/api/workers", workersRouters);
 
 app.listen(port, () => {
   console.log(`Server Started At ${port}`);

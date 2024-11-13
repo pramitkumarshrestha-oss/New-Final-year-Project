@@ -25,12 +25,12 @@ const ProductUplaod = () => {
       ...preVal,
       [name]: value,
     }));
-    console.log(data);
+    // console.log(data);
   };
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();
-    
+
     const formData = new FormData();
     formData.append("name", data.name);
     formData.append("description", data.description);
@@ -41,14 +41,19 @@ const ProductUplaod = () => {
     for (let [key, value] of formData.entries()) {
       console.log(`Key: ${key}, Value: ${value}`);
     }
-  
+    // console.log(formData);
+
     try {
-      const result = await axios.post("http://localhost:3010/addProduct", formData, {
-        headers: {
-          "Content-Type": "multipart/form-data", 
-        },
-      });
-  
+      const result = await axios.post(
+        "http://localhost:3010/addProduct",
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
+
       console.log(result);
       setData({
         name: "",
@@ -162,7 +167,7 @@ const ProductUplaod = () => {
                         <span className="remove">
                           <IoCloseSharp />
                         </span>
-                        <div className="box">
+                        {/* <div className="box">
                           <LazyLoadImage
                             alt={"image"}
                             effect="blur"
@@ -171,11 +176,24 @@ const ProductUplaod = () => {
                               "https://i.pinimg.com/564x/2b/ec/03/2bec0331de9130115c0fe5d2d2760212.jpg"
                             }
                           />
-                        </div>
+                        </div> */}
                       </div>
 
                       <div className="uploadBox">
-                        <input type="file" multiplename="images" />
+                        <label htmlFor="image">
+                          <img
+                            src={image ? URL.createObjectURL(image) : ""}
+                            alt=""
+                          />
+                        </label>
+
+                        <input
+                          type="file"
+                          multiplename="images"
+                          name="image"
+                          onChange={(e) => setImage(e.target.files[0])}
+                          required
+                        />
                         <div className="info">
                           <FaRegImages />
                           <h5>image upload</h5>

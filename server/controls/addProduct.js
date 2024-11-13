@@ -3,15 +3,15 @@ const mongoose = require("mongoose");
 const multer = require("multer");
 const productDetials = require("../models/addProduct");
 require("dotenv").config();
-// const storage = multer.diskStorage({
-//   destination: function (req, file, cb) {
-//     return cb(null, "./uploads");
-//   },
-//   filename: function (req, file, cb) {
-//     return cb(null, `${Date.now()}-${file.originalname}`);
-//   },
-// });
-// const upload = multer({ storage: storage });
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    return cb(null, "./uploads");
+  },
+  filename: function (req, file, cb) {
+    return cb(null, `${Date.now()}-${file.originalname}`);
+  },
+});
+const upload = multer({ storage: storage });
 
 const addProduct = async (req, res) => {
   console.log(req.body);
@@ -42,4 +42,4 @@ const addProduct = async (req, res) => {
   }
 };
 
-module.exports = { addProduct };
+module.exports = { upload, addProduct };
