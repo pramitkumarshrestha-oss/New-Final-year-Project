@@ -82,6 +82,8 @@ export const OrderPlaced = () => {
       } catch (error) {
         console.log(error);
       }
+      
+      setCartItems([]);   
       navigate("/payment-success");
     }
   };
