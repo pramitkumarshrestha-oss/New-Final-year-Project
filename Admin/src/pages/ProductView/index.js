@@ -45,7 +45,7 @@ const ProductView = ()=>{
 
              <div className="productInfo mt-3">
               <div className="row mb-2">
-                <div className="col-sm-5 d-flex align-items-center">
+                <div className="col-sm-3 d-flex align-items-center">
                   <span className="icon"><BiSolidCategory/></span>
                   <span className="name">Category</span>
                 </div>
@@ -55,7 +55,7 @@ const ProductView = ()=>{
               </div>
 
               <div className="row mb-2">
-                <div className="col-sm-5 d-flex align-items-center">
+                <div className="col-sm-3 d-flex align-items-center">
                   <span className="icon"><AiOutlineStock/></span>
                   <span className="name">Stock</span>
                 </div>
@@ -65,7 +65,7 @@ const ProductView = ()=>{
               </div>
 
               <div className="row mb-2">
-                <div className="col-sm-5 d-flex align-items-center">
+                <div className="col-sm-3 d-flex align-items-center">
                   <span className="icon"><MdRateReview/></span>
                   <span className="name">Review</span>
                 </div>
@@ -75,7 +75,7 @@ const ProductView = ()=>{
               </div>
 
               <div className="row mb-2">
-                <div className="col-sm-5 d-flex align-items-center">
+                <div className="col-sm-3 d-flex align-items-center">
                   <span className="icon"><MdPublishedWithChanges/></span>
                   <span className="name">Published</span>
                 </div>
@@ -90,6 +90,18 @@ const ProductView = ()=>{
               </div>
 
               </div>
+            </div>
+
+            <div className="p-4">
+            <h5 className="mt-4 mb-3">Product Description</h5>
+            <p>Delicate and airy, this light pink chiffon fabric exudes elegance and grace, perfect for 
+             creating garments with a soft, flowing silhouette. Made from premium-quality chiffon, 
+             this fabric is lightweight and semi-sheer, with a soft texture that feels gentle against the 
+             skin. Its subtle pink hue adds a touch of femininity, making it ideal for romantic evening 
+             wear, blouses, scarves, and bridal attire. The fabric drapes beautifully, catching the light
+             with a gentle shimmer that enhances its ethereal quality. Easy to layer and style, this 
+             chiffon fabric offers versatility for both casual and formal designs, adding an element of 
+             sophistication to any project.</p>
             </div>
           </div>
 

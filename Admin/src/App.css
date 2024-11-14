@@ -211,6 +211,12 @@ header button.rounded-circle:hover svg{
   transition: all 0.3s ease-in-out;
 }
 
+.main .sidebarWrapper.toggle{
+  width: 0%;
+  flex: 0 0 0%;
+
+}
+
 .main .sidebarWrapper .sidebar{
   width: 20%;
   height: 100vh;
@@ -222,7 +228,11 @@ header button.rounded-circle:hover svg{
   position: fixed;
   overflow-y: scroll;
   overflow-x: hidden;
+  transition: all 0.3s ease-in-out;
+}
 
+.main .sidebarWrapper.toggle .sidebar{
+  left: -100%;
 }
 
 /* .main .sidebarWrapper::-webkit-scrollbar{
@@ -414,9 +424,16 @@ header button.rounded-circle:hover svg{
 .main .content{
   width: 80%;
   flex: 0 0 80%;
+  transition: all 0.3s ease-in-out;
+}
+.main .content.toggle{
+  width: 100%;
+  flex: 0 0 100%;
+
 }
 .right-content{
   padding: 85px 25px;
+  padding-bottom: 10px;
 }
 
 .dashboardBoxWrapper{
@@ -573,6 +590,9 @@ h1, h2, h3, h4, h5, h6{
 .textField{
   line-height: 15px;
 }
+p{
+  font-weight: 400;
+}
 
 .table .thead-dark th{
   background: #1866ee !important;
@@ -664,6 +684,11 @@ table.v-align td .productBox{
   font-size: 13px;
 } 
 
+.form .form-gender h6{
+  margin-bottom: 10px;
+  font-size: 13px;
+} 
+
 .form .form-group input, .form .form-group textarea{
   background: #fafafa;
   width: 100%;
@@ -673,6 +698,18 @@ table.v-align td .productBox{
   padding-left: 15px;
   border-radius: 5px;
   font-size: 14px;
+}
+
+.form .form-group .react-datepicker__input-container{
+  
+  width: 193%;
+  
+}
+
+.form .form-gender label {
+  display: inline-block;
+  margin-bottom: .5rem;
+  margin-right: 50px;
 }
 
 .form .form-group textarea{
@@ -798,8 +835,9 @@ table.v-align td .productBox{
  .productDetailsSection .productInfo .name{
   width: 82%;
   flex: 0 0 80%;
-  font-weight: bold;
+  font-weight: 600;
   font-size: 15px;
+  
  }
 
  .productDetailsSection .productInfo .row{
@@ -811,3 +849,35 @@ table.v-align td .productBox{
   font-size: 15px;
   padding-left: 10px;
  }
+
+ .circular-button {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: #1866ee;
+  color: white;
+  border: none;
+  font-size: 24px;
+  position: absolute;
+  bottom: 150px;
+  right: 20px;
+  align-items: center;
+  cursor: pointer;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s ease;
+ }
+
+ .circular-button:hover {
+  transform: scale(1.1);
+}
+
+.addForm .form{
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  font-family: Arial, sans-serif;
+}
+

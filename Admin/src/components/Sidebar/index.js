@@ -12,8 +12,9 @@ import { AiFillMessage } from "react-icons/ai";
 import { RiLoginCircleFill } from "react-icons/ri";
 import { SiGnuprivacyguard } from "react-icons/si";
 import { Link } from "react-router-dom";
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { IoMdLogOut } from "react-icons/io";
+import { MyContext } from '../../App';
 
 
 
@@ -24,6 +25,9 @@ const Sidebar = ()=>{
 
     const [activeTab, setActiveTab] = useState(null);
     const [isToggleSubmenu, setIsToggleSubmenu] = useState(false);
+
+    const context = useContext(MyContext);
+
     const isOpenSubmenu=(index)=>{
         setActiveTab(index); 
         setIsToggleSubmenu(!isToggleSubmenu)
@@ -36,8 +40,7 @@ const Sidebar = ()=>{
                    <Link to="/">
                    <Button className={`w-100 ${activeTab === 0 ? 'active' : ''}`}onClick={()=>isOpenSubmenu(0)}>
                    <span className='icon'> <MdDashboard/></span> 
-                   Dashboard <span className='arrow'><FaAngleRight/>
-                   </span>
+                   Dashboard 
                    </Button>
                    </Link>
                    </li> 
@@ -60,8 +63,7 @@ const Sidebar = ()=>{
                    <Link to="/">
                    <Button className={`w-100 ${activeTab === 2 ? 'active' : ''}`}onClick={()=>isOpenSubmenu(2)}>
                    <span className='icon'> <FaCartShopping /></span> 
-                   Orders <span className='arrow'><FaAngleRight/>
-                   </span>
+                   Orders 
                    </Button>
                    </Link>
                    </li> 
@@ -69,8 +71,7 @@ const Sidebar = ()=>{
                    <Link to="/">
                    <Button className={`w-100 ${activeTab === 3 ? 'active' : ''}`}onClick={()=>isOpenSubmenu(3)}>
                    <span className='icon'> <HiWrench/></span> 
-                   Raw Materials <span className='arrow'><FaAngleRight/>
-                   </span>
+                   Raw Materials 
                    </Button>
                    </Link>
                    </li> 
@@ -78,8 +79,7 @@ const Sidebar = ()=>{
                    <Link to="/">
                    <Button className={`w-100 ${activeTab === 4 ? 'active' : ''}`}onClick={()=>isOpenSubmenu(4)}>
                    <span className='icon'> <AiOutlineStock/></span> 
-                   Stock <span className='arrow'><FaAngleRight/>
-                   </span>
+                   Stock 
                    </Button>
                    </Link>
                    </li> 
@@ -87,8 +87,7 @@ const Sidebar = ()=>{
                    <Link to="/workers">
                    <Button className={`w-100 ${activeTab === 5 ? 'active' : ''}`}onClick={()=>isOpenSubmenu(5)}>
                    <span className='icon'> <GrUserWorker /></span> 
-                   Workers <span className='arrow'><FaAngleRight/>
-                   </span>
+                   Workers 
                    </Button>
                    </Link>
                    </li> 
@@ -128,15 +127,7 @@ const Sidebar = ()=>{
                    </Button>
                    </Link>
                    </li> 
-                   <li>
-                   <Link to="/">
-                   <Button className={`w-100 ${activeTab === 10 ? 'active' : ''}`}onClick={()=>isOpenSubmenu(10)}>
-                   <span className='icon'> <AiFillMessage /></span> 
-                   Messages <span className='arrow'><FaAngleRight/>
-                   </span>
-                   </Button>
-                   </Link>
-                   </li> 
+                   
                 </ul>
                 <br/>
 

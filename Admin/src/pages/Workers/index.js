@@ -24,13 +24,15 @@ import Breadcrumbs from '@mui/material/Breadcrumbs';
 import Chip from '@mui/material/Chip';
 import HomeIcon from '@mui/icons-material/Home';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 
 const Workers = ()=>{
     
   const [showBy, setshowBy] =    useState('');
   const [showBysetCatBy, setCatBy] =    useState('');
-    
+  
 
     return(
       <>
@@ -39,52 +41,7 @@ const Workers = ()=>{
             <div className="card shadow border-0 w-100 flex-row p-4">
                 <h5 className="mb-0">Worker Details</h5>
             </div>
-{/*             
-            <div className="card shadow border-0 p-3 mt-4"> 
-           <h3 className="hd">Best Selling Products</h3>
 
-           <div className="row cardFilters mt-3">
-            <div className="col-md-3">
-              <h4>SHOW BY</h4>
-              <FormControl  size="small" className="w-100">
-              <Select
-          value={showBy}
-          onChange={(e)=>setshowBy(e.target.value)}
-          displayEmpty
-          inputProps={{ 'aria-label': 'Without label' }}
-          className="w-100"
-        >
-          <MenuItem value="">
-            <em>None</em>
-          </MenuItem>
-          <MenuItem value={10}>Ten</MenuItem>
-          <MenuItem value={20}>Twenty</MenuItem>
-          <MenuItem value={30}>Thirty</MenuItem>
-        </Select>
-        </FormControl>
-            </div>
-
-            <div className="col-md-3">
-              <h4>CATEGORY BY</h4>
-              <FormControl  size="small" className="w-100">
-
-              <Select
-          value={showBysetCatBy}
-          onChange={(e)=>setCatBy(e.target.value)}
-          displayEmpty
-          inputProps={{ 'aria-label': 'Without label' }}
-          className="w-100"
-        >
-          <MenuItem value="">
-            <em>None</em>
-          </MenuItem>
-          <MenuItem value={10}>Ten</MenuItem>
-          <MenuItem value={20}>Twenty</MenuItem>
-          <MenuItem value={30}>Thirty</MenuItem>
-        </Select>
-        </FormControl>
-            </div>
-           </div> */}
 
             <div className="table-responsive mt-3">
             <table className="table table-bordered v-align">
@@ -278,7 +235,10 @@ const Workers = ()=>{
             </table>
            </div>
 
-            
+
+           <Link to="/worker/form">
+           <button className="circular-button" >+</button>
+           </Link>
           
           </div>
           {/* </div> */}

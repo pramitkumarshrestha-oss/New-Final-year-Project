@@ -9,38 +9,31 @@ import React, {createContext, useState, useEffect } from 'react';
 import ProductView from './pages/ProductView';
 import ProductList from './pages/ProductList';
 import Workers from './pages/Workers';
+import WorkerForm from './pages/WorkerForm';
 
-// export const MyContext = createContext();
-
+const MyContext = createContext();
 function App() {
-//   const [themeMode, setThemeMode] = useState(true);
 
-//   useEffect(()=>{
-//     if(themeMode===true){
-//     document.body.classList.remove('dark');
-//     document.body.classList.add('light');
-//     localStorage.setItem('themeMode','light');
-//     }
-//     else{
-//       document.body.classList.remove('light');
-//       document.body.classList.add('dark');
-//       localStorage.setItem('themeMode','dark');
-//     }
-//   },[themeMode]);
+  const [isToggleSidebar, setIsToggleSidebar] = useState(false);
+  
+  const values={
+    isToggleSidebar,
+    setIsToggleSidebar
 
-//   const values = {
-//     themeMode,
-//     setThemeMode
-   
+  }
+
+  
   return (
 
    <BrowserRouter>
+   <MyContext.Provider value={values}>
+
    <Header/>
    <div className='main d-flex'>
-    <div className='sidebarWrapper'>
+    <div className={`sidebarWrapper ${isToggleSidebar==true ? 'toggle' : ''}`}>
       <Sidebar/>
     </div>
-    <div className='content'>
+    <div className={`content ${isToggleSidebar==true ? 'toggle' : ''}`}>
     <Routes>
       <Route path="/" exact={true} element={<Dashboard/>}/>
       <Route path="/dashboard" exact={true} element={<Dashboard/>}/>
@@ -48,14 +41,16 @@ function App() {
       <Route path="/product/upload" exact={true} element={<ProductUpload/>}/>
       <Route path="/product/list" exact={true} element={<ProductList/>}/>
       <Route path="/workers" exact={true} element={<Workers/>}></Route>
+      <Route path='/worker/form' exact={true} element={<WorkerForm/>}></Route>
 
     </Routes>
     </div>
    </div>
-   
+   </MyContext.Provider>
    </BrowserRouter>
 
   );
 }
 
 export default App;
+export {MyContext}

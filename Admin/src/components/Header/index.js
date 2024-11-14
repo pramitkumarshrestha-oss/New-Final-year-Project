@@ -1,7 +1,7 @@
-import React,{useState} from 'react'
+import React,{useContext, useState} from 'react'
 import { Link } from "react-router-dom";
 // import img from '../../assets/images/logo.png';
-import img from '../../assets/images/download.png';
+import img from '../../assets/images/logo.png';
 import Button from '@mui/material/Button';
 import { MdMenuOpen } from "react-icons/md";
 import { MdOutlineMenu } from "react-icons/md";
@@ -19,6 +19,7 @@ import PersonAdd from '@mui/icons-material/PersonAdd';
 import Logout from '@mui/icons-material/Logout';
 import { BsShieldFillExclamation } from "react-icons/bs";
 import Divider from '@mui/material/Divider';
+import { MyContext } from '../../App';
 
 const Header = () => {
   
@@ -28,6 +29,7 @@ const Header = () => {
 
   const openMyAcc = Boolean(anchorEl);
   const openNotifications = Boolean(isOpennotificationDrop);
+  const context = useContext(MyContext)
 
   const handleOpenMyAccDrop = (event) => {
     setAnchorEl(event.currentTarget);
@@ -56,7 +58,12 @@ const Header = () => {
             </Link> 
           </div>
             <div className="col-sm-3 d-flex align-items-center part2 pl-4">
-                <Button className="rounded-circle mr-3"><MdMenuOpen/></Button>
+                <Button className="rounded-circle mr-3" onClick={()=>context.
+                setIsToggleSidebar(!context.isToggleSidebar)}>
+                  {
+                    context.isToggleSidebar==false ? <MdMenuOpen/> : <MdOutlineMenu/>
+                  }
+                </Button>
                 <SearchBox/>
                  </div>
             <div className="col-sm-7 d-flex align-items-center justify-content-end part3">
