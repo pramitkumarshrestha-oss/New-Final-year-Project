@@ -1,5 +1,4 @@
 const express = require("express");
-const mongoose = require("mongoose");
 const multer = require("multer");
 const productDetials = require("../models/addProduct");
 require("dotenv").config();
@@ -18,27 +17,27 @@ const addProduct = async (req, res) => {
 
   const { name, description, price, category } = req.body;
   const imagePath = req.file ? req.file.path : null;
-
+  console.log(name);
   if (!name || !description || !price || !category) {
     return res.status(400).send("Missing required fields");
   } else if (!imagePath) {
     return res.status(400).send("No file uploaded");
-  }
+  } else {
+    try {
+      const newItem = new productDetials({
+        image: imagePath,
+        name: name,
+        description: description,
+        category: category,
+        price: price,
+      });
 
-  try {
-    const newItem = new productDetials({
-      image: imagePath,
-      productName: name,
-      productDescription: description,
-      productCategory: category,
-      productPrice: price,
-    });
-
-    await newItem.save();
-    res.status(201).send("Food item added successfully");
-    console.log("Product Added");
-  } catch (error) {
-    res.status(500).send("Error saving item to database");
+      await newItem.save();
+      res.status(201).send("Food item added successfully");
+      console.log("Product Added");
+    } catch (error) {
+      res.status(500).send("Error saving item to database");
+    }
   }
 };
 
