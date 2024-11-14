@@ -16,6 +16,12 @@ const workersSchema = mongoose.Schema({
   password: {
     type: String,
   },
+  gender: {
+    type: String,
+  },
+  age: {
+    type: Number,
+  },
 });
 const workersModel = mongoose.model("Workers", workersSchema);
 module.exports = workersModel;
