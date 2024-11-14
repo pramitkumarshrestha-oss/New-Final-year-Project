@@ -1,11 +1,7 @@
 const user = require("../models/user");
 const mongoose = require("mongoose");
 
-//add items to cart
-// const userId = "671936e5563606ce2c60c24a";
-// console.log("sasasa");
 const addToCart = async (req, res) => {
-  console.log("hello MF");
   try {
     let userData = await user.findById(req.user.userId);
     let cartData = await userData.cart;
