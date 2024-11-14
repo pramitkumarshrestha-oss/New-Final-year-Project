@@ -13,13 +13,13 @@ export const Cart = () => {
     removeFromCart,
     Menu,
     getTotalCartAmount,
+    cartData,
+    setCartData,
   } = useContext(StoreContext);
   const navigate = useNavigate();
 
   const isCartEmpty = Object.keys(cartItems).length === 0;
-  const handleProceedOrder = () => {
-    navigate("/orderplaced");
-  };
+
   //To remove the cart without decrementing the item.
   const handleremoveFromCart = (id) => {
     setCartItems((prevItems) => {
@@ -28,6 +28,39 @@ export const Cart = () => {
       return updatedCart;
     });
   };
+
+  const handleProceedOrder = async () => {
+    
+
+    //backend ma data pathauna ko lagi
+    const itemsInCart = Object.keys(cartItems).map((id) => {
+      const item = Menu.find(
+        (curItem) => curItem.id.toString() === id.toString()
+      );
+     
+      return {
+        id: item.id,
+        name: item.name,
+        price: item.price,
+        quantity: cartItems[item.id],
+        total: item.price * cartItems[item.id],
+      };
+    });
+    const orderData = {
+      items: itemsInCart,
+      totalAmount: getTotalCartAmount() + (getTotalCartAmount() === 0 ? 0 : 50),
+      deliveryFee: getTotalCartAmount() === 0 ? 0 : 50,
+    };
+
+    setCartData(orderData);
+    
+    try {
+      navigate("/OrderPlaced");
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   return (
     <>
       <div className={styles.cart}>

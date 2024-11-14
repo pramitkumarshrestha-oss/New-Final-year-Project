@@ -1,3 +1,4 @@
+/* Styles for the place order form */
 .place_order_container {
   width: 90%;
   margin: auto;
@@ -6,10 +7,11 @@
   align-items: flex-start;
   gap: 3vh;
   flex-wrap: wrap;
+  padding: 2vh 0;
 }
 
 .place_order_left {
-  text-align: center;
+  text-align: left;
   margin: 4vh 0;
   width: 100%;
   max-width: 40vw;
@@ -23,18 +25,18 @@
 .place_order_form {
   display: flex;
   flex-direction: column;
-  padding: 2vh;
   gap: 2vh;
   width: 100%;
 }
 
 .place_order_form input {
   font-size: 1.8vh;
-  padding: 1vh 1vw;
-  border: 1px solid black;
+  padding: 1.2vh 1vw;
+  border: 1px solid #ccc;
   border-radius: 4px;
   transition: all 0.3s ease;
   width: 100%;
+  background-color: #f9f9f9;
 }
 
 .place_order_form input:focus {
@@ -42,15 +44,21 @@
   outline: none;
 }
 
-/* Remove flex settings from multi_fields to stack vertically */
+/* Flexbox layout for first name and last name */
 .multi_fields {
-  display: block;
+  display: flex;
+  gap: 2vh; /* Adjust gap to match other fields */
+  width: 100%;
+}
+
+.firstName,
+.lastName {
   width: 100%;
 }
 
 .input_error {
   color: #ff0000;
-  font-size: 1.5vh;
+  font-size: 1.4vh;
   margin-top: 0.5vh;
   font-weight: bold;
 }
@@ -78,6 +86,7 @@
   font-size: 2.5vh;
   color: #444;
   margin-bottom: 1vh;
+  font-weight: bold;
 }
 
 .cart_total_details {
@@ -106,6 +115,7 @@
   border-radius: 8px;
   border: none;
   transition: background-color 0.4s ease, transform 0.2s ease;
+  margin-top: 2vh;
 }
 
 .cart_bottom button:hover {
@@ -117,11 +127,37 @@
   .place_order_container {
     flex-direction: column;
     align-items: center;
+    padding: 2vh;
   }
 
   .place_order_left,
   .place_order_right {
     width: 90%;
     margin: 2vh 0;
+  }
+
+  .multi_fields {
+    flex-direction: column; /* Stack fields vertically on smaller screens */
+    gap: 1.5vh;
+  }
+
+  .cart_bottom button {
+    max-width: 90%; /* Adjust the width of the button on smaller screens */
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .place_order_container {
+    gap: 2vh;
+  }
+
+  .place_order_left,
+  .place_order_right {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .cart_bottom button {
+    width: 100%;
   }
 }
