@@ -31,27 +31,27 @@ export const StoreContextProvider = (props) => {
   });
 
   // Cart ko amount haru load garna
-  // const loadCartData= async (token)=>{
-  //   try{
-  //     const response = await axios.post(
-  //       "http://localhost:3010/cart/get",
-  //       {},
-  //       { headers: { Authorization: `Bearer ${token}` } }
-  //     );
-  //     setCartItems(response.data.cartData);
-  //     }
-  //     catch(error){
-  //       console.error("error Fetching cart data",error);
-  //     }
-  // };
+  const loadCartData= async (token)=>{
+    try{
+      const response = await axios.post(
+        "http://localhost:3010/cart/get",
+        {},
+        { headers: { Authorization: `Bearer ${token}` } }
+      );
+      setCartItems(response.data.cartData);
+      }
+      catch(error){
+        console.error("error Fetching cart data",error);
+      }
+  };
 
-  // useEffect(() => {
-  //   if (localStorage.getItem("token")) {
-  //     const savedToken = localStorage.getItem("token");
-  //     setToken(savedToken);
-  //     loadCartData(savedToken); // Load cart data if token is available
-  //   }
-  // }, [token]);
+  useEffect(() => {
+    if (localStorage.getItem("token")) {
+      const savedToken = localStorage.getItem("token");
+      setToken(savedToken);
+      loadCartData(savedToken); // Load cart data if token is available
+    }
+  }, [token]);
 
   // Adding cart
   const addToCart = async (itemId) => {
