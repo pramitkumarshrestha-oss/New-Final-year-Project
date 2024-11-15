@@ -723,8 +723,8 @@ table.v-align td .productBox{
   gap: 10px;
 }
 .imgUploadBox .uploadBox{
-  width: 150px; 
-  height: 150px !important; 
+  /* width: 150px; 
+  height: 150px !important;  */
   padding: 0px; border-radius: 10px; 
   border: 1px dashed  rgba(0,0,0,0.3); 
   position:relative ; 
@@ -734,6 +734,13 @@ table.v-align td .productBox{
   cursor: pointer; 
   background: #fafafa; 
   transition: all 0.3s;
+  position: relative;
+    width: 100%; /* Adjust width as needed */
+    height: 300px; /* Adjust height as needed */
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
  
 .imgUploadBox .uploadBox .box{
@@ -741,7 +748,8 @@ table.v-align td .productBox{
   height: 150px !important; 
   overflow: hidden; 
   border-radius: 7px; 
-  padding: 2px;}
+  padding: 2px;
+}
 .imgUploadBox .uploadBox .box .lazy-load-image-background{
   height: 100% !important; 
   width: 100% !important;
@@ -756,7 +764,7 @@ table.v-align td .productBox{
 }
 
 
-.imgUploadBox .uploadBox .remove{
+/* .imgUploadBox .uploadBox .remove{
   position: absolute; 
   top: -7px; right: -7px; 
   display: flex; 
@@ -771,7 +779,7 @@ table.v-align td .productBox{
 .imgUploadBox .uploadBox .remove svg{
   font-size: 18px; 
   color: #fff;
-}
+} */
 
 
 .imgUploadBox .uploadBox .MuiBox-root{
@@ -784,14 +792,21 @@ table.v-align td .productBox{
 }
 
 .imgUploadBox .uploadBox img{
-  height: 100%; 
-  object-fit: cover;
+  /* height: 100%; 
+  object-fit: cover; */
+  width: 100%;
+    height: 100%;
+    object-fit: cover; /* 'cover' fills the box; 'contain' keeps aspect ratio */
+    position: absolute;
+    top: 0;
+    left: 0;
 }
 .imgUploadBox .uploadBox input{
   position: absolute; 
   width: 100%; 
   height: 100%; 
   opacity: 0;
+ 
 }
 
 .imgUploadBox .uploadBox .info{
