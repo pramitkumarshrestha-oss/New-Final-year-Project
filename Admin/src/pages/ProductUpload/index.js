@@ -113,9 +113,9 @@ const ProductUplaod = () => {
                         inputProps={{ "aria-label": "Without label" }}
                         className="w-100"
                       >
-                        <MenuItem value="">
+                        {/* <MenuItem value="">
                           <em value={null}>None</em>
-                        </MenuItem>
+                        </MenuItem> */}
                         <MenuItem className="text-capitalize" value="Silk">
                           Silk
                         </MenuItem>
@@ -163,10 +163,10 @@ const ProductUplaod = () => {
                   <div className="imagesUploadSec">
                     <h5 class="mb-4">Media and Published</h5>
                     <div className="imgUploadBox d-flex align-items-center">
-                      <div className="uploadBox">
-                        <span className="remove">
+                      {/* <div className="uploadBox"> */}
+                        {/* <span className="remove">
                           <IoCloseSharp />
-                        </span>
+                        </span> */}
                         {/* <div className="box">
                           <LazyLoadImage
                             alt={"image"}
@@ -177,7 +177,7 @@ const ProductUplaod = () => {
                             }
                           />
                         </div> */}
-                      </div>
+                      {/* </div> */}
 
                       <div className="uploadBox">
                         <label htmlFor="image">
