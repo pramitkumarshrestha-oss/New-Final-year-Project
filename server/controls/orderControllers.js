@@ -4,6 +4,7 @@ const orderSchedule = async (req, res) => {
   const { userId } = req.user;
   // console.log("Hellooooooooooo");
   const { items, totalAmount, deliveryFee } = req.body.cartData;
+  console.log(items, totalAmount);
   const deliveryInfo = req.body.deliveryInfo;
   const orderStatus = "Onprocess";
   try {
