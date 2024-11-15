@@ -33,7 +33,6 @@ export const StoreContextProvider = (props) => {
   // Cart ko amount haru load garna
   const loadCartData = async (token) => {
     try {
-      console.log("anesh");
       const response = await axios.get("http://localhost:3010/cart/get", {
         headers: { Authorization: `Bearer ${token}` },
       });
