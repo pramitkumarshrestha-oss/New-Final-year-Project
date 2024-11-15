@@ -10,6 +10,7 @@ import ProductView from './pages/ProductView';
 import ProductList from './pages/ProductList';
 import Workers from './pages/Workers';
 import WorkerForm from './pages/WorkerForm';
+import Order from './pages/Order';
 
 const MyContext = createContext();
 function App() {
@@ -42,6 +43,8 @@ function App() {
       <Route path="/product/list" exact={true} element={<ProductList/>}/>
       <Route path="/workers" exact={true} element={<Workers/>}></Route>
       <Route path='/worker/form' exact={true} element={<WorkerForm/>}></Route>
+      <Route path='/order' exact={true} element={<Order/>}></Route>
+
 
     </Routes>
     </div>
