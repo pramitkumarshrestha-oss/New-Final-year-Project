@@ -12,7 +12,8 @@ import { Cart } from "./Pages/Cart";
 import { OrderPlaced } from "./Pages/OrderPlaced";
 import { AuthProvider } from "./Contexts/AuthContext";
 import { PaymentSuccess } from "./Pages/PaymentSuccess";
-import ProductPage from "./Pages/ProductPage"; // Make sure to create this component for product details
+import { Payment } from "./Pages/KhaltiDashboard";
+import ProductPage from "./Pages/ProductPage";
 
 const App = () => {
   return (
@@ -23,14 +24,16 @@ const App = () => {
           <Route path="/" element={<Landing />} />
           <Route path="/about" element={<About />} />
           <Route path="/products" element={<Gallery />} />
-          <Route path="/product/:id" element={<ProductPage />} /> {/* Route for product details */}
+          <Route path="/product/:id" element={<ProductPage />} />{" "}
+          {/* Route for product details */}
           <Route path="/orders" element={<Orders />} />
           <Route path="/login" element={<Login />} />
           <Route path="/logout" element={<Landing />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/orderplaced" element={<OrderPlaced />} />
-          <Route path="/payment-success" element={<PaymentSuccess />} />
+          <Route path="/Khaltidashboard" element={<Payment />} />
+          <Route path="/paymentsuccess" element={<PaymentSuccess />} />
         </Routes>
         <Footer />
       </AuthProvider>

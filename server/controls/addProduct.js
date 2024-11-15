@@ -33,7 +33,7 @@ const addProduct = async (req, res) => {
       });
 
       await newItem.save();
-      res.status(201).send("Food item added successfully");
+      res.status(201).send("Fiber item added successfully");
       console.log("Product Added");
     } catch (error) {
       res.status(500).send("Error saving item to database");

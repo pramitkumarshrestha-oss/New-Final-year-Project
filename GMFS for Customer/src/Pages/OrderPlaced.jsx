@@ -73,6 +73,8 @@ export const OrderPlaced = () => {
     } else {
       try {
         console.log("orderssss");
+        console.log(cartData);
+
         const result = await axios.post(
           "http://localhost:3010/api/orderSchedule",
           { cartData, deliveryInfo },
@@ -100,7 +102,7 @@ export const OrderPlaced = () => {
       }
 
       setCartItems([]);
-      // navigate("/payment-success");
+      navigate("/Khaltidashboard");
     }
   };
 

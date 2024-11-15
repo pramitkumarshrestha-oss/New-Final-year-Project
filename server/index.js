@@ -23,12 +23,21 @@ const addItemsRoute = require("./routes/addProductRoute");
 const orderRoute = require("./routes/orderroute");
 const { khalti, khaltiCallback } = require("./khalti");
 const workersRouters = require("./routes/workersRouters");
+const productDetials = require("./models/addProduct");
 
 app.use("/signup", signupRoute);
 app.use("/login", loginRoute);
 app.use("/cart", cartRoute);
 app.use("/addProduct", addItemsRoute);
 app.use("/uploads", express.static("uploads"));
+app.get("/addProducts", async (req, res) => {
+  try {
+    const fetchProduct = await productDetials.find();
+    res.status(200).send(fetchProduct);
+  } catch (error) {
+    res.status(500).send({ error: "Failed to fetch products" });
+  }
+});
 app.use("/api/orderSchedule", orderRoute);
 app.use("/api/khalti/init", khalti);
 app.use("/api/khalti/init/verify", khaltiCallback);

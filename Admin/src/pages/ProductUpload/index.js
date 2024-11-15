@@ -112,7 +112,7 @@ const ProductUplaod = () => {
                         displayEmpty
                         inputProps={{ "aria-label": "Without label" }}
                         className="w-100"
-                      >
+                      >z
                         <MenuItem value="">
                           <em value={null}>None</em>
                         </MenuItem>
