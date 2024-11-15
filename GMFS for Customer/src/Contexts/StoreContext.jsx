@@ -6,6 +6,8 @@ export const StoreContext = createContext(null);
 
 export const StoreContextProvider = (props) => {
   const [token, setToken] = useState("");
+  const [paymentDetails, setPaymentDetails] = useState(""); //khalti ko lagi ho yo
+
   useEffect(() => {
     // console.log(token);
     const savedToken = localStorage.getItem("token");
@@ -29,27 +31,31 @@ export const StoreContextProvider = (props) => {
   });
 
   // Cart ko amount haru load garna
-  // const loadCartData= async (token)=>{
-  //   try{
-  //     const response = await axios.post(
-  //       "http://localhost:3010/cart/get",
-  //       {},
-  //       { headers: { Authorization: `Bearer ${token}` } }
-  //     );
-  //     setCartItems(response.data.cartData);
-  //     }
-  //     catch(error){
-  //       console.error("error Fetching cart data",error);
-  //     }
-  // };
+  const loadCartData = async (token) => {
+    try {
+      const response = await axios.get("http://localhost:3010/cart/get", {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      setCartItems(response.data.cartData);
+    } catch (error) {
+      console.error("error Fetching cart data", error);
+    }
+  };
 
-  // useEffect(() => {
-  //   if (localStorage.getItem("token")) {
-  //     const savedToken = localStorage.getItem("token");
-  //     setToken(savedToken);
-  //     loadCartData(savedToken); // Load cart data if token is available
-  //   }
-  // }, [token]);
+  useEffect(() => {
+    if (localStorage.getItem("token")) {
+      const savedToken = localStorage.getItem("token");
+      setToken(savedToken);
+      loadCartData(savedToken); // Load cart data if token is available
+    }
+  }, [token]);
+  useEffect(() => {
+    if (localStorage.getItem("token")) {
+      const savedToken = localStorage.getItem("token");
+      setToken(savedToken);
+      loadCartData(savedToken); // Load cart data if token is available
+    }
+  }, [token]);
 
   // Adding cart
   const addToCart = async (itemId) => {
@@ -60,7 +66,6 @@ export const StoreContextProvider = (props) => {
     }
 
     if (token) {
-      console.log(token);
       await axios.post(
         "http://localhost:3010/cart/add",
         { itemId },
@@ -99,12 +104,34 @@ export const StoreContextProvider = (props) => {
     let totalAmount = 0;
     for (const item in cartItems) {
       if (cartItems[item] > 0) {
-        let itemInfo = Menu.find((product) => product.id === parseInt(item));
+        let itemInfo = products.find((product) => product._id === item);
+        console.log(itemInfo);
+
         totalAmount += itemInfo.price * cartItems[item];
+        console.log(totalAmount);
       }
     }
     return totalAmount;
   };
+
+  //Hamle products ko lagi data fetch garira ho from admin jun backend bata aairaxa
+  const [products, setProducts] = useState([]);
+  const fetchProducts = async () => {
+    try {
+      const response = await axios.get("http://localhost:3010/addProducts");
+      setProducts(response.data);
+      console.log(response.data);
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+
+  useEffect(() => {
+    async function loadData() {
+      await fetchProducts();
+    }
+    loadData();
+  }, [token]);
 
   const contextValue = {
     Menu,
@@ -122,6 +149,10 @@ export const StoreContextProvider = (props) => {
     cartData,
     deliveryInfo,
     setDeliveryInfo,
+    setProducts,
+    products,
+    paymentDetails,
+    setPaymentDetails,
     // loadCartData,
   };
 

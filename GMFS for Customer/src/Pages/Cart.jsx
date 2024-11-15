@@ -15,6 +15,7 @@ export const Cart = () => {
     getTotalCartAmount,
     cartData,
     setCartData,
+    products,
   } = useContext(StoreContext);
   const navigate = useNavigate();
 
@@ -30,20 +31,17 @@ export const Cart = () => {
   };
 
   const handleProceedOrder = async () => {
-    
-
     //backend ma data pathauna ko lagi
     const itemsInCart = Object.keys(cartItems).map((id) => {
-      const item = Menu.find(
-        (curItem) => curItem.id.toString() === id.toString()
-      );
-     
+      const item = products.find((curItem) => curItem._id === id);
+      console.log(item);
+
       return {
-        id: item.id,
+        id: item._id,
         name: item.name,
         price: item.price,
-        quantity: cartItems[item.id],
-        total: item.price * cartItems[item.id],
+        quantity: cartItems[item._id],
+        total: item.price * cartItems[item._id],
       };
     });
     const orderData = {
@@ -52,8 +50,10 @@ export const Cart = () => {
       deliveryFee: getTotalCartAmount() === 0 ? 0 : 50,
     };
 
+    console.log(cartData);
+
     setCartData(orderData);
-    
+
     try {
       navigate("/OrderPlaced");
     } catch (err) {
@@ -77,26 +77,29 @@ export const Cart = () => {
           <hr />
 
           <ul>
-            {Menu.map((curItem) => {
-              if (cartItems[curItem.id] > 0)
+            {products.map((curItem) => {
+              if (cartItems[curItem._id] > 0)
                 return (
-                  <div key={curItem.id}>
+                  <div key={curItem._id}>
                     <div className={`${styles.cart_items_item}`}>
-                      <img src={curItem.image} alt="" />
+                      <img
+                        src={"http://localhost:3010/" + curItem.image}
+                        alt=""
+                      />
                       <p>{curItem.name}</p>
                       <p>Rs.{curItem.price}</p>
                       <div className={styles.item_counter_container}>
                         <CiCircleMinus
                           className={styles.sub_icon}
-                          onClick={() => removeFromCart(curItem.id)}
+                          onClick={() => removeFromCart(curItem._id)}
                         />
-                        <p>{cartItems[curItem.id]}</p>
+                        <p>{cartItems[curItem._id]}</p>
                         <IoIosAddCircleOutline
                           className={styles.add1_icon}
                           onClick={() => addToCart(curItem.id)}
                         />
                       </div>
-                      <p>Rs.{curItem.price * cartItems[curItem.id]}</p>
+                      <p>Rs.{curItem.price * cartItems[curItem._id]}</p>
 
                       <p
                         className={styles.cross}

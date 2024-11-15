@@ -73,6 +73,8 @@ export const OrderPlaced = () => {
     } else {
       try {
         console.log("orderssss");
+        console.log(cartData);
+
         const result = await axios.post(
           "http://localhost:3010/api/orderSchedule",
           { cartData, deliveryInfo },
@@ -82,25 +84,25 @@ export const OrderPlaced = () => {
       } catch (error) {
         console.log(error);
       }
-      try {
-        // console.log(cartData);
-        const res = await axios.post(
-          "http://localhost:3010/api/khalti/init",
-          { cartData, deliveryInfo },
-          { headers: { Authorization: `Bearer ${token}` } }
-        );
-        const paymentUrl = await res.data.data.payment_url;
-        // setPaymentDetails(response.data.data);
-        localStorage.setItem("paymentDetails", JSON.stringify(res.data.data));
-        console.log(paymentUrl);
-        window.location.href = paymentUrl;
-        // console.log(cartData);
-      } catch (error) {
-        console.log(error);
-      }
+      // try {
+      //   // console.log(cartData);
+      //   const res = await axios.post(
+      //     "http://localhost:3010/api/khalti/init",
+      //     { cartData, deliveryInfo },
+      //     { headers: { Authorization: `Bearer ${token}` } }
+      //   );
+      //   const paymentUrl = await res.data.data.payment_url;
+      //   // setPaymentDetails(response.data.data);
+      //   localStorage.setItem("paymentDetails", JSON.stringify(res.data.data));
+      //   console.log(paymentUrl);
+      //   window.location.href = paymentUrl;
+      //   // console.log(cartData);
+      // } catch (error) {
+      //   console.log(error);
+      // }
 
       setCartItems([]);
-      // navigate("/payment-success");
+      navigate("/Khaltidashboard");
     }
   };
 
