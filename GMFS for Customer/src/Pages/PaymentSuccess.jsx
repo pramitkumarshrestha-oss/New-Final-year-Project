@@ -5,8 +5,7 @@ import { StoreContext } from "../Contexts/StoreContext";
 import styles from "../Styles/PaymentSuccess.module.css";
 
 export const PaymentSuccess = () => {
-  // const { setCartItems } = useContext(StoreContext);
-  const { paymentDetails, setPaymentDetails } = useContext(StoreContext);
+  const { setCartItems } = useContext(StoreContext);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -35,13 +34,9 @@ export const PaymentSuccess = () => {
     }
   }, [navigate, setCartItems]);
 
-  const handleBackToHome = () => {
-    navigate("/");
-    window.location.reload();
-  };
   return (
     <div className={styles.main_container}>
-      <button onClick={() => handleBackToHome()} className={styles.go_home_btn}>
+      <button onClick={() => navigate("/")} className={styles.go_home_btn}>
         Go back to Home Page
       </button>
     </div>

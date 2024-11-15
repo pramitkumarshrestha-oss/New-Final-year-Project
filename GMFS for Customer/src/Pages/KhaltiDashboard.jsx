@@ -4,14 +4,14 @@ import { useContext, useEffect } from "react";
 import styles from "../Styles/KhaltiDashboard.module.css";
 
 export const Payment = () => {
-  const { cartData, deliveryInfo, setPaymentDetails } =
+  const { cartData, deliveryInfo, setPaymentDetails, token } =
     useContext(StoreContext);
   const handlePayment = async () => {
     try {
-      console.log(cartData.totalAmount);
+      console.log(cartData);
 
       const response = await axios.post(
-        "url kazi le dincha",
+        "http://localhost:3010/api/khalti/init",
         {
           amount: cartData.totalAmount * 100,
           purchase_order_id: "test12",
@@ -33,6 +33,22 @@ export const Payment = () => {
     } catch (err) {
       console.log(err);
     }
+    // try {
+    //   // console.log(cartData);
+    //   const res = await axios.post(
+    //     "http://localhost:3010/api/khalti/init",
+    //     { cartData, deliveryInfo },
+    //     { headers: { Authorization: `Bearer ${token}` } }
+    //   );
+    //   const paymentUrl = await res.data.data.payment_url;
+    //   // setPaymentDetails(response.data.data);
+    //   localStorage.setItem("paymentDetails", JSON.stringify(res.data.data));
+    //   console.log(paymentUrl);
+    //   window.location.href = paymentUrl;
+    //   // console.log(cartData);
+    // } catch (error) {
+    //   console.log(error);
+    // }
   };
 
   const handleCodPayment = () => {};

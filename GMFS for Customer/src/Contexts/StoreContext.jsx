@@ -52,6 +52,13 @@ export const StoreContextProvider = (props) => {
       loadCartData(savedToken); // Load cart data if token is available
     }
   }, [token]);
+  useEffect(() => {
+    if (localStorage.getItem("token")) {
+      const savedToken = localStorage.getItem("token");
+      setToken(savedToken);
+      loadCartData(savedToken); // Load cart data if token is available
+    }
+  }, [token]);
 
   // Adding cart
   const addToCart = async (itemId) => {
@@ -62,7 +69,6 @@ export const StoreContextProvider = (props) => {
     }
 
     if (token) {
-      console.log(token);
       await axios.post(
         "http://localhost:3010/cart/add",
         { itemId },
@@ -105,6 +111,7 @@ export const StoreContextProvider = (props) => {
         console.log(itemInfo);
 
         totalAmount += itemInfo.price * cartItems[item];
+        console.log(totalAmount);
       }
     }
     return totalAmount;
@@ -114,7 +121,6 @@ export const StoreContextProvider = (props) => {
   const [products, setProducts] = useState([]);
   const fetchProducts = async () => {
     try {
-      console.log("sandesh");
       const response = await axios.get("http://localhost:3010/addProducts");
       setProducts(response.data);
       console.log(response.data);
