@@ -49,6 +49,13 @@ export const StoreContextProvider = (props) => {
       loadCartData(savedToken); // Load cart data if token is available
     }
   }, [token]);
+  useEffect(() => {
+    if (localStorage.getItem("token")) {
+      const savedToken = localStorage.getItem("token");
+      setToken(savedToken);
+      loadCartData(savedToken); // Load cart data if token is available
+    }
+  }, [token]);
 
   // Adding cart
   const addToCart = async (itemId) => {
