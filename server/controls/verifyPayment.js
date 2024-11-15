@@ -25,7 +25,7 @@ const verifyPayment = async (req, res) => {
       if (alreadySaveOrder !== null) {
         const orderId = alreadySaveOrder._id.toString();
         try {
-          await order.findOneAndUpdate(
+          await orderModel.findOneAndUpdate(
             { _id: orderId },
             {
               $set: {

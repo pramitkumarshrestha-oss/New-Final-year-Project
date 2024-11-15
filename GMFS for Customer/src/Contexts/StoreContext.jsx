@@ -31,27 +31,25 @@ export const StoreContextProvider = (props) => {
   });
 
   // Cart ko amount haru load garna
-  // const loadCartData= async (token)=>{
-  //   try{
-  //     const response = await axios.post(
-  //       "http://localhost:3010/cart/get",
-  //       {},
-  //       { headers: { Authorization: `Bearer ${token}` } }
-  //     );
-  //     setCartItems(response.data.cartData);
-  //     }
-  //     catch(error){
-  //       console.error("error Fetching cart data",error);
-  //     }
-  // };
+  const loadCartData = async (token) => {
+    try {
+      console.log("anesh");
+      const response = await axios.get("http://localhost:3010/cart/get", {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      setCartItems(response.data.cartData);
+    } catch (error) {
+      console.error("error Fetching cart data", error);
+    }
+  };
 
-  // useEffect(() => {
-  //   if (localStorage.getItem("token")) {
-  //     const savedToken = localStorage.getItem("token");
-  //     setToken(savedToken);
-  //     loadCartData(savedToken); // Load cart data if token is available
-  //   }
-  // }, [token]);
+  useEffect(() => {
+    if (localStorage.getItem("token")) {
+      const savedToken = localStorage.getItem("token");
+      setToken(savedToken);
+      loadCartData(savedToken); // Load cart data if token is available
+    }
+  }, [token]);
 
   // Adding cart
   const addToCart = async (itemId) => {
@@ -62,7 +60,6 @@ export const StoreContextProvider = (props) => {
     }
 
     if (token) {
-      console.log(token);
       await axios.post(
         "http://localhost:3010/cart/add",
         { itemId },
@@ -105,6 +102,7 @@ export const StoreContextProvider = (props) => {
         console.log(itemInfo);
 
         totalAmount += itemInfo.price * cartItems[item];
+        console.log(totalAmount);
       }
     }
     return totalAmount;
@@ -114,7 +112,6 @@ export const StoreContextProvider = (props) => {
   const [products, setProducts] = useState([]);
   const fetchProducts = async () => {
     try {
-      console.log("sandesh");
       const response = await axios.get("http://localhost:3010/addProducts");
       setProducts(response.data);
       console.log(response.data);
