@@ -6,7 +6,7 @@ export const StoreContext = createContext(null);
 
 export const StoreContextProvider = (props) => {
   const [token, setToken] = useState("");
-  const [paymentDetails,setPaymentDetails]=useState("");//khalti ko lagi ho yo
+  const [paymentDetails, setPaymentDetails] = useState(""); //khalti ko lagi ho yo
 
   useEffect(() => {
     // console.log(token);
@@ -114,6 +114,7 @@ export const StoreContextProvider = (props) => {
   const [products, setProducts] = useState([]);
   const fetchProducts = async () => {
     try {
+      console.log("sandesh");
       const response = await axios.get("http://localhost:3010/addProducts");
       setProducts(response.data);
       console.log(response.data);
@@ -148,7 +149,7 @@ export const StoreContextProvider = (props) => {
     setProducts,
     products,
     paymentDetails,
-    setPaymentDetails
+    setPaymentDetails,
     // loadCartData,
   };
 

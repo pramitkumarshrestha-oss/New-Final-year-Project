@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const cors = require("cors");
 // const mongoose = require("mongoose");
-// const productDetials = require("./models/addProduct");
+const productDetials = require("./models/addProduct");
 const { connectToMongoDB } = require("./connections/index");
 const app = express();
 app.use(cors());
