@@ -5,7 +5,8 @@ import { StoreContext } from "../Contexts/StoreContext";
 import styles from "../Styles/PaymentSuccess.module.css";
 
 export const PaymentSuccess = () => {
-  const { setCartItems } = useContext(StoreContext);
+  // const { setCartItems } = useContext(StoreContext);
+  const { paymentDetails, setPaymentDetails } = useContext(StoreContext);
   const navigate = useNavigate();
 
   useEffect(() => {
