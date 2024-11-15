@@ -24,6 +24,8 @@ export const Payment = () => {
         }
       );
       const paymentUrl = await response.data.data.payment_url;
+      console.log(paymentUrl);
+      
       setPaymentDetails(response.data.data);
       localStorage.setItem(
         "paymentDetails",
