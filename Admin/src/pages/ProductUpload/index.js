@@ -124,8 +124,8 @@ const ProductUplaod = () => {
                           Cotton
                         </MenuItem>
 
-                        <MenuItem className="text-capitalize" value="Organza">
-                          Organza
+                        <MenuItem className="text-capitalize" value="Chiffon">
+                          Chiffon
                         </MenuItem>
                       </Select>
                     </div>

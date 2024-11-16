@@ -60,7 +60,7 @@ const Sidebar = ()=>{
                    </div>
                    </li> 
                    <li>
-                   <Link to="/">
+                   <Link to="/order">
                    <Button className={`w-100 ${activeTab === 2 ? 'active' : ''}`}onClick={()=>isOpenSubmenu(2)}>
                    <span className='icon'> <FaCartShopping /></span> 
                    Orders 

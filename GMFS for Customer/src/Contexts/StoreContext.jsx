@@ -17,6 +17,15 @@ export const StoreContextProvider = (props) => {
 
   const [searchItem, setSearchItem] = useState(""); // Manage search term
   const [cartItems, setCartItems] = useState({});
+
+  useEffect(()=>{
+
+    
+    
+    console.log(
+      Object.keys(cartItems));
+    
+  },[])
   const [cartData, setCartData] = useState({
     items: [],
     totalAmount: 0,
@@ -49,13 +58,7 @@ export const StoreContextProvider = (props) => {
       loadCartData(savedToken); // Load cart data if token is available
     }
   }, [token]);
-  useEffect(() => {
-    if (localStorage.getItem("token")) {
-      const savedToken = localStorage.getItem("token");
-      setToken(savedToken);
-      loadCartData(savedToken); // Load cart data if token is available
-    }
-  }, [token]);
+
 
   // Adding cart
   const addToCart = async (itemId) => {
@@ -74,14 +77,21 @@ export const StoreContextProvider = (props) => {
     }
   };
 
+  //Removing cart data
   const removeFromCart = async (itemId) => {
-    if (cartItems[itemId] > 1) {
-      setCartItems((prev) => ({ ...prev, [itemId]: prev[itemId] - 1 }));
-    } else {
-      const { [itemId]: _, ...remainingItems } = cartItems;
-      setCartItems(remainingItems);
-    }
+    
+    setCartItems((prevCartItems) => {
+      const updatedCart = { ...prevCartItems };
+      // updatedCart[itemId] += 1;
+      if (updatedCart[itemId] > 1) {
+        updatedCart[itemId] = updatedCart[itemId] - 1;
+      }
 
+      if (updatedCart[itemId] === 1) {
+        delete updatedCart[itemId];
+      }
+      return updatedCart;
+    });
     if (token) {
       try {
         await axios.post(
@@ -101,11 +111,13 @@ export const StoreContextProvider = (props) => {
   );
 
   const getTotalCartAmount = () => {
+    console.log(cartItems);
+    
     let totalAmount = 0;
     for (const item in cartItems) {
       if (cartItems[item] > 0) {
         let itemInfo = products.find((product) => product._id === item);
-        console.log(itemInfo);
+        console.log(itemInfo);  
 
         totalAmount += itemInfo.price * cartItems[item];
         console.log(totalAmount);
@@ -113,6 +125,20 @@ export const StoreContextProvider = (props) => {
     }
     return totalAmount;
   };
+
+  // const getTotalCartAmount = () => {
+  //   return Object.keys(cartItems).reduce((total, id) => {
+  //     const product = products.find((curItem) => curItem._id === id);
+  //     // Only add to total if the product exists
+  //     if (product) {
+  //       return total + product.price * cartItems[id];
+  //     } else {
+  //       console.warn(`Product with ID ${id} not found in products array.`);
+  //       return total;
+  //     }
+  //   }, 0);
+  // };
+  
 
   //Hamle products ko lagi data fetch garira ho from admin jun backend bata aairaxa
   const [products, setProducts] = useState([]);

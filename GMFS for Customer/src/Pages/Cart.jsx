@@ -21,15 +21,6 @@ export const Cart = () => {
 
   const isCartEmpty = Object.keys(cartItems).length === 0;
 
-  //To remove the cart without decrementing the item.
-  const handleremoveFromCart = (id) => {
-    setCartItems((prevItems) => {
-      const updatedCart = { ...prevItems };
-      delete updatedCart[id];
-      return updatedCart;
-    });
-  };
-
   const handleProceedOrder = async () => {
     //backend ma data pathauna ko lagi
     const itemsInCart = Object.keys(cartItems).map((id) => {
@@ -60,6 +51,15 @@ export const Cart = () => {
       console.log(err);
     }
   };
+
+//To remove the cart without decrementing the item.
+const handleremoveFromCart = (id) => {
+  setCartItems((prevItems) => {
+    const updatedCart = { ...prevItems };
+    delete updatedCart[id];
+    return updatedCart;
+  });
+};
 
   return (
     <>
@@ -96,14 +96,14 @@ export const Cart = () => {
                         <p>{cartItems[curItem._id]}</p>
                         <IoIosAddCircleOutline
                           className={styles.add1_icon}
-                          onClick={() => addToCart(curItem.id)}
+                          onClick={() => addToCart(curItem._id)}
                         />
                       </div>
                       <p>Rs.{curItem.price * cartItems[curItem._id]}</p>
 
                       <p
                         className={styles.cross}
-                        onClick={() => handleremoveFromCart(curItem.id)}
+                        onClick={() => handleremoveFromCart(curItem._id)}
                       >
                         X
                       </p>
