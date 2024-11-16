@@ -45,7 +45,6 @@ const Order = () => {
       <div className="right-content w-100">
         <div className="card shadow border-0 w-100 flex-row p-4">
           <h5 className="mb-0">Order List</h5>
-          {orders.map(() => {})}
         </div>
 
         <div className="card shadow border-0 p-3 mt-4">
@@ -67,44 +66,45 @@ const Order = () => {
               </thead>
 
               <tbody>
-                <tr>
-                  <td>Pramit Shrestha</td>
-                  <td>
-                    <div className="d-flex align-items-center productBox">
-                      <div className="imgWrapper">
-                        <div className="img">
-                          <img
-                            src={chiffonImage}
-                            className="w-100"
-                            alt="Chiffon fabric"
-                          />
+                {orders.map((info, index) => {
+                  return (
+                    <tr key={index}>
+                      <td>{`${info.deliveryInfo.firstName} ${info.deliveryInfo.lastName}`}</td>
+                      <td>
+                        <div className="d-flex align-items-center productBox">
+                          <div className="info pl-0">
+                            {info.orderedItems.map((item, index) => {
+                              return <h6 key={index}>{item.name}</h6>;
+                            })}
+                          </div>
                         </div>
-                      </div>
-                      <div className="info pl-0">
-                        <h6>Chiffon Fabric</h6>
-                        <p>Exclusive chiffon fabric for you to design</p>
-                      </div>
-                    </div>
-                  </td>
-                  <td>1</td>
+                      </td>
+                      <td>1</td>
 
-                  <td>2024-05-10</td>
+                      <td>{info.createdAt}</td>
 
-                  <td>Rs 30</td>
-                  <td>30</td>
-                  <td>True</td>
+                      <td>{info.totalAmount}</td>
+                      <td>
+                        {info.orderedItems.map((item, index) => {
+                          return <h6 key={index}>{item.quantity}</h6>;
+                        })}
+                      </td>
 
-                  {/* <td>4.9(16)</td>
+                      <td>{info.orderStatus}</td>
+
+                      {/* <td>4.9(16)</td>
                   <td>380</td>
                   <td>$38k</td> */}
-                  <td>
-                    <div className="actions d-flex align-items-center">
-                      <Button className="secondary" color="secondary">
-                        <MdOutlineAssignmentInd />
-                      </Button>
-                    </div>
-                  </td>
-                </tr>
+                      <td>
+                        <div className="actions d-flex align-items-center">
+                          <Button className="secondary" color="secondary">
+                            <MdOutlineAssignmentInd />
+                          </Button>
+                        </div>
+                      </td>
+                    </tr>
+                  );
+                })}
               </tbody>
             </table>
           </div>
