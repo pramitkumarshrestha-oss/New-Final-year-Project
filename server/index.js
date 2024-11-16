@@ -40,7 +40,7 @@ app.get("/addProducts", async (req, res) => {
 });
 app.use("/api/orderSchedule", orderRoute);
 app.use("/api/khalti/init", khalti);
-// app.use("/api/khalti/init/verify", khaltiCallback);
+app.use("/api/khalti/init/verify", khaltiCallback);
 app.use("/api/workers", workersRouters);
 
 app.use("/api/khaltiVerify", verifyPaymentRoute);

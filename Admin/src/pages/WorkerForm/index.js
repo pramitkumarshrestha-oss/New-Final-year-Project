@@ -2,8 +2,9 @@ import React, { useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import Button from "@mui/material/Button";
+import axios from "axios";
 
-function WorkerForm() {
+const WorkerForm = () => {
   const [formData, setFormData] = useState({
     name: "",
     age: "",
@@ -25,9 +26,49 @@ function WorkerForm() {
     setFormData({ ...formData, joinedDate: date });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Form Data Submitted: ", formData);
+    const data = new FormData();
+    data.append("name", formData.name);
+    data.append("age", formData.age);
+    data.append("gender", formData.gender);
+    data.append("joinedDate", formData.joinedDate);
+    data.append("address", formData.address);
+    data.append("phoneNumber", formData.phoneNumber);
+    data.append("username", formData.username);
+    data.append("password", formData.password);
+    data.append("citizenshipNumber", formData.citizenshipNumber);
+    for (let [key, value] of data.entries()) {
+      console.log(`Key: ${key}, Value: ${value}`);
+    }
+
+    // console.log("Form Data Submitted: ", formData);
+    try {
+      const result = await axios.post(
+        "http://localhost:3010/api/workers",
+        data,
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      console.log(result);
+      setFormData({
+        name: "",
+        age: "",
+        gender: "",
+        joinedDate: null,
+        address: "",
+        phoneNumber: "",
+        username: "",
+        password: "",
+        citizenshipNumber: "",
+      });
+      // console.log(setFormData);
+    } catch (error) {
+      console.log("Error Adding Worker", error);
+    }
     // You can add your submit logic here
   };
 
@@ -201,6 +242,6 @@ function WorkerForm() {
       </div>
     </>
   );
-}
+};
 
 export default WorkerForm;

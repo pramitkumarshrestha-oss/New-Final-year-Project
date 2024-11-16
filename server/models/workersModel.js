@@ -4,8 +4,7 @@ const workersSchema = mongoose.Schema({
     type: String,
   },
   phoneNumber: {
-    type: Number,
-    unique: true,
+    type: String,
   },
   address: {
     type: String,
@@ -21,6 +20,12 @@ const workersSchema = mongoose.Schema({
   },
   age: {
     type: Number,
+  },
+  popularity: {
+    type: Number,
+  },
+  citizenshipNumber: {
+    type: String,
   },
 });
 const workersModel = mongoose.model("Workers", workersSchema);
