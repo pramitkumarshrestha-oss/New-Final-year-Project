@@ -45,7 +45,7 @@ const verifyPayment = async (req, res) => {
             { _id: userId },
             {
               $unset: {
-                cart: "",
+                cart: {},
               },
             },
             { new: true }
