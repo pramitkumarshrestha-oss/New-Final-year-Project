@@ -31,7 +31,7 @@ const getWorkerHandler = async (req, res, next) => {
 };
 const postWorkerHandler = async (req, res, next) => {
   const workerBody = req.body;
-
+  console.log(workerBody);
   try {
     const savedworker = await postWorker(workerBody); // Add a new worker to the database
     console.log("Worker Added");

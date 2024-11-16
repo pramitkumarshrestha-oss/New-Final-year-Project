@@ -9,7 +9,7 @@ const workersSchema = mongoose.Schema({
   address: {
     type: String,
   },
-  userName: {
+  username: {
     type: String,
   },
   password: {

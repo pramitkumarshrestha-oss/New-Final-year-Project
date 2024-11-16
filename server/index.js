@@ -24,7 +24,7 @@ const orderRoute = require("./routes/orderroute");
 const { khalti, khaltiCallback } = require("./khalti");
 const workersRouters = require("./routes/workersRouters");
 const verifyPaymentRoute = require("./routes/verifyPaymentRoute.js");
-
+const listOrders = require("./routes/listOrders.js");
 app.use("/signup", signupRoute);
 app.use("/login", loginRoute);
 app.use("/cart", cartRoute);
@@ -44,6 +44,7 @@ app.use("/api/khalti/init/verify", khaltiCallback);
 app.use("/api/workers", workersRouters);
 
 app.use("/api/khaltiVerify", verifyPaymentRoute);
+app.get("/list", listOrders);
 
 app.listen(port, () => {
   console.log(`Server Started At ${port}`);
