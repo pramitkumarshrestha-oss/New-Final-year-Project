@@ -165,30 +165,3 @@ h1 {
 .haveAccount a:hover {
   text-decoration: underline;
 }
-
-
-/*For Worker Login*/
-
-.workerButton {
-  width: 100%;
-  padding: 10px;
-  background-color: black; /* Adjust the color to match your theme */
-  color: white;
-  border: none;
-  border-radius: 5px;
-  font-size: 1rem;
-  cursor: pointer;
-  text-align: center;
-  margin-top: 1rem; /* Add some spacing above the button */
-}
-
-.workerButton:hover {
-  background-color: #76aee9; /* Add a hover effect with a lighter color */
-  transition: background-color 0.3s ease;
-}
-
-.loginAsWorker {
-  text-align: center;
-  margin-top: 1.5rem;
-  color: rgb(80, 78, 78);
-}

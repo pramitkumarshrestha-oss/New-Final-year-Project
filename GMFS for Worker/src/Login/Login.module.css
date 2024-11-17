@@ -1,87 +1,167 @@
-/* styles.css */
-.loginContainer {
+
+.workerLogin {
+    
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: aliceblue;
+    
+  }
+  
+  .workerLogin .loginContainer {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
     width: 100%;
-    position: relative; /* Position relative to use absolute positioning for the overlay */
-}
-
-.backgroundImage {
-    position: absolute; /* Make it cover the whole container */
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-image: url('../assets/loginb.jpg');
-    background-size: cover;
-    background-position: center;
-    filter: blur(5px); /* Apply blur effect to the background image */
-    z-index: 1; /* Position it behind the login card */
-}
-
-.loginCard {
-    width: 400px;
-    height: 350px;
+    position: relative;
+    overflow: hidden;
+    
+  }
+  
+  .workerLogin .loginCard {
+    /* background: rgba(255, 255, 255, 0.777); */
+    border-radius: 12px;
+    background: linear-gradient(to right, #76aee9, #a378d9); 
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    width: 600px;
+    height: 500px;
     padding: 2rem;
-    background-color: rgb(194, 221, 221);
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     text-align: center;
-    position: relative; /* Ensure the card is positioned above the background */
-    z-index: 2; /* Position it above the blurred background */
-}
-
-.loginCard h2 {
+    z-index: 2;
+    animation: slideIn 0.6s ease-out;
+  }
+  
+  @keyframes slideIn {
+    from {
+      transform: translateY(50px);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+  
+  .workerLogin .loginCard h2 {
     margin-bottom: 1.5rem;
-    color:black;
-}
-
-.formGroup {
+    font-size: 2rem;
+    font-weight: 600;
+    color: black;
+  }
+  
+  .workerLogin .formGroup {
     margin-bottom: 1rem;
     text-align: left;
+  }
+  
+  .workerLogin .formGroup label {
+    font-size: 1.2rem;
     color: black;
-}
-
-.formGroup label {
-    font-size: 0.9rem;
-    color: black;
-}
-
-.formGroup input {
-    width: 96%;
-    padding: 0.6rem;
-    border-radius: 4px;
-    border: 1px solid #ddd;
-    margin-top: 0.3rem;
-    transition: border-color 0.3s;
-}
-
-.formGroup input:focus {
-    border-color: #007BFF;
-    outline: none;
-}
-
-.errorMessage {
-    color: #ff4d4d;
-    font-size: 0.8rem;
+  }
+  
+  .workerLogin .formGroup input {
+    width: 95.2%;
+    padding: 0.8rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 0.95rem;
     margin-top: 0.5rem;
-}
-
-.loginButton {
-    width: 30%;
-    padding: 0.6rem;
-    margin-top:1.2rem;
-    background-color: #007BFF;
+    color: black;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .workerLogin .formGroup input:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 8px rgba(0, 123, 255, 0.3);
+    outline: none;
+  }
+  
+  .workerLogin .errorMessage {
+    color: rgba(255, 0, 0, 0.705);
+    font-size: 1.3rem;
+    margin-top: 2rem;
+    text-align: center;
+  }
+  
+  .workerLogin .loginButton {
+    width: 100%;
+    padding: 0.8rem;
+    margin-top: 2.5rem;
+    background: linear-gradient(135deg, #007bff, #0056b3);
     color: #fff;
     border: none;
-    border-radius: 15px;
+    border-radius: 8px;
     font-size: 1rem;
+    font-weight: 500;
     cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.loginButton:hover {
-    background-color: #ffcc00;
-}
+    transition: background 0.3s ease, transform 0.2s ease;
+  }
+  
+  .workerLogin .loginButton:hover {
+    background: linear-gradient(135deg, #ffcc00, #ff9900);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 15px rgba(255, 153, 0, 0.3);
+  }
+  
+  .workerLogin .passwordWrapper {
+    display: flex;
+    align-items: center;
+    position: relative;
+  }
+  
+  .workerLogin .passwordWrapper input {
+    width: 100%;
+    padding-left: 0.8rem;
+    padding-right: 0.8rem;
+  }
+  
+  .workerLogin .togglePassword {
+    position: absolute;
+    left: 35rem;
+    background: none;
+    border: none;
+    font-size: 1.2rem;
+    cursor: pointer;
+    color: #555;
+    height: 90%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .workerLogin .togglePassword:hover {
+    color: #007bff;
+  }
+  
+ 
+  @keyframes spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  
+  @media screen and (max-width: 768px) {
+    .workerLogin .loginCard {
+      width: 90%;
+      padding: 1.5rem;
+    }
+  
+    .workerLogin h2 {
+      font-size: 1.5rem;
+    }
+  
+    .workerLogin .formGroup input {
+      font-size: 0.9rem;
+      padding: 0.6rem;
+    }
+  
+    .workerLogin .loginButton {
+      font-size: 0.9rem;
+      padding: 0.7rem;
+    }
+  }
+  
