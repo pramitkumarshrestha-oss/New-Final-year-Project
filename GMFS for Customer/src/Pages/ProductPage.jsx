@@ -1,8 +1,7 @@
 import React, { useEffect, useState, useContext } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { StoreContext } from "../Contexts/StoreContext";
-import { useAuth } from "../Contexts/AuthContext";// Import AuthContext
-import Menu from "../Components/TabMenu/menu";
+import { StoreContext } from "../Contexts/StoreContext"; // Import the context
+import { useAuth } from "../Contexts/AuthContext"; // Import AuthContext
 import styles from "../Styles/ProductPage.module.css"; // Import CSS module
 
 const ProductPage = () => {
@@ -10,15 +9,16 @@ const ProductPage = () => {
   const [product, setProduct] = useState(null);
 
   // Access context functions
-  const { addToCart } = useContext(StoreContext);
+  const { addToCart, products } = useContext(StoreContext); // Access products from context
   const { isLoggedIn } = useAuth(); // Get login status from AuthContext
-  const navigate = useNavigate();   // Initialize navigate for routing
+  const navigate = useNavigate(); // Initialize navigate for routing
 
   // Fetch product from the menu based on the ID
   useEffect(() => {
-    const fetchedProduct = Menu.find((item) => item.id === parseInt(id));
+    const fetchedProduct = products.find((item) => item._id === id); // Use products from context
+    console.log(fetchedProduct?.image);
     setProduct(fetchedProduct);
-  }, [id]);
+  }, [id, products]); // Dependencies include products to re-run the effect when it changes
 
   const handleAddToCart = () => {
     if (!isLoggedIn) {
@@ -31,14 +31,14 @@ const ProductPage = () => {
   };
 
   if (!product) {
-    return <div className={styles.container}>Loading...</div>;
+    return <div className={styles.container}>Product Not Found🤦‍♂️</div>;
   }
 
   return (
     <div className={styles.container}>
       <h2 className={styles.mainHeading}>{product.name}</h2>
       <div className={styles.productDetails}>
-        <img src={product.image} alt={product.name} className={styles.productImage} />
+        <img src={`http://localhost:3010/${product.image}`} alt={product.name} className={styles.productImage} />
         <p className={styles.productDescription}>{product.description}</p>
         <p>Price: Rs {new Intl.NumberFormat().format(product.price)}</p> {/* Display price with Rs */}
       </div>

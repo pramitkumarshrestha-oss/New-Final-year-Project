@@ -3,32 +3,30 @@ import { StoreContext } from "../Contexts/StoreContext";
 import styles from "../Styles/SearchBar.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
-import { useNavigate } from "react-router-dom"; // Importing navigate hook for redirection
+import { useNavigate } from "react-router-dom";
 
 const SearchBar = () => {
-  const { setSearchItem, Menu } = useContext(StoreContext); // Accessing searchItem and Menu from context
+  const { setSearchItem, products } = useContext(StoreContext);
   const [input, setInput] = useState("");
   const [filteredResults, setFilteredResults] = useState([]);
   const [showSearchBar, setShowSearchBar] = useState(false);
 
-  const navigate = useNavigate(); // For navigation
+  const navigate = useNavigate();
 
-  // Update filtered results based on search input
   useEffect(() => {
     if (input.trim()) {
-      const results = Menu.filter((item) =>
+      const results = products.filter((item) =>
         item.name.toLowerCase().includes(input.toLowerCase())
       );
       setFilteredResults(results);
     } else {
       setFilteredResults([]);
     }
-  }, [input, Menu]);
+  }, [input, products]);
 
   const handleInputChange = (e) => {
-    const value = e.target.value;
-    setInput(value);
-    setSearchItem(value); // Set search item in context
+    setInput(e.target.value);
+    setSearchItem(e.target.value);
   };
 
   const handleSearchBar = () => {
@@ -36,9 +34,10 @@ const SearchBar = () => {
   };
 
   const handleItemClick = (itemId) => {
-    navigate(`/product/${itemId}`); // Navigate to product details page
-    setInput(""); // Clear input after selection
-    setFilteredResults([]); // Clear filtered results
+    console.log("Navigating to product with ID:", itemId);
+    navigate(`/product/${itemId}`);
+    setInput("");
+    setFilteredResults([]);
   };
 
   return (
@@ -56,8 +55,8 @@ const SearchBar = () => {
             <ul className={styles.dropdown}>
               {filteredResults.map((item) => (
                 <li
-                  key={item.id}
-                  onClick={() => handleItemClick(item.id)} // Redirect to product page
+                  key={item._id}
+                  onClick={() => handleItemClick(item._id)}
                   className={styles.dropdownItem}
                 >
                   {item.name}
@@ -65,13 +64,10 @@ const SearchBar = () => {
               ))}
             </ul>
           ) : input && (
-            <div className={styles.noResults}>
-              No Results Found
-            </div>
+            <div className={styles.noResults}>No Results Found</div>
           )}
         </div>
       )}
-
       <FontAwesomeIcon
         icon={faSearch}
         className={styles.search_icon}
