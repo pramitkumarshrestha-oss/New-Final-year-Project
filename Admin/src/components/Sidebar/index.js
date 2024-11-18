@@ -111,20 +111,20 @@ const Sidebar = ()=>{
                    </li> 
                    <li>
                    <Link to="/">
-                   <Button className={`w-100 ${activeTab === 8 ? 'active' : ''}`}onClick={()=>isOpenSubmenu(8)}>
+                   {/* <Button className={`w-100 ${activeTab === 8 ? 'active' : ''}`}onClick={()=>isOpenSubmenu(8)}>
                    <span className='icon'> <IoMdSettings /></span> 
                    Settings <span className='arrow'><FaAngleRight/>
                    </span>
-                   </Button>
+                   </Button> */}
                    </Link>
                    </li> 
                    <li>
                    <Link to="/">
-                   <Button className={`w-100 ${activeTab === 9 ? 'active' : ''}`}onClick={()=>isOpenSubmenu(9)}>
+                   {/* <Button className={`w-100 ${activeTab === 9 ? 'active' : ''}`}onClick={()=>isOpenSubmenu(9)}>
                    <span className='icon'> <FaBell /></span> 
                    Notifications <span className='arrow'><FaAngleRight/>
                    </span>
-                   </Button>
+                   </Button> */}
                    </Link>
                    </li> 
                    

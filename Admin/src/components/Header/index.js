@@ -25,10 +25,10 @@ const Header = () => {
   
 
     const [anchorEl, setAnchorEl] = useState(null);
-    const [isOpennotificationDrop, setisOpennotificationDrop] = useState(null);
+    // const [isOpennotificationDrop, setisOpennotificationDrop] = useState(null);
 
   const openMyAcc = Boolean(anchorEl);
-  const openNotifications = Boolean(isOpennotificationDrop);
+  // const openNotifications = Boolean(isOpennotificationDrop);
   const context = useContext(MyContext)
 
   const handleOpenMyAccDrop = (event) => {
@@ -37,13 +37,13 @@ const Header = () => {
   const handleCloseMyAccDrop = () => {
     setAnchorEl(null);
   };
-  const handleOpennotificationsDrop=()=>{
-    setisOpennotificationDrop(true)
+//   const handleOpennotificationsDrop=()=>{
+//     setisOpennotificationDrop(true)
 
-  }
-  const handleClosenotificationsDrop=()=>{
-    setisOpennotificationDrop(false)
-}
+//   }
+//   const handleClosenotificationsDrop=()=>{
+//     setisOpennotificationDrop(false)
+// }
 
     return(
        <>
@@ -67,211 +67,14 @@ const Header = () => {
                 <SearchBox/>
                  </div>
             <div className="col-sm-7 d-flex align-items-center justify-content-end part3">
-                <Button className="rounded-circle mr-3">
+                {/* <Button className="rounded-circle mr-3">
                 <MdLightMode/></Button>
                 <Button className="rounded-circle mr-3" ><IoMdCart/>
                 
                 </Button>
                 <Button className="rounded-circle mr-3"><MdEmail/></Button>
-                <Button className="rounded-circle mr-3" onClick={handleOpennotificationsDrop}><FaBell/></Button>
-                <div className='dropdownWrapper position-relative'>
-                <Menu
-        anchorEl={isOpennotificationDrop}
-        className='notifications dropdown_list'
-        id="notifications"
-        open={isOpennotificationDrop}
-        onClose={handleClosenotificationsDrop}
-        onClick={handleClosenotificationsDrop}
-        slotProps={{
-          paper: {
-            elevation: 0,
-            sx: {
-              overflow: 'visible',
-              filter: 'drop-shadow(0px 2px 8px rgba(0,0,0,0.32))',
-              mt: 1.5,
-              '& .MuiAvatar-root': {
-                width: 32,
-                height: 32,
-                ml: -0.5,
-                mr: 1,
-              },
-              '&::before': {
-                content: '""',
-                display: 'block',
-                position: 'absolute',
-                top: 0,
-                right: 14,
-                width: 10,
-                height: 10,
-                bgcolor: 'background.paper',
-                transform: 'translateY(-50%) rotate(45deg)',
-                zIndex: 0,
-              },
-            },
-          },
-        }}
-        transformOrigin={{ horizontal: 'right', vertical: 'top' }}
-        anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
-      >
-        <div className='head pl-3 pb-0'>
-        <h4>Orders (12)</h4>
-</div>
-        <Divider className='mb-3'/>
-        <div className='scroll'>
-        <MenuItem onClick={handleCloseMyAccDrop}>
-         <div className='d-flex'> 
-         <div>
-         <div className='userImg'>
-         <span className='rounded-circle'>
-            <img src="https://i.pinimg.com/736x/2d/12/dd/2d12dd622717ab6e64d0a4e09f87afe9.jpg" alt="pfp" />
-         </span> 
-         </div>
-         </div>
-         <div className='dropdownInfo'>
-            <h4>
-                <span>
-                    <b>Pramit </b>
-                    added to his favourite list 
-                    <b> Leather belt steve madden </b>
-                </span>
-            </h4>
-            <p className='text-sky mb-o'>few seconds ago!</p>
-         </div>
-         </div>
-        </MenuItem>
-        <MenuItem onClick={handleCloseMyAccDrop}>
-         <div className='d-flex'> 
-         <div>
-         <div className='userImg'>
-         <span className='rounded-circle'>
-            <img src="https://i.pinimg.com/736x/2d/12/dd/2d12dd622717ab6e64d0a4e09f87afe9.jpg" alt="pfp" />
-         </span> 
-         </div>
-         </div>
-         <div className='dropdownInfo'>
-            <h4>
-                <span>
-                    <b>Pramit </b>
-                    added to his favourite list 
-                    <b> Leather belt steve madden </b>
-                </span>
-            </h4>
-            <p className='text-sky mb-o'>few seconds ago!</p>
-         </div>
-         </div>
-        </MenuItem>
-        <MenuItem onClick={handleCloseMyAccDrop}>
-         <div className='d-flex'> 
-         <div>
-         <div className='userImg'>
-         <span className='rounded-circle'>
-            <img src="https://i.pinimg.com/736x/2d/12/dd/2d12dd622717ab6e64d0a4e09f87afe9.jpg" alt="pfp" />
-         </span> 
-         </div>
-         </div>
-         <div className='dropdownInfo'>
-            <h4>
-                <span>
-                    <b>Pramit </b>
-                    added to his favourite list 
-                    <b> Leather belt steve madden </b>
-                </span>
-            </h4>
-            <p className='text-sky mb-o'>few seconds ago!</p>
-         </div>
-         </div>
-        </MenuItem>
-        <MenuItem onClick={handleCloseMyAccDrop}>
-         <div className='d-flex'> 
-         <div>
-         <div className='userImg'>
-         <span className='rounded-circle'>
-            <img src="https://i.pinimg.com/736x/2d/12/dd/2d12dd622717ab6e64d0a4e09f87afe9.jpg" alt="pfp" />
-         </span> 
-         </div>
-         </div>
-         <div className='dropdownInfo'>
-            <h4>
-                <span>
-                    <b>Pramit </b>
-                    added to his favourite list 
-                    <b> Leather belt steve madden </b>
-                </span>
-            </h4>
-            <p className='text-sky mb-o'>few seconds ago!</p>
-         </div>
-         </div>
-        </MenuItem>
-        <MenuItem onClick={handleCloseMyAccDrop}>
-         <div className='d-flex'> 
-         <div>
-         <div className='userImg'>
-         <span className='rounded-circle'>
-            <img src="https://i.pinimg.com/736x/2d/12/dd/2d12dd622717ab6e64d0a4e09f87afe9.jpg" alt="pfp" />
-         </span> 
-         </div>
-         </div>
-         <div className='dropdownInfo'>
-            <h4>
-                <span>
-                    <b>Pramit </b>
-                    added to his favourite list 
-                    <b> Leather belt steve madden </b>
-                </span>
-            </h4>
-            <p className='text-sky mb-o'>few seconds ago!</p>
-         </div>
-         </div>
-        </MenuItem>
-        <MenuItem onClick={handleCloseMyAccDrop}>
-         <div className='d-flex'> 
-         <div>
-         <div className='userImg'>
-         <span className='rounded-circle'>
-            <img src="https://i.pinimg.com/736x/2d/12/dd/2d12dd622717ab6e64d0a4e09f87afe9.jpg" alt="pfp" />
-         </span> 
-         </div>
-         </div>
-         <div className='dropdownInfo'>
-            <h4>
-                <span>
-                    <b>Pramit </b>
-                    added to his favourite list 
-                    <b> Leather belt steve madden </b>
-                </span>
-            </h4>
-            <p className='text-sky mb-o'>few seconds ago!</p>
-         </div>
-         </div>
-        </MenuItem>
-        <MenuItem onClick={handleCloseMyAccDrop}>
-         <div className='d-flex'> 
-         <div>
-         <div className='userImg'>
-         <span className='rounded-circle'>
-            <img src="https://i.pinimg.com/736x/2d/12/dd/2d12dd622717ab6e64d0a4e09f87afe9.jpg" alt="pfp" />
-         </span> 
-         </div>
-         </div>
-         <div className='dropdownInfo'>
-            <h4>
-                <span>
-                    <b>Pramit </b>
-                    added to his favourite list 
-                    <b> Leather belt steve madden </b>
-                </span>
-            </h4>
-            <p className='text-sky mb-o'>few seconds ago!</p>
-         </div>
-         </div>
-        </MenuItem>
-        </div>
-
-        <div className='pl-3 pr-3 w-100 pt-2 pb-1'>
-        <Button className='btn-blue w-100'>View all Notifications</Button>
-        </div>
-      </Menu>
-                </div>
+                <Button className="rounded-circle mr-3" onClick={handleOpennotificationsDrop}><FaBell/></Button> */}
+               
                <div className="myAccWrapper">
                <Button className="myAcc d-flex align-items-center"onClick={handleOpenMyAccDrop}>
                 <div className="userImg">
@@ -329,7 +132,7 @@ const Header = () => {
           </ListItemIcon>
           My Account
         </MenuItem>
-        <MenuItem onClick={handleCloseMyAccDrop}>
+        {/* <MenuItem onClick={handleCloseMyAccDrop}>
           <ListItemIcon>
             <BsShieldFillExclamation />
           </ListItemIcon>
@@ -340,7 +143,7 @@ const Header = () => {
             <Logout fontSize="small" />
           </ListItemIcon>
           Logout
-        </MenuItem>
+        </MenuItem> */}
       </Menu>
                </div>
                 
