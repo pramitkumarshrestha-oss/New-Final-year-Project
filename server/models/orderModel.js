@@ -1,26 +1,35 @@
-const mongoose = require("mongoose");
-const orderSchema = new mongoose.Schema({
-  userId: { types: String },
+const mongoose = require("mongoose")
 
-  orderedItems: { types: Array },
+const { ObjectId } = mongoose.Schema.Types
+const orderSchema = new mongoose.Schema(
+  {
+    userId: { type: String },
 
-  totalAmount: { types: String },
+    orderedItems: { type: Array },
 
-  paymentStatus: { type: String, default: "Not" },
+    totalAmount: { type: Number },
 
-  orderStatus: { type: String, default: "Onprocess" },
+    paymentStatus: { type: String, default: "Not" },
 
-  deliveryFee: { type: String },
+    orderStatus: { type: String, default: "Onprocess" },
 
-  deliveryInfo: {
-    type: Object,
+    deliveryFee: { type: String },
+
+    deliveryInfo: {
+      type: Object,
+    },
+    paymentMode: {
+      type: String,
+    },
+    paymentDetails: {
+      type: Object,
+    },
+    assignedWorkerId: {
+      type: ObjectId,
+      ref: "Workers",
+    },
   },
-  paymentMode: {
-    type: String,
-  },
-  paymentDetails: {
-    type: Object,
-  },
-});
-const orderModel = mongoose.model("Orders", orderSchema);
-module.exports = orderModel;
+  { timestamps: true }
+)
+const orderModel = mongoose.model("Orders", orderSchema)
+module.exports = orderModel

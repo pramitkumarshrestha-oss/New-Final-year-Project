@@ -7,8 +7,12 @@ const validateWorker = async (username, passsword) => {
   return worker;
 };
 const postWorker = async (worker) => {
-  const workerResponse = await workersModel.create(worker);
-  return workerResponse;
+  try {
+    const workerResponse = await workersModel.create(worker); // Save worker to DB
+    return workerResponse;
+  } catch (error) {
+    console.log(error);
+  }
 };
 const getWorker = async (workerId) => {
   const worker = await workersModel.findById(workerId);

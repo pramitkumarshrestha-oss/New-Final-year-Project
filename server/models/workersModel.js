@@ -1,16 +1,15 @@
-const mongoose = require("mongoose");
-const workersSchema = mongoose.Schema({
+const mongoose = require("mongoose")
+const workersSchema = new mongoose.Schema({
   name: {
     type: String,
   },
   phoneNumber: {
-    type: Number,
-    unique: true,
+    type: String,
   },
   address: {
     type: String,
   },
-  userName: {
+  username: {
     type: String,
   },
   password: {
@@ -22,6 +21,12 @@ const workersSchema = mongoose.Schema({
   age: {
     type: Number,
   },
-});
-const workersModel = mongoose.model("Workers", workersSchema);
-module.exports = workersModel;
+  popularity: {
+    type: Number,
+  },
+  citizenshipNumber: {
+    type: String,
+  },
+})
+const workersModel = mongoose.model("Workers", workersSchema)
+module.exports = workersModel

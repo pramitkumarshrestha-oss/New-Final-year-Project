@@ -12,7 +12,10 @@ const orderSchedule = async (req, res) => {
       userId: userId,
       orderStatus: orderStatus,
     });
-    if (existingOrder) {
+    console.log(typeof items);
+    console.log(items);
+
+    if (existingOrder !== null) {
       await orderModel.findByIdAndUpdate(
         existingOrder._id, // Find the order by its ID
         {
@@ -35,10 +38,8 @@ const orderSchedule = async (req, res) => {
         deliveryFee: deliveryFee,
         deliveryInfo: deliveryInfo,
       });
-      console.log("order");
 
       await newOrder.save();
-
       res.status(201).send("Order created successfully.");
     }
   } catch (error) {

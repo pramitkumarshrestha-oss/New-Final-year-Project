@@ -82,10 +82,10 @@ export const Login = () => {
   const handleShowPassword = () => setShowPassword(!showPassword);
 
   // Function to redirect to the Worker Login page running on port 5174
-  const navigateToWorkerLogin = () => {
-    const workerAppUrl = "http://localhost:5174/workerlogin"; // Point to the Worker app running on port 5174
-    window.location.href = workerAppUrl;
-  };
+  // const navigateToWorkerLogin = () => {
+  //   const workerAppUrl = "http://localhost:5174/workerlogin"; // Point to the Worker app running on port 5174
+  //   window.location.href = workerAppUrl;
+  // };
 
   return (
     <>
@@ -182,14 +182,14 @@ export const Login = () => {
                   Don’t have an account? <Link to="/signup">Sign Up Now</Link>
                 </p>
 
-                <p className={styles.loginAsWorker}>
+                {/* <p className={styles.loginAsWorker}>
                   <button
                     onClick={navigateToWorkerLogin}
                     className={styles.workerButton}
                   >
                     Login as Worker
                   </button>
-                </p>
+                </p> */}
               </div>
             </div>
           </div>
