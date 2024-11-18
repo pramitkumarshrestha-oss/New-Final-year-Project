@@ -6,7 +6,7 @@ const signuppage = async (req, res) => {
   const { userName, email, phoneNumber, password } = req.body;
   async function serverValidation(userName, email, phoneNumber, password) {
     if (!userName) {
-      console.log("user name is requires");
+      console.log("user name is required");
       res.send("user name is required");
     } else if (!/^[A-Za-z][A-Za-z0-9]*\s?[A-Za-z0-9]*$/.test(userName)) {
       console.log(

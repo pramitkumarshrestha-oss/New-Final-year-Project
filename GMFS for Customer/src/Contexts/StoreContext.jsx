@@ -82,16 +82,16 @@ export const StoreContextProvider = (props) => {
     
     setCartItems((prevCartItems) => {
       const updatedCart = { ...prevCartItems };
-      updatedCart[itemId] += 1;
-      if (updatedCart[itemId] > 1) {
-        updatedCart[itemId] = updatedCart[itemId] - 1;
-      }
-
-      if (updatedCart[itemId] === 1) {
-        delete updatedCart[itemId];
-      }
-      return updatedCart;
-    });
+     
+      // Check if item exists and decrease quantity
+    if (updatedCart[itemId] > 1) {
+      updatedCart[itemId] -= 1;
+    } else {
+      delete updatedCart[itemId];
+    }
+    
+    return updatedCart;
+  });
     if (token) {
       try {
         await axios.post(
