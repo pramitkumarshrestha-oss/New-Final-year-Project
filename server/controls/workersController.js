@@ -89,15 +89,17 @@ const assginWorkerHandler = async (req, res, next) => {
       })
 
     //find a worker that is not working currently
-    const allWorkers = await workersModel.find({}).select("_id")
-    const workingWorker = await assignedWorkerModel.find({}).select("workerId")
+    const allWorkers = await workersModel.find({}, { _id: 1 })
+    const workingWorker = (
+      await assignedWorkerModel.find({}, { workerId: 1 })
+    ).map((worker) => worker.workerId.toString())
 
     const freeWorkers = allWorkers.filter(
-      (workerId) => !workingWorker.includes(workerId)
+      (worker) => !workingWorker.includes(worker.id)
     )
 
     if (freeWorkers?.length) {
-      const workerId = freeWorkers[0]
+      const workerId = freeWorkers[0].id
       await assignedWorkerModel.create({ orderId, workerId })
       const updatedOrder = await orderModel.updateOne(
         { _id: orderId },
@@ -105,7 +107,7 @@ const assginWorkerHandler = async (req, res, next) => {
       )
       return res.status(200).json({
         message: "Worker assigned sucessfully",
-        data: updatedOrder,
+        workerId,
       })
     }
 
@@ -114,15 +116,17 @@ const assginWorkerHandler = async (req, res, next) => {
 
     await Promise.all(
       workingWorker.map(async (workerId) => {
-        const popularity = await workersModel
-          .findById({ _id: workerId })
-          .select("popularity")
+        const popularity = await workersModel.findById(
+          { _id: workerId },
+          { popularity: 1 }
+        )
+
         const totalNumberOfWorks = await assignedWorkerModel.countDocuments({
           workerId: workerId,
           status: "Working",
         })
 
-        const answer = predict(totalNumberOfWorks, popularity || 0)
+        const answer = predict(totalNumberOfWorks, popularity.popularity || 0)
 
         if (answer === "yes") elligableWorker.push(workerId)
       })
@@ -139,7 +143,7 @@ const assginWorkerHandler = async (req, res, next) => {
     )
     return res.status(200).json({
       message: "Worker assigned sucessfully",
-      data: updatedOrder,
+      workerId,
     })
   } catch (error) {
     console.log(error)
