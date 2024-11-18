@@ -17,7 +17,7 @@ const addProduct = async (req, res) => {
 
   const { name, description, price, category } = req.body;
   const imagePath = req.file ? req.file.path : null;
-  console.log(name);
+  // console.log(name);
   if (!name || !description || !price || !category) {
     return res.status(400).send("Missing required fields");
   } else if (!imagePath) {

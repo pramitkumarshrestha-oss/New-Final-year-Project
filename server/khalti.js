@@ -8,23 +8,6 @@ const khalti = async (req, res) => {
       Authorization: `Key ${process.env.KHALTI_SECRET_KEY}`,
       "Content-Type": "application/json",
     };
-    // console.log(req.body.cartData);
-    // const purchase_order_id = "123768726183";
-    // const amount = req.body.cartData.totalAmount;
-    // const purchase_order_name = "demo";
-    // const customer_info = req.body.deliveryInfo;
-    // // console.log(req.body.deliveryInfo);
-    // const formData = {
-    //   return_url: "http://localhost:5173/payment-success",
-    //   website_url: "http://localhost:5173",
-    //   amount: amount * 100,
-    //   purchase_order_id: purchase_order_id,
-    //   purchase_order_name: purchase_order_name,
-    //   customer_info: {
-    //     name: "Khalti Bahadur",
-    //     email: "example@gmail.com",
-    //     phone: "9800000123",
-    //   },
     const { amount, purchase_order_id, purchase_order_name, customer_info } =
       req.body;
     const formData = {

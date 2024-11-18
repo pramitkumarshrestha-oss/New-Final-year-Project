@@ -24,11 +24,14 @@ const removeFromCart = async (req, res) => {
   try {
     let userData = await user.findById(req.user.userId);
     let cartData = await userData.cart;
-    if (cartData[req.body.itemId] > 0) {
+    if (cartData[req.body.itemId] > 1) {
       cartData[req.body.itemId] -= 1;
+      await user.findByIdAndUpdate(req.user.userId, { cart: cartData });
+    } else if (cartData[req.body.itemId] == 1) {
+      await user.findByIdAndUpdate(req.user.userId, {
+        $unset: { [`cart.${req.body.itemId}`]: 0 }, // Remove the item from the cart
+      });
     }
-
-    await user.findByIdAndUpdate(req.user.userId, { cart: cartData });
     console.log("Removed From Cart");
     res.send("removed from cart");
   } catch (err) {
@@ -38,11 +41,10 @@ const removeFromCart = async (req, res) => {
 //fetch cart data
 const getCart = async (req, res) => {
   try {
-    
     let userData = await user.findById(req.user.userId);
     let cartData = await userData.cart;
-    console.log(cartData,userData);
-    
+    console.log(cartData, userData);
+
     res.json({ cartData });
   } catch (err) {
     console.log("Error!");
