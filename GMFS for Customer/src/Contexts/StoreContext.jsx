@@ -82,7 +82,7 @@ export const StoreContextProvider = (props) => {
     
     setCartItems((prevCartItems) => {
       const updatedCart = { ...prevCartItems };
-      // updatedCart[itemId] += 1;
+      updatedCart[itemId] += 1;
       if (updatedCart[itemId] > 1) {
         updatedCart[itemId] = updatedCart[itemId] - 1;
       }
@@ -176,7 +176,7 @@ export const StoreContextProvider = (props) => {
     deliveryInfo,
     setDeliveryInfo,
     setProducts,
-    products,  //Backend bata product haru like data tya bata taneko fetch gareko hai
+    products,
     paymentDetails,
     setPaymentDetails,
     // loadCartData,
