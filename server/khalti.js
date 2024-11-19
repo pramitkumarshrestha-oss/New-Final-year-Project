@@ -49,28 +49,4 @@ const khalti = async (req, res) => {
   }
 };
 
-const khaltiCallback = async (req, res) => {
-  console.log("here");
-  if (!req.khalti || !req.khalti.pidx) {
-    console.log("khalti not init");
-    return res
-      .status(400)
-      .json({ message: "Khalti payment not initiated properly" });
-  }
-  const { pidx } = req.khalti.pidx;
-  const payload = {
-    pidx: pidx,
-  };
-  const headers = {
-    Authorization: `Key ${process.env.KHALTI_SECRET_KEY}`,
-    "Content-Type": "application/json",
-  };
-  const response = await axios.post(
-    "https://a.khalti.com/api/v2/epayment/lookup/",
-    payload,
-    { headers }
-  );
-  console.log(response.data);
-  res.send("heelo");
-};
-module.exports = { khalti, khaltiCallback };
+module.exports = { khalti };
