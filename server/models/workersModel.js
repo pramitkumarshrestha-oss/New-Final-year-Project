@@ -1,4 +1,5 @@
-const mongoose = require("mongoose")
+const mongoose = require("mongoose");
+const { type } = require("server/reply");
 const workersSchema = new mongoose.Schema({
   name: {
     type: String,
@@ -27,6 +28,7 @@ const workersSchema = new mongoose.Schema({
   citizenshipNumber: {
     type: String,
   },
-})
-const workersModel = mongoose.model("Workers", workersSchema)
-module.exports = workersModel
+  totalNumberOfActiveWorks: { type: Number },
+});
+const workersModel = mongoose.model("Workers", workersSchema);
+module.exports = workersModel;
