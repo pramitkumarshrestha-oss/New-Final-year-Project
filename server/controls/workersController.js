@@ -72,11 +72,11 @@ const deleteWorkerHandler = async (req, res, next) => {
     return res.status(400).json("The Object ID is not valid"); // Invalid ID format message
   }
 };
-const verifyWorkerValidator = async (req, res, next) => {
-  const workerCred = req.body;
-  const worker = await validateWorker(workerCred.userName, workerCred.password); // Validate credentials
-  return res.status(200).send(worker); // Send validation result
-};
+// const verifyWorkerValidator = async (req, res, next) => {
+//   const workerCred = req.body;
+//   const worker = await validateWorker(workerCred.userName, workerCred.password); // Validate credentials
+//   return res.status(200).send(worker); // Send validation result
+// };
 
 const assginWorkerHandler = async (req, res, next) => {
   const { orderId } = req.params;
