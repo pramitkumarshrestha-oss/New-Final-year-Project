@@ -22,7 +22,8 @@ const cartRoute = require("./routes/cartRoute");
 const addItemsRoute = require("./routes/addProductRoute");
 const orderRoute = require("./routes/orderroute");
 const { khalti } = require("./khalti");
-const workersRouters = require("./routes/workersRouters");
+// const workersRouters = require("./routes/workersRouters");
+const addWorker = require("./routes/addWorkerRoute.js");
 const verifyPaymentRoute = require("./routes/verifyPaymentRoute.js");
 const listOrders = require("./routes/listOrders.js");
 const listWorkers = require("./routes/listWorkers.js");
@@ -43,8 +44,8 @@ app.get("/addProducts", async (req, res) => {
 });
 app.use("/api/orderSchedule", orderRoute);
 app.use("/api/khalti/init", khalti);
-app.use("/api/workers", workersRouters);
-
+// app.use("/api/workers", workersRouters);
+app.use("/addworker", addWorker);
 app.use("/api/khaltiVerify", verifyPaymentRoute);
 app.get("/list", listOrders);
 app.get("/workersList", listWorkers);
