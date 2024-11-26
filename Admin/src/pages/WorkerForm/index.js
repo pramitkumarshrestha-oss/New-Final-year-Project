@@ -44,15 +44,11 @@ const WorkerForm = () => {
 
     // console.log("Form Data Submitted: ", formData);
     try {
-      const result = await axios.post(
-        "http://localhost:3010/api/workers",
-        data,
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
+      const result = await axios.post("http://localhost:3010/addworker", data, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
       console.log(result);
       setFormData({
         name: "",

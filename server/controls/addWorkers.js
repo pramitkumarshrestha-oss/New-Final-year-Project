@@ -2,6 +2,7 @@ const express = require("express");
 const workersModel = require("../models/workersModel");
 const bcrypt = require("bcrypt");
 const addWorker = async (req, res) => {
+  console.log(req.body);
   const {
     name,
     phoneNumber,
@@ -95,3 +96,4 @@ const addWorker = async (req, res) => {
     }
   }
 };
+module.exports = addWorker;
