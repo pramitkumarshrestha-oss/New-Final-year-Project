@@ -10,4 +10,4 @@ const customersOrder = async (req, res) => {
     console.log(err);
   }
 };
-module.exports = { customersOrder };
+module.exports = customersOrder;
