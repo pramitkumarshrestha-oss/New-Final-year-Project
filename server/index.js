@@ -29,6 +29,8 @@ const listOrders = require("./routes/listOrders.js");
 const listWorkers = require("./routes/listWorkers.js");
 const customersOrder = require("./routes/customersOrdersRoute.js");
 const workerLoginRoute = require("./routes/workerLoginRoute.js");
+const editProduct = require("./routes/editProductRoute.js");
+const editWorker = require("./routes/editProductRoute.js");
 app.use("/signup", signupRoute);
 app.use("/login", loginRoute);
 app.use("/cart", cartRoute);
@@ -51,6 +53,8 @@ app.get("/list", listOrders);
 app.get("/workersList", listWorkers);
 app.get("/customersOrder", customersOrder);
 app.use("/workerLoginPage", workerLoginRoute);
+app.use("/editProduct", editProduct);
+app.use("editWorker", editWorker);
 
 app.listen(port, () => {
   console.log(`Server Started At ${port}`);

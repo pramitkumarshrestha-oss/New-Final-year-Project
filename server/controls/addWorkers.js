@@ -51,6 +51,7 @@ const addWorker = async (req, res) => {
     }
     return true;
   }
+  console.log("sandesh");
   const checked = await workerValidation(
     name,
     phoneNumber,
