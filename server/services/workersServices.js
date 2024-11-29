@@ -1,11 +1,11 @@
 const workersModel = require("../models/workersModel");
-const validateWorker = async (username, passsword) => {
-  const worker = await workersModel.find({
-    userName: username,
-    password: passsword,
-  });
-  return worker;
-};
+// const validateWorker = async (username, passsword) => {
+//   const worker = await workersModel.find({
+//     userName: username,
+//     password: passsword,
+//   });
+//   return worker;
+// };
 const postWorker = async (worker) => {
   try {
     const workerResponse = await workersModel.create(worker); // Save worker to DB

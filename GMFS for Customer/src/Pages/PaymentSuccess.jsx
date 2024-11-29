@@ -38,11 +38,7 @@ export const PaymentSuccess = () => {
       text: "Order has been placed successfully📃",
       icon: "success",
       confirmButtonText: "OK",
-    }).then((result) => {
-      if (result.isConfirmed) {
-        navigate("/");
-      }
-    });
+    })
   };
   const handleNavigate = () => {
     navigate("/");

@@ -17,43 +17,70 @@ const WorkerForm = () => {
     citizenshipNumber: "",
   });
 
+  const [errors, setErrors] = useState({});
+  const [successMessage, setSuccessMessage] = useState("");
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
+    setErrors({ ...errors, [name]: "" });
+    setSuccessMessage(""); // Clear success message when making changes
   };
 
   const handleDateChange = (date) => {
     setFormData({ ...formData, joinedDate: date });
+    setErrors({ ...errors, joinedDate: "" });
+    setSuccessMessage(""); // Clear success message when making changes
+  };
+
+  const validateForm = () => {
+    const newErrors = {};
+    if (!formData.name) newErrors.name = "Name is required.";
+    if (!formData.age || formData.age <= 0)
+      newErrors.age = "Age must be a positive number.";
+    if (!formData.gender) newErrors.gender = "Please select a gender.";
+    if (!formData.joinedDate) newErrors.joinedDate = "Joined date is required.";
+    if (!formData.address) newErrors.address = "Address is required.";
+    if (!formData.phoneNumber)
+      newErrors.phoneNumber = "Phone number is required.";
+    else if (!/^\d{10}$/.test(formData.phoneNumber))
+      newErrors.phoneNumber = "Phone number must be 10 digits.";
+    if (!formData.username) newErrors.username = "Username is required.";
+    else if (!/^[A-Za-z][A-Za-z0-9]*$/.test(formData.username))
+      newErrors.username =
+        "Username must start with a letter and contain only letters and numbers.";
+    if (!formData.password) newErrors.password = "Password is required.";
+    else if (
+      !/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[\W_]).{6,}$/.test(
+        formData.password
+      )
+    )
+      newErrors.password =
+        "Password must include uppercase, lowercase, a number, and a special character.";
+    if (!formData.citizenshipNumber)
+      newErrors.citizenshipNumber = "Citizenship number is required.";
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const data = new FormData();
-    data.append("name", formData.name);
-    data.append("age", formData.age);
-    data.append("gender", formData.gender);
-    data.append("joinedDate", formData.joinedDate);
-    data.append("address", formData.address);
-    data.append("phoneNumber", formData.phoneNumber);
-    data.append("username", formData.username);
-    data.append("password", formData.password);
-    data.append("citizenshipNumber", formData.citizenshipNumber);
-    for (let [key, value] of data.entries()) {
-      console.log(`Key: ${key}, Value: ${value}`);
-    }
+    if (!validateForm()) return;
 
-    // console.log("Form Data Submitted: ", formData);
+    const data = {
+      ...formData,
+      joinedDate: formData.joinedDate
+        ? formData.joinedDate.toISOString().split("T")[0]
+        : null,
+    };
+
     try {
-      const result = await axios.post(
-        "http://localhost:3010/api/workers",
-        data,
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
-      console.log(result);
+      const result = await axios.post("http://localhost:3010/addworker", data, {
+        headers: { "Content-Type": "application/json" },
+      });
+
+      // Clear the form and set the success message
       setFormData({
         name: "",
         age: "",
@@ -65,182 +92,197 @@ const WorkerForm = () => {
         password: "",
         citizenshipNumber: "",
       });
-      // console.log(setFormData);
+      setErrors({});
+      setSuccessMessage(result.data || "Worker added successfully!");
     } catch (error) {
-      console.log("Error Adding Worker", error);
+      if (error.response && error.response.data) {
+        setErrors({ form: error.response.data });
+      } else {
+        console.error("Error Adding Worker:", error);
+      }
+      setSuccessMessage("");
     }
-    // You can add your submit logic here
   };
 
   return (
-    <>
-      <div className="right-content w-100">
-        <div className="card shadow border-0 w-100 flex-row p-4">
-          <h5 className="mb-0">Add a Worker</h5>
-        </div>
-
-        <form className="form">
-          <div className="row">
-            <div className="col-sm-12">
-              <div className="card p-4">
-                <div className="row">
-                  <div className="col">
-                    <div className="form-group">
-                      <h6>NAME</h6>
-                      <input
-                        type="text"
-                        name="name"
-                        value={formData.name}
-                        onChange={handleChange}
-                        required
-                      />
-                    </div>
-                  </div>
-
-                  <div className="col">
-                    <div className="form-group">
-                      <h6>AGE</h6>
-                      <input
-                        type="number"
-                        name="age"
-                        value={formData.age}
-                        onChange={handleChange}
-                        required
-                      />
-                    </div>
-                  </div>
-
-                  <div className="col">
-                    <div className="form-gender">
-                      <h6>GENDER</h6>
-                      <label>
-                        <input
-                          type="radio"
-                          name="gender"
-                          value="Female"
-                          onChange={handleChange}
-                          required
-                        />{" "}
-                        Female
-                      </label>
-                      <label>
-                        <input
-                          type="radio"
-                          name="gender"
-                          value="Male"
-                          onChange={handleChange}
-                          required
-                        />{" "}
-                        Male
-                      </label>
-                      <label>
-                        <input
-                          type="radio"
-                          name="gender"
-                          value="Other"
-                          onChange={handleChange}
-                          required
-                        />{" "}
-                        Other
-                      </label>
-                    </div>
+    <div className="right-content w-100">
+      <div className="card shadow border-0 w-100 flex-row p-4">
+        <h5 className="mb-0">Add a Worker</h5>
+      </div>
+      <form className="form" onSubmit={handleSubmit}>
+        <div className="row">
+          <div className="col-sm-12">
+            <div className="card p-4">
+              <div className="row">
+                <div className="col">
+                  <div className="form-group">
+                    <h6>NAME</h6>
+                    <input
+                      type="text"
+                      name="name"
+                      value={formData.name}
+                      onChange={handleChange}
+                    />
+                    {errors.name && <p className="error-text">{errors.name}</p>}
                   </div>
                 </div>
-
-                <div className="row">
-                  <div className="col">
-                    <div className="form-group">
-                      <h6>JOINED DATE </h6>
-                      <DatePicker
-                        selected={formData.joinedDate}
-                        onChange={handleDateChange}
-                        dateFormat="MM/dd/yyyy"
-                        placeholderText="mm/dd/yyyy"
-                        required
-                      />
-                    </div>
-                  </div>
-
-                  <div className="col">
-                    <div className="form-group">
-                      <h6>ADDRESS</h6>
-                      <input
-                        type="text"
-                        name="address"
-                        value={formData.address}
-                        onChange={handleChange}
-                        required
-                      />
-                    </div>
-                  </div>
-
-                  <div className="col">
-                    <div className="form-group">
-                      <h6>PHONE NUMBER</h6>
-                      <input
-                        type="tel"
-                        name="phoneNumber"
-                        value={formData.phoneNumber}
-                        onChange={handleChange}
-                        required
-                      />
-                    </div>
+                <div className="col">
+                  <div className="form-group">
+                    <h6>AGE</h6>
+                    <input
+                      type="number"
+                      name="age"
+                      value={formData.age}
+                      onChange={handleChange}
+                    />
+                    {errors.age && <p className="error-text">{errors.age}</p>}
                   </div>
                 </div>
-
-                <div className="row">
-                  <div className="col">
-                    <div className="form-group">
-                      <h6>USERNAME </h6>
+                <div className="col">
+                  <div className="form-gender">
+                    <h6>GENDER</h6>
+                    <label>
                       <input
-                        type="text"
-                        name="username"
-                        value={formData.username}
+                        type="radio"
+                        name="gender"
+                        value="Female"
                         onChange={handleChange}
-                        required
-                      />
-                    </div>
-                  </div>
-
-                  <div className="col">
-                    <div className="form-group">
-                      <h6>PASSWORD</h6>
+                      />{" "}
+                      Female
+                    </label>
+                    <label>
                       <input
-                        type="password"
-                        name="password"
-                        value={formData.password}
+                        type="radio"
+                        name="gender"
+                        value="Male"
                         onChange={handleChange}
-                        required
-                      />
-                    </div>
-                  </div>
-
-                  <div className="col">
-                    <div className="form-group">
-                      <h6>CITIZENSHIP NUMBER</h6>
+                      />{" "}
+                      Male
+                    </label>
+                    <label>
                       <input
-                        type="text"
-                        name="citizenshipNumber"
-                        value={formData.citizenshipNumber}
+                        type="radio"
+                        name="gender"
+                        value="Other"
                         onChange={handleChange}
-                        required
-                      />
-                    </div>
+                      />{" "}
+                      Other
+                    </label>
+                    {errors.gender && (
+                      <p className="error-text">{errors.gender}</p>
+                    )}
                   </div>
                 </div>
-
-                <Button
-                  className="btn-blue btn-lg btn-big w-100"
-                  onClick={handleSubmit}
-                >
-                  ADD WORKER
-                </Button>
               </div>
+
+              <div className="row">
+                <div className="col">
+                  <div className="form-group">
+                    <h6>JOINED DATE </h6>
+                    <DatePicker
+                      selected={formData.joinedDate}
+                      onChange={handleDateChange}
+                      dateFormat="MM/dd/yyyy"
+                      placeholderText="mm/dd/yyyy"
+                    />
+                    {errors.joinedDate && (
+                      <p className="error-text">{errors.joinedDate}</p>
+                    )}
+                  </div>
+                </div>
+                <div className="col">
+                  <div className="form-group">
+                    <h6>ADDRESS</h6>
+                    <input
+                      type="text"
+                      name="address"
+                      value={formData.address}
+                      onChange={handleChange}
+                    />
+                    {errors.address && (
+                      <p className="error-text">{errors.address}</p>
+                    )}
+                  </div>
+                </div>
+                <div className="col">
+                  <div className="form-group">
+                    <h6>PHONE NUMBER</h6>
+                    <input
+                      type="tel"
+                      name="phoneNumber"
+                      value={formData.phoneNumber}
+                      onChange={handleChange}
+                    />
+                    {errors.phoneNumber && (
+                      <p className="error-text">{errors.phoneNumber}</p>
+                    )}
+                  </div>
+                </div>
+              </div>
+
+              <div className="row">
+                <div className="col">
+                  <div className="form-group">
+                    <h6>USERNAME </h6>
+                    <input
+                      type="text"
+                      name="username"
+                      value={formData.username}
+                      onChange={handleChange}
+                    />
+                    {errors.username && (
+                      <p className="error-text">{errors.username}</p>
+                    )}
+                  </div>
+                </div>
+                <div className="col">
+                  <div className="form-group">
+                    <h6>PASSWORD</h6>
+                    <input
+                      type="password"
+                      name="password"
+                      value={formData.password}
+                      onChange={handleChange}
+                    />
+                    {errors.password && (
+                      <p className="error-text">{errors.password}</p>
+                    )}
+                  </div>
+                </div>
+                <div className="col">
+                  <div className="form-group">
+                    <h6>CITIZENSHIP NUMBER</h6>
+                    <input
+                      type="text"
+                      name="citizenshipNumber"
+                      value={formData.citizenshipNumber}
+                      onChange={handleChange}
+                    />
+                    {errors.citizenshipNumber && (
+                      <p className="error-text">{errors.citizenshipNumber}</p>
+                    )}
+                  </div>
+                </div>
+              </div>
+              {errors.form && (
+                <p className="error-text">
+                  {errors.form.message || errors.form}
+                </p>
+              )}
+              {successMessage && (
+                <p className="success-text">
+                  {successMessage.message || successMessage}
+                </p>
+              )}
+
+              <Button className="btn-blue btn-lg btn-big w-100" type="submit">
+                ADD WORKER
+              </Button>
             </div>
           </div>
-        </form>
-      </div>
-    </>
+        </div>
+      </form>
+    </div>
   );
 };
 

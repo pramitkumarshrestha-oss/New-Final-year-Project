@@ -14,7 +14,7 @@ const verifyPayment = async (req, res) => {
       { pidx },
       { headers }
     );
-    console.log(response.data);
+    // console.log(response.data);
     if (response.data.status === "Completed") {
       const { userId } = req.user;
       const orderStatus = "Onprocess";

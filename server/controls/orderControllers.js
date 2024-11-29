@@ -4,7 +4,7 @@ const orderSchedule = async (req, res) => {
   const { userId } = req.user;
   // console.log("Hellooooooooooo");
   const { items, totalAmount, deliveryFee } = req.body.cartData;
-  console.log(items, totalAmount);
+  // console.log(items, totalAmount);
   const deliveryInfo = req.body.deliveryInfo;
   const orderStatus = "Onprocess";
   try {
@@ -12,8 +12,6 @@ const orderSchedule = async (req, res) => {
       userId: userId,
       orderStatus: orderStatus,
     });
-    console.log(typeof items);
-    console.log(items);
 
     if (existingOrder !== null) {
       await orderModel.findByIdAndUpdate(
