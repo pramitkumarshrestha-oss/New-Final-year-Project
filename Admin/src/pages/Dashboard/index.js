@@ -137,7 +137,7 @@ const Dashboard = () => {
             </div>
           </div>
         </div>
-        <div className="card shadow border-0 p-3 mt-4">
+        {/* <div className="card shadow border-0 p-3 mt-4">
           <h3 className="hd">Best Selling Products</h3>
 
           <div className="row cardFilters mt-3">
@@ -180,9 +180,9 @@ const Dashboard = () => {
                 </Select>
               </FormControl>
             </div>
-          </div>
+          </div> */}
 
-          <div className="table-responsive mt-3">
+          {/* <div className="table-responsive mt-3">
             <table className="table table-bordered v-align">
               <thead className="thead-dark">
                 <tr>
@@ -641,9 +641,9 @@ const Dashboard = () => {
                 </tr>
               </tbody>
             </table>
-          </div>
+          </div> */}
         </div>
-      </div>
+      {/* </div> */}
     </>
   );
 };

@@ -5,7 +5,6 @@ import img from '../../assets/images/logo.png';
 import Button from '@mui/material/Button';
 import { MdMenuOpen } from "react-icons/md";
 import { MdOutlineMenu } from "react-icons/md";
-import SearchBox from '../SearchBox';
 import { MdLightMode } from "react-icons/md";
 import { MdDarkMode } from "react-icons/md";
 import { IoMdCart } from "react-icons/io";
@@ -64,9 +63,9 @@ const Header = () => {
                     context.isToggleSidebar==false ? <MdMenuOpen/> : <MdOutlineMenu/>
                   }
                 </Button>
-                <SearchBox/>
-                 </div>
-            <div className="col-sm-7 d-flex align-items-center justify-content-end part3">
+                {/* <SearchBox/>
+                 </div> */}
+            {/* <div className="col-sm-7 d-flex align-items-center justify-content-end part3"> */}
                 {/* <Button className="rounded-circle mr-3">
                 <MdLightMode/></Button>
                 <Button className="rounded-circle mr-3" ><IoMdCart/>
@@ -75,7 +74,7 @@ const Header = () => {
                 <Button className="rounded-circle mr-3"><MdEmail/></Button>
                 <Button className="rounded-circle mr-3" onClick={handleOpennotificationsDrop}><FaBell/></Button> */}
                
-               <div className="myAccWrapper">
+               {/* <div className="myAccWrapper">
                <Button className="myAcc d-flex align-items-center"onClick={handleOpenMyAccDrop}>
                 <div className="userImg">
                 <span className="rounded-circle">
@@ -131,7 +130,7 @@ const Header = () => {
             <PersonAdd fontSize="small" />
           </ListItemIcon>
           My Account
-        </MenuItem>
+        </MenuItem> */}
         {/* <MenuItem onClick={handleCloseMyAccDrop}>
           <ListItemIcon>
             <BsShieldFillExclamation />
@@ -144,9 +143,9 @@ const Header = () => {
           </ListItemIcon>
           Logout
         </MenuItem> */}
-      </Menu>
+      {/* </Menu>
                </div>
-                
+                 */}
 
 
 

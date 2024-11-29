@@ -54,7 +54,7 @@ const Sidebar = ()=>{
                    <div className={`submenuWrapper ${activeTab === 1 && isToggleSubmenu===true ? 'colapse' : 'colapsed'}`}>
                    <ul className='submenu'>
                     <li><Link to="product/list">Product List</Link></li>
-                    <li><Link to="product/view">Product View</Link></li>
+                    
                     <li><Link to="product/upload">Product Upload</Link></li>
                    </ul>
                    </div>
@@ -91,7 +91,7 @@ const Sidebar = ()=>{
                    </Button>
                    </Link>
                    </li> 
-                   <li>
+                   {/* <li>
                    <Link to="/">
                    <Button className={`w-100 ${activeTab === 6 ? 'active' : ''}`}onClick={()=>isOpenSubmenu(6)}>
                    <span className='icon'> <RiLoginCircleFill /></span> 
@@ -108,7 +108,7 @@ const Sidebar = ()=>{
                    </span>
                    </Button>
                    </Link>
-                   </li> 
+                   </li>  */}
                    <li>
                    <Link to="/">
                    {/* <Button className={`w-100 ${activeTab === 8 ? 'active' : ''}`}onClick={()=>isOpenSubmenu(8)}>
