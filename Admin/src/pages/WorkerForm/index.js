@@ -35,30 +35,56 @@ const WorkerForm = () => {
 
   const validateForm = () => {
     const newErrors = {};
+
+    // Name validation
     if (!formData.name) newErrors.name = "Name is required.";
-    if (!formData.age || formData.age <= 0)
-      newErrors.age = "Age must be a positive number.";
+
+    // Age validation
+    if (!formData.age) {
+      newErrors.age = "Age is required.";
+    } else if (isNaN(formData.age)) {
+      newErrors.age = "Age must be a valid number.";
+    } else if (formData.age < 16 || formData.age > 65) {
+      newErrors.age = "Age must be between 16 and 65.";
+    }
+
+    // Gender validation
     if (!formData.gender) newErrors.gender = "Please select a gender.";
+
+    // Joined date validation
     if (!formData.joinedDate) newErrors.joinedDate = "Joined date is required.";
+
+    // Address validation
     if (!formData.address) newErrors.address = "Address is required.";
+
+    // Phone number validation
     if (!formData.phoneNumber)
       newErrors.phoneNumber = "Phone number is required.";
     else if (!/^\d{10}$/.test(formData.phoneNumber))
       newErrors.phoneNumber = "Phone number must be 10 digits.";
+
+    // Username validation
     if (!formData.username) newErrors.username = "Username is required.";
     else if (!/^[A-Za-z][A-Za-z0-9]*$/.test(formData.username))
       newErrors.username =
         "Username must start with a letter and contain only letters and numbers.";
+
+    // Password validation
     if (!formData.password) newErrors.password = "Password is required.";
     else if (
-      !/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[\W_]).{6,}$/.test(
+      !/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[\W_]).{8,}$/.test(
         formData.password
       )
     )
       newErrors.password =
         "Password must include uppercase, lowercase, a number, and a special character.";
+
+    // Citizenship number validation
     if (!formData.citizenshipNumber)
       newErrors.citizenshipNumber = "Citizenship number is required.";
+    else if (!/^[A-Z0-9]{5,15}$/.test(formData.citizenshipNumber))
+      newErrors.citizenshipNumber =
+        "Citizenship number must be alphanumeric (5-15 characters).";
 
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
@@ -85,7 +111,7 @@ const WorkerForm = () => {
         name: "",
         age: "",
         gender: "",
-        joinedDate: null,
+        joinedDate: "",
         address: "",
         phoneNumber: "",
         username: "",
@@ -130,11 +156,14 @@ const WorkerForm = () => {
                   <div className="form-group">
                     <h6>AGE</h6>
                     <input
-                      type="number"
+                      type="text"
                       name="age"
                       value={formData.age}
                       onChange={handleChange}
+                      min="16"
+                      max="65"
                     />
+
                     {errors.age && <p className="error-text">{errors.age}</p>}
                   </div>
                 </div>

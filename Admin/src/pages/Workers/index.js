@@ -17,18 +17,27 @@ import axios from "axios";
 const Workers = () => {
   const [workers, setWorkers] = useState([]);
 
+  // Fetch all workers from the server on initial render
   useEffect(() => {
     const fetchAllWorkers = async () => {
       try {
         const response = await axios.get("http://localhost:3010/workersList");
-        console.log(response.data);
-        setWorkers(response.data);
+        console.log(response.data); // Log the data to check the structure
+        setWorkers(response.data); // Update state with the worker data
       } catch (error) {
         console.error("Error fetching workers:", error);
       }
     };
     fetchAllWorkers();
   }, []);
+
+  // Function to format the date to MM/DD/YYYY format
+  const formatDate = (date) => {
+    if (!date) return "N/A"; // Handle missing date value
+    const parsedDate = new Date(date); // Parse the date string
+    if (isNaN(parsedDate)) return "Invalid Date"; // If it's not a valid date
+    return parsedDate.toLocaleDateString(); // Format the date as MM/DD/YYYY
+  };
 
   return (
     <div className="right-content w-100">
@@ -64,7 +73,7 @@ const Workers = () => {
                 </td>
                 <td>{worker.gender || "N/A"}</td>
                 <td>{worker.age || "N/A"}</td>
-                <td>{worker.joinedDate || "N/A"}</td>
+                <td>{formatDate(worker.joinedDate)}</td>
                 <td>{worker.address || "N/A"}</td>
                 <td>{worker.phoneNumber || "N/A"}</td>
                 <td>{worker.citizenshipNumber || "N/A"}</td>

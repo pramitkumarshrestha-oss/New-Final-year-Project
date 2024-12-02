@@ -13,6 +13,7 @@ const addWorker = async (req, res) => {
       gender,
       age,
       citizenshipNumber,
+      joinedDate, // Extracted from req.body
     } = req.body;
 
     // Input validation
@@ -41,17 +42,59 @@ const addWorker = async (req, res) => {
       });
     }
 
-    // Check if username already exists
-    const existingWorker = await workersModel.findOne({ username });
-    if (existingWorker) {
+    // Age validation
+    if (!age) {
+      return res.status(400).json({ message: "Age is required." });
+    }
+    if (isNaN(age)) {
+      return res.status(400).json({ message: "Age must be a valid number." });
+    }
+    if (age < 16 || age > 65) {
       return res
         .status(400)
-        .json({ message: "Username for the worker already exists." });
+        .json({ message: "Worker age must be between 16 and 65." });
+    }
+
+    // Citizenship number validation
+    if (!/^[A-Z0-9]{5,15}$/.test(citizenshipNumber)) {
+      return res.status(400).json({
+        message:
+          "Citizenship number must be alphanumeric and between 5-15 characters.",
+      });
+    }
+
+    // Check if username or citizenship number already exists
+    const existingWorker = await workersModel.findOne({
+      $or: [{ username }, { citizenshipNumber }],
+    });
+    if (existingWorker) {
+      if (existingWorker.username === username) {
+        return res.status(400).json({ message: "Username already exists." });
+      }
+      if (existingWorker.citizenshipNumber === citizenshipNumber) {
+        return res
+          .status(400)
+          .json({ message: "Citizenship number already exists." });
+      }
     }
 
     // Hash password
     const saltRounds = Number(process.env.SALT) || 10;
     const hashedPassword = await bcrypt.hash(password, saltRounds);
+
+    // Validate joinedDate
+    let validatedJoinedDate = joinedDate;
+    if (joinedDate) {
+      // Ensure it is a valid date
+      const parsedDate = new Date(joinedDate);
+      if (isNaN(parsedDate)) {
+        return res.status(400).json({ message: "Invalid joined date." });
+      }
+      validatedJoinedDate = parsedDate; // Convert to Date object if valid
+    } else {
+      // If not provided, set it to the current date
+      validatedJoinedDate = new Date();
+    }
 
     // Create a new worker
     const newWorker = new workersModel({
@@ -63,6 +106,7 @@ const addWorker = async (req, res) => {
       gender,
       age,
       citizenshipNumber,
+      joinedDate: validatedJoinedDate,
     });
 
     await newWorker.save();
