@@ -13,11 +13,45 @@ const WorkerLogin = ({ onLoginSuccess }) => {
   const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
 
+  //Validation ko lagi
+  
+  const validateForm = () => {
+    // Username Validation
+    const usernameRegex = /^[a-zA-Z][a-zA-Z0-9]*$/; // Starts with a letter and contains only letters and numbers
+    if (!username) {
+      setError("Username is required");
+      return false;
+    }
+    if (!usernameRegex.test(username)) {
+      setError("Username must start with a letter and contain only letters and numbers.");
+      return false;
+    }
+  
+    // Password Validation
+    if (!password) {
+      setError("Password is required");
+      return false;
+    }
+    if (password.length < 6) {
+      setError("Password must be at least 6 characters");
+      return false;
+    }
+  
+    setError(""); // Clear any previous errors
+    return true;
+  };
+  
+
+
+
   const handleLogin = async (e) => {
     e.preventDefault();
 
-  
+      // Form validation
+      if (!validateForm()) return;
+
     try {
+        setLoading(true);
         const result = await axios.post(
           "http://localhost:3010/workerLoginPage",
          {
@@ -56,6 +90,10 @@ const WorkerLogin = ({ onLoginSuccess }) => {
       } catch (error) {
         console.log(error); // Log the error for debugging
         toast.error("An error occurred. Please try again.");
+      }
+
+      finally {
+        setLoading(false); // Stop loading spinner
       }
     }
   

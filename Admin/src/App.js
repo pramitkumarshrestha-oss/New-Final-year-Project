@@ -6,7 +6,6 @@ import Header from './components/Header';
 import Sidebar from './components/Sidebar';
 import ProductUpload from './pages/ProductUpload';
 import React, {createContext, useState, useEffect } from 'react';
-import ProductView from './pages/ProductView';
 import ProductList from './pages/ProductList';
 import Workers from './pages/Workers';
 import WorkerForm from './pages/WorkerForm';
@@ -38,7 +37,6 @@ function App() {
     <Routes>
       <Route path="/" exact={true} element={<Dashboard/>}/>
       <Route path="/dashboard" exact={true} element={<Dashboard/>}/>
-      <Route path="/product/view" exact={true} element={<ProductView/>}/>
       <Route path="/product/upload" exact={true} element={<ProductUpload/>}/>
       <Route path="/product/list" exact={true} element={<ProductList/>}/>
       <Route path="/workers" exact={true} element={<Workers/>}></Route>
