@@ -5,24 +5,23 @@ import {
   FaEye,
   FaPencilAlt,
 } from "react-icons/fa";
-import { GiStarsStack } from "react-icons/gi";
 import { MdDelete } from "react-icons/md";
-import Menu from "@mui/material/Menu";
-import MenuItem from "@mui/material/MenuItem";
 import Button from "@mui/material/Button";
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+import EditWorker from "../WorkerForm/EditWorker";
 
 const Workers = () => {
   const [workers, setWorkers] = useState([]);
+  const navigate = useNavigate();
 
   // Fetch all workers from the server on initial render
   useEffect(() => {
     const fetchAllWorkers = async () => {
       try {
         const response = await axios.get("http://localhost:3010/workersList");
-        console.log(response.data); // Log the data to check the structure
+
         setWorkers(response.data); // Update state with the worker data
       } catch (error) {
         console.error("Error fetching workers:", error);
@@ -31,12 +30,33 @@ const Workers = () => {
     fetchAllWorkers();
   }, []);
 
-  // Function to format the date to MM/DD/YYYY format
-  const formatDate = (date) => {
-    if (!date) return "N/A"; // Handle missing date value
-    const parsedDate = new Date(date); // Parse the date string
-    if (isNaN(parsedDate)) return "Invalid Date"; // If it's not a valid date
-    return parsedDate.toLocaleDateString(); // Format the date as MM/DD/YYYY
+  // Delete Worker
+  const deleteWorker = async (id) => {
+    if (!id) {
+      console.error("Worker ID is missing.");
+      return;
+    }
+
+    try {
+      const response = await axios.post(
+        `http://localhost:3010/editWorker/deleteWorker`,
+        {
+          id,
+        }
+      );
+      console.log(response.data.message); // Log the response message
+
+      // Remove the deleted worker from the local state
+      setWorkers(workers.filter((worker) => worker._id !== id)); // Filter workers list to remove the deleted one
+    } catch (error) {
+      console.error("Error deleting worker:", error);
+    }
+  };
+
+  //For Editing Worker
+
+  const handleEditWorker = (elem) => {
+    navigate("/editWorker", { state: elem });
   };
 
   return (
@@ -62,30 +82,33 @@ const Workers = () => {
           </thead>
           <tbody>
             {workers.map((worker, index) => (
-              <tr key={worker.id || index}>
+              <tr key={worker._id || index}>
                 <td>{index + 1}</td>
-                <td>
-                  <div className="d-flex align-items-center productBox">
-                    <div className="info pl-0">
-                      <h6>{worker.name || "N/A"}</h6>
-                    </div>
-                  </div>
-                </td>
+                <td>{worker.name || "N/A"}</td>
                 <td>{worker.gender || "N/A"}</td>
                 <td>{worker.age || "N/A"}</td>
-                <td>{formatDate(worker.joinedDate)}</td>
+                <td>
+                  {worker.joinedDate
+                    ? new Date(worker.joinedDate).toLocaleDateString()
+                    : "N/A"}
+                </td>
                 <td>{worker.address || "N/A"}</td>
                 <td>{worker.phoneNumber || "N/A"}</td>
                 <td>{worker.citizenshipNumber || "N/A"}</td>
                 <td>
                   <div className="actions d-flex align-items-center">
-                    <Button className="secondary" color="secondary">
-                      <FaEye />
-                    </Button>
-                    <Button className="success" color="success">
+                    <Button
+                      className="success"
+                      color="success"
+                      onClick={() => handleEditWorker(worker)}
+                    >
                       <FaPencilAlt />
                     </Button>
-                    <Button className="error" color="error">
+                    <Button
+                      className="error"
+                      color="error"
+                      onClick={() => deleteWorker(worker._id)} // Correctly passing _id to deleteWorker
+                    >
                       <MdDelete />
                     </Button>
                   </div>
