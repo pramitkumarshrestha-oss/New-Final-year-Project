@@ -23,10 +23,12 @@ const workersSchema = new mongoose.Schema({
   },
   popularity: {
     type: Number,
+    default: 1,
   },
   citizenshipNumber: {
     type: String,
   },
+  totalNumberOfWorks: { type: Number, default: 4 },
   joinedDate: {
     type: String,
   },
