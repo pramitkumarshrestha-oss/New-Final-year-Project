@@ -3,18 +3,22 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import Button from "@mui/material/Button";
 import axios from "axios";
+import { useLocation } from "react-router-dom";
+const EditWorker = () => {
+  const location = useLocation();
+  const { state } = location;
 
-const WorkerForm = () => {
   const [formData, setFormData] = useState({
-    name: "",
-    age: "",
-    gender: "",
+    name: state?.name,
+    age: state?.age,
+    gender: state?.gender,
     joinedDate: null,
-    address: "",
-    phoneNumber: "",
-    username: "",
-    password: "",
-    citizenshipNumber: "",
+    address: state?.address,
+    phoneNumber: state?.phoneNumber,
+    username: state?.username,
+    password: state?.password,
+    citizenshipNumber: state?.citizenshipNumber,
+    id: state?._id,
   });
 
   const [errors, setErrors] = useState({});
@@ -104,9 +108,13 @@ const WorkerForm = () => {
     };
 
     try {
-      const result = await axios.post("http://localhost:3010/addworker", data, {
-        headers: { "Content-Type": "application/json" },
-      });
+      const result = await axios.post(
+        "http://localhost:3010/URL HALNE ESMA",
+        data,
+        {
+          headers: { "Content-Type": "application/json" },
+        }
+      );
 
       // Clear the form and set the success message
       setFormData({
@@ -135,7 +143,7 @@ const WorkerForm = () => {
   return (
     <div className="right-content w-100">
       <div className="card shadow border-0 w-100 flex-row p-4">
-        <h5 className="mb-0">Add a Worker</h5>
+        <h5 className="mb-0">Edit a Worker</h5>
       </div>
       <form className="form" onSubmit={handleSubmit}>
         <div className="row">
@@ -177,6 +185,7 @@ const WorkerForm = () => {
                         type="radio"
                         name="gender"
                         value="Female"
+                        checked={state.gender === "Female"}
                         onChange={handleChange}
                       />{" "}
                       Female
@@ -186,6 +195,7 @@ const WorkerForm = () => {
                         type="radio"
                         name="gender"
                         value="Male"
+                        checked={state.gender === "Male"}
                         onChange={handleChange}
                       />{" "}
                       Male
@@ -195,6 +205,7 @@ const WorkerForm = () => {
                         type="radio"
                         name="gender"
                         value="Other"
+                        checked={state.gender === "Other"}
                         onChange={handleChange}
                       />{" "}
                       Other
@@ -274,6 +285,7 @@ const WorkerForm = () => {
                       name="password"
                       value={formData.password}
                       onChange={handleChange}
+                      readOnly
                     />
                     {errors.password && (
                       <p className="error-text">{errors.password}</p>
@@ -307,7 +319,7 @@ const WorkerForm = () => {
               )}
 
               <Button className="btn-blue btn-lg btn-big w-100" type="submit">
-                ADD WORKER
+                SAVE WORKER
               </Button>
             </div>
           </div>
@@ -317,4 +329,4 @@ const WorkerForm = () => {
   );
 };
 
-export default WorkerForm;
+export default EditWorker;
