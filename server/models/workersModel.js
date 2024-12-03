@@ -27,6 +27,9 @@ const workersSchema = new mongoose.Schema({
   citizenshipNumber: {
     type: String,
   },
+  joinedDate: {
+    type: String,
+  },
   totalNumberOfActiveWorks: { type: Number },
 });
 const workersModel = mongoose.model("Workers", workersSchema);
