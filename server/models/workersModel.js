@@ -23,11 +23,12 @@ const workersSchema = new mongoose.Schema({
   },
   popularity: {
     type: Number,
+    default: 1,
   },
   citizenshipNumber: {
     type: String,
   },
-  totalNumberOfActiveWorks: { type: Number },
+  totalNumberOfWorks: { type: Number, default: 4 },
 });
 const workersModel = mongoose.model("Workers", workersSchema);
 module.exports = workersModel;

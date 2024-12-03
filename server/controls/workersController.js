@@ -14,7 +14,7 @@ const assginWorkerHandler = async (req, res, next) => {
         message: "The provided order has already been assigned to a worker",
       });
 
-    //find a worker that is not working currently
+    // find a worker that is not working currently
     const allWorkers = await workersModel.find({}, { _id: 1 });
     const workingWorker = (
       await assignedWorkerModel.find({}, { workerId: 1 })
@@ -60,6 +60,7 @@ const assginWorkerHandler = async (req, res, next) => {
 
     if (!elligableWorker?.length)
       return res.status(200).json({ message: "No Feee Worker Found" });
+    console.log(elligableWorker);
 
     const workerId = elligableWorker[0];
     await assignedWorkerModel.create({ orderId, workerId });

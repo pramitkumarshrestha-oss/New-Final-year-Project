@@ -89,11 +89,11 @@ function predict(totalNumberOfWorks, popularity) {
 
 module.exports = predict;
 
-// Test the algorithm with a new point
-let totalNumberOfWorks = 10;
-let popularity = 1;
-// const newPoint = { totalNumberOfWorks: 9, popularity: 5 };
-const prediction = predict(totalNumberOfWorks, popularity);
-console.log(
-  `The prediction for (${totalNumberOfWorks}, ${popularity}) is ${prediction}`
-);
+// // Test the algorithm with a new point
+// let totalNumberOfWorks = 10;
+// let popularity = 1;
+// // const newPoint = { totalNumberOfWorks: 9, popularity: 5 };
+// const prediction = predict(totalNumberOfWorks, popularity);
+// console.log(
+//   `The prediction for (${totalNumberOfWorks}, ${popularity}) is ${prediction}`
+// );
