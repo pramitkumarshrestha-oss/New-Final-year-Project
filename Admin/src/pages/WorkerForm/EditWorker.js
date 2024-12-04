@@ -109,7 +109,7 @@ const EditWorker = () => {
 
     try {
       const result = await axios.post(
-        "http://localhost:3010/URL HALNE ESMA",
+        "http://localhost:3010/editWorker/editWorker",
         data,
         {
           headers: { "Content-Type": "application/json" },
@@ -129,7 +129,7 @@ const EditWorker = () => {
         citizenshipNumber: "",
       });
       setErrors({});
-      setSuccessMessage(result.data || "Worker added successfully!");
+      setSuccessMessage(result.data || "Worker updated successfully");
     } catch (error) {
       if (error.response && error.response.data) {
         setErrors({ form: error.response.data });

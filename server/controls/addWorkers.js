@@ -13,7 +13,7 @@ const addWorker = async (req, res) => {
       gender,
       age,
       citizenshipNumber,
-      joinedDate, // Extracted from req.body
+      joinedDate,
     } = req.body;
 
     // Input validation
@@ -25,7 +25,8 @@ const addWorker = async (req, res) => {
       !password ||
       !gender ||
       !age ||
-      !citizenshipNumber
+      !citizenshipNumber ||
+      !joinedDate
     ) {
       return res.status(400).json({ message: "Missing required fields" });
     }
@@ -82,20 +83,6 @@ const addWorker = async (req, res) => {
     const saltRounds = Number(process.env.SALT) || 10;
     const hashedPassword = await bcrypt.hash(password, saltRounds);
 
-    // Validate joinedDate
-    let validatedJoinedDate = joinedDate;
-    if (joinedDate) {
-      // Ensure it is a valid date
-      const parsedDate = new Date(joinedDate);
-      if (isNaN(parsedDate)) {
-        return res.status(400).json({ message: "Invalid joined date." });
-      }
-      validatedJoinedDate = parsedDate; // Convert to Date object if valid
-    } else {
-      // If not provided, set it to the current date
-      validatedJoinedDate = new Date();
-    }
-
     // Create a new worker
     const newWorker = new workersModel({
       name,
@@ -106,7 +93,7 @@ const addWorker = async (req, res) => {
       gender,
       age,
       citizenshipNumber,
-      joinedDate: validatedJoinedDate,
+      joinedDate: joinedDate,
     });
 
     await newWorker.save();

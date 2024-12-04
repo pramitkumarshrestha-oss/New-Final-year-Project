@@ -29,6 +29,10 @@ const workersSchema = new mongoose.Schema({
     type: String,
   },
   totalNumberOfWorks: { type: Number, default: 4 },
+  joinedDate: {
+    type: String,
+  },
+  totalNumberOfActiveWorks: { type: Number },
 });
 const workersModel = mongoose.model("Workers", workersSchema);
 module.exports = workersModel;

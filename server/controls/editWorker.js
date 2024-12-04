@@ -2,32 +2,32 @@ const workersModel = require("../models/workersModel");
 const editWorker = async (req, res) => {
   const {
     name,
-    phoneNumber,
+    age,
+    gender,
+    joinedDate,
     address,
+    phoneNumber,
     username,
     password,
-    gender,
-    age,
     citizenshipNumber,
+    id,
   } = req.body;
-  try {
-    const updatedWorker = await workersModel.findByIdAndUpdate(
-      id,
-      {
-        $set: {
-          name: name,
-          phoneNumber: phoneNumber,
-          address: address,
-          username: username,
-          password: password,
-          gender: gender,
-          age: age,
-          citizenshipNumber: citizenshipNumber,
-        },
-      },
-      { new: true }
-    );
 
+  try {
+    const updatedWorker = await workersModel.findByIdAndUpdate(id, {
+      $set: {
+        name: name,
+        phoneNumber: phoneNumber,
+        address: address,
+        username: username,
+        password: password,
+        gender: gender,
+        age: age,
+        citizenshipNumber: citizenshipNumber,
+        joinedDate: joinedDate,
+      },
+    });
+    console.log(updatedWorker);
     if (updatedWorker) {
       console.log("Worker updated successfully");
       res.status(200).json({ message: "Worker updated successfully" });
