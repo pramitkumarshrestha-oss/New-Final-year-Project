@@ -11,18 +11,23 @@ const editWorker = async (req, res) => {
     citizenshipNumber,
   } = req.body;
   try {
-    const updatedWorker = await workersModel.findByIdAndUpdate(id, {
-      $set: {
-        name: name,
-        phoneNumber: phoneNumber,
-        address: address,
-        username: username,
-        password: password,
-        gender: gender,
-        age: age,
-        citizenshipNumber: citizenshipNumber,
+    const updatedWorker = await workersModel.findByIdAndUpdate(
+      id,
+      {
+        $set: {
+          name: name,
+          phoneNumber: phoneNumber,
+          address: address,
+          username: username,
+          password: password,
+          gender: gender,
+          age: age,
+          citizenshipNumber: citizenshipNumber,
+        },
       },
-    });
+      { new: true }
+    );
+
     if (updatedWorker) {
       console.log("Worker updated successfully");
       res.status(200).json({ message: "Worker updated successfully" });

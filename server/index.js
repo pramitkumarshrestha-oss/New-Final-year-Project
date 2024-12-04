@@ -31,6 +31,7 @@ const customersOrder = require("./routes/customersOrdersRoute.js");
 const workerLoginRoute = require("./routes/workerLoginRoute.js");
 const editProduct = require("./routes/editProductRoute.js");
 const editWorker = require("./routes/editWorkerRoute.js");
+const fetchProduct = require("./routes/fetchProductRoute.js");
 app.use("/signup", signupRoute);
 app.use("/login", loginRoute);
 app.use("/cart", cartRoute);
@@ -55,6 +56,7 @@ app.get("/customersOrder", customersOrder);
 app.use("/workerLoginPage", workerLoginRoute);
 app.use("/editProduct", editProduct);
 app.use("/editWorker", editWorker);
+app.use("/fetchProduct", fetchProduct);
 
 app.listen(port, () => {
   console.log(`Server Started At ${port}`);
