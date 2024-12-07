@@ -50,6 +50,12 @@ const ProductList = () => {
     }
   };
 
+  //Product Haru edit garna ko lagi product upload wala page ma redirect gareko
+
+  const handleEditproduct = (elem) => {
+    navigate("/editProduct", { state: elem });
+  };
+
   return (
     <>
       <div className="right-content w-100">
@@ -86,7 +92,7 @@ const ProductList = () => {
                         <Button
                           className="success"
                           color="success"
-                          // onClick={() => handleEditproduct(product)}
+                          onClick={() => handleEditproduct(product)}
                         >
                           <FaPencilAlt />
                         </Button>

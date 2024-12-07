@@ -4,10 +4,10 @@ const editProduct = async (req, res) => {
   try {
     const updatedProduct = await addProduct.findByIdAndUpdate(id, {
       $set: {
-        productname: name,
-        productdescription: description,
-        productcategory: category,
-        productprice: price,
+        name: name,
+        description: description,
+        category: category,
+        price: price,
       },
     });
     if (updatedProduct) {
@@ -25,7 +25,7 @@ const deleteProduct = async (req, res) => {
     const deletedProduct = await addProduct.findByIdAndDelete(id);
     if (deletedProduct) {
       res.status(200).json({ message: "Product deleted successfully" });
-      console.log("deleteProduct");
+      console.log(deleteProduct);
     }
   } catch (error) {
     res.status(500).json({ message: "Error deleting product" });

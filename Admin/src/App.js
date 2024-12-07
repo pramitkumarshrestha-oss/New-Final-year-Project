@@ -11,6 +11,7 @@ import Workers from "./pages/Workers";
 import WorkerForm from "./pages/WorkerForm";
 import Order from "./pages/Order";
 import EditWorker from "./pages/WorkerForm/EditWorker";
+import EditProduct from "./pages/ProductUpload/EditProduct";
 
 const MyContext = createContext();
 function App() {
@@ -58,6 +59,11 @@ function App() {
                 path="/editWorker"
                 exact={true}
                 element={<EditWorker />}
+              ></Route>
+              <Route
+                path="/editProduct"
+                exact={true}
+                element={<EditProduct />}
               ></Route>
             </Routes>
           </div>
