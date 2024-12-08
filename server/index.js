@@ -53,7 +53,7 @@ app.use("/addworker", addWorker);
 app.use("/api/khaltiVerify", verifyPaymentRoute);
 app.get("/list", listOrders);
 app.get("/workersList", listWorkers);
-app.get("/customersOrder", customersOrder);
+app.use("/customersOrder", customersOrder);
 app.use("/workerLoginPage", workerLoginRoute);
 app.use("/editProduct", editProduct);
 app.use("/editWorker", editWorker);
