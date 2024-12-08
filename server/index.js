@@ -32,6 +32,7 @@ const workerLoginRoute = require("./routes/workerLoginRoute.js");
 const editProduct = require("./routes/editProductRoute.js");
 const editWorker = require("./routes/editWorkerRoute.js");
 const fetchProduct = require("./routes/fetchProductRoute.js");
+const fetchWorks = require("./routes/fetchWorksRoute.js");
 app.use("/signup", signupRoute);
 app.use("/login", loginRoute);
 app.use("/cart", cartRoute);
@@ -57,6 +58,7 @@ app.use("/workerLoginPage", workerLoginRoute);
 app.use("/editProduct", editProduct);
 app.use("/editWorker", editWorker);
 app.use("/fetchProduct", fetchProduct);
+app.use("/fetchWorks", fetchWorks);
 
 app.listen(port, () => {
   console.log(`Server Started At ${port}`);

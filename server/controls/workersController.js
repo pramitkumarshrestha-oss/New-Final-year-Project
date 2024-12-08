@@ -26,14 +26,23 @@ const assginWorkerHandler = async (req, res, next) => {
 
     if (freeWorkers?.length) {
       const workerId = freeWorkers[0].id;
+      const workerDetails = await workersModel.findById(workerId, {
+        name: 1,
+      });
+      const workerName = workerDetails.name;
       await assignedWorkerModel.create({ orderId, workerId });
       const updatedOrder = await orderModel.updateOne(
         { _id: orderId },
         { assignedWorkerId: workerId }
       );
+      await workersModel.updateOne(
+        { _id: workerId },
+        { $inc: { totalNumberOfWorks: 1 } }
+      );
       return res.status(200).json({
         message: "Worker assigned sucessfully",
         workerId,
+        workerName,
       });
     }
 
@@ -63,14 +72,21 @@ const assginWorkerHandler = async (req, res, next) => {
     console.log(elligableWorker);
 
     const workerId = elligableWorker[0];
+    const workerDetails = await workersModel.findById(workerId, { name: 1 });
+    const workerName = workerDetails.name;
     await assignedWorkerModel.create({ orderId, workerId });
     const updatedOrder = await orderModel.updateOne(
       { _id: orderId },
       { assignedWorkerId: workerId }
     );
+    await workersModel.updateOne(
+      { _id: workerId },
+      { $inc: { totalNumberOfWorks: 1 } }
+    );
     return res.status(200).json({
       message: "Worker assigned sucessfully",
       workerId,
+      workerName,
     });
   } catch (error) {
     console.log(error);
