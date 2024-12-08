@@ -12,7 +12,7 @@ const EditWorker = () => {
     name: state?.name,
     age: state?.age,
     gender: state?.gender,
-    joinedDate: null,
+    joinedDate: state?.joinedDate,
     address: state?.address,
     phoneNumber: state?.phoneNumber,
     username: state?.username,
@@ -31,11 +31,11 @@ const EditWorker = () => {
     setSuccessMessage(""); // Clear success message when making changes
   };
 
-  const handleDateChange = (date) => {
-    setFormData({ ...formData, joinedDate: date });
-    setErrors({ ...errors, joinedDate: "" });
-    setSuccessMessage(""); // Clear success message when making changes
-  };
+  // const handleDateChange = (date) => {
+  //   setFormData({ ...formData, joinedDate: date });
+  //   setErrors({ ...errors, joinedDate: "" });
+  //   setSuccessMessage(""); // Clear success message when making changes
+  // };
 
   const validateForm = () => {
     const newErrors = {};
@@ -100,17 +100,17 @@ const EditWorker = () => {
 
     if (!validateForm()) return;
 
-    const data = {
-      ...formData,
-      joinedDate: formData.joinedDate
-        ? formData.joinedDate.toISOString().split("T")[0]
-        : null,
-    };
+    // const data = {
+    //   ...formData,
+    //   // joinedDate: formData.joinedDate
+    //   //   ? formData.joinedDate.toISOString().split("T")[0]
+    //   //   : null,
+    // };
 
     try {
       const result = await axios.post(
         "http://localhost:3010/editWorker/editWorker",
-        data,
+        formData,
         {
           headers: { "Content-Type": "application/json" },
         }
@@ -185,7 +185,7 @@ const EditWorker = () => {
                         type="radio"
                         name="gender"
                         value="Female"
-                        checked={state.gender === "Female"}
+                        // checked={state.gender === "Female"}
                         onChange={handleChange}
                       />{" "}
                       Female
@@ -195,7 +195,7 @@ const EditWorker = () => {
                         type="radio"
                         name="gender"
                         value="Male"
-                        checked={state.gender === "Male"}
+                        // checked={state.gender === "Male"}
                         onChange={handleChange}
                       />{" "}
                       Male
@@ -205,7 +205,7 @@ const EditWorker = () => {
                         type="radio"
                         name="gender"
                         value="Other"
-                        checked={state.gender === "Other"}
+                        // checked={state.gender === "Other"}
                         onChange={handleChange}
                       />{" "}
                       Other
@@ -223,7 +223,7 @@ const EditWorker = () => {
                     <h6>JOINED DATE </h6>
                     <DatePicker
                       selected={formData.joinedDate}
-                      onChange={handleDateChange}
+                      // onChange={handleDateChange}
                       dateFormat="MM/dd/yyyy"
                       placeholderText="mm/dd/yyyy"
                     />

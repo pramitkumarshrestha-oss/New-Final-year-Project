@@ -4,7 +4,7 @@ const editWorker = async (req, res) => {
     name,
     age,
     gender,
-    joinedDate,
+
     address,
     phoneNumber,
     username,
@@ -24,7 +24,6 @@ const editWorker = async (req, res) => {
         gender: gender,
         age: age,
         citizenshipNumber: citizenshipNumber,
-        joinedDate: joinedDate,
       },
     });
     console.log(updatedWorker);

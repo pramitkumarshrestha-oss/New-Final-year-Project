@@ -1,33 +1,32 @@
 // Importing necessary libraries and components.
 import React, { createContext, useState, useContext, useEffect } from "react";
 import axios from "axios";
-import Menu from "../Components/TabMenu/menu.jsx"; // Importing Menu component (likely for navigation or UI).
+import Menu from "../Components/TabMenu/menu.jsx";
 
-// Creating a context for the store, enabling global state management.
 export const StoreContext = createContext(null);
 
-// Context provider component to wrap the application and provide the context.
 export const StoreContextProvider = (props) => {
-  // Token state to store the user's authentication token.
   const [token, setToken] = useState("");
-  // State to hold payment details (for Khalti or other payment integrations).
+
   const [paymentDetails, setPaymentDetails] = useState("");
 
-  // Fetch token from localStorage and update state on component mount.
   useEffect(() => {
     const savedToken = localStorage.getItem("token");
-    console.log(savedToken); // Logging the token for debugging.
-    setToken(savedToken); // Set the token in state.
-  }, [token]); // Dependency array ensures effect runs when `token` changes.
+    if(savedToken)
+    {
+      setToken(savedToken);
+    }
+ 
+  
+  }, [token]);
 
   // Search term state for managing search input.
   const [searchItem, setSearchItem] = useState("");
-  // State to manage cart items, with product IDs as keys and quantities as values.
   const [cartItems, setCartItems] = useState({});
 
   // Debugging cartItems state on mount.
   useEffect(() => {
-    console.log(Object.keys(cartItems));
+    // console.log(Object.keys(cartItems));
   }, []);
 
   // State for cart data including items, total amount, and delivery fee.
@@ -145,7 +144,7 @@ export const StoreContextProvider = (props) => {
     try {
       const response = await axios.get("http://localhost:3010/addProducts");
       setProducts(response.data); // Update products state with fetched data.
-      console.log(response.data);
+      // console.log(response.data);
     } catch (error) {
       console.log(error.message);
     }
