@@ -28,7 +28,7 @@ const workersSchema = new mongoose.Schema({
   citizenshipNumber: {
     type: String,
   },
-  totalNumberOfWorks: { type: Number, default: 4 },
+  totalNumberOfWorks: { type: Number },
   joinedDate: {
     type: String,
   },
