@@ -12,7 +12,8 @@ import WorkerForm from "./pages/WorkerForm";
 import Order from "./pages/Order";
 import EditWorker from "./pages/WorkerForm/EditWorker";
 import EditProduct from "./pages/ProductUpload/EditProduct";
-
+import RawMaterialsStock from "./pages/RawMaterialsStock/RawMaterialsStock";
+import LoginPage from "./pages/Login/LoginPage";
 const MyContext = createContext();
 function App() {
   const [isToggleSidebar, setIsToggleSidebar] = useState(false);
@@ -36,6 +37,7 @@ function App() {
           </div>
           <div className={`content ${isToggleSidebar == true ? "toggle" : ""}`}>
             <Routes>
+            <Route path="/login" exact={true} element={<LoginPage/>}/>
               <Route path="/" exact={true} element={<Dashboard />} />
               <Route path="/dashboard" exact={true} element={<Dashboard />} />
               <Route
@@ -64,6 +66,11 @@ function App() {
                 path="/editProduct"
                 exact={true}
                 element={<EditProduct />}
+              ></Route>
+              <Route
+                path="/rawMaterials"
+                exact={true}
+                element={<RawMaterialsStock />}
               ></Route>
             </Routes>
           </div>
