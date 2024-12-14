@@ -93,7 +93,7 @@ const Sidebar = () => {
             </Link>
           </li>
           <li>
-            <Link to="/">
+            <Link to="/rawMaterials">
               <Button
                 className={`w-100 ${activeTab === 3 ? "active" : ""}`}
                 onClick={() => isOpenSubmenu(3)}
