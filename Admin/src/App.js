@@ -12,7 +12,6 @@ import WorkerForm from "./pages/WorkerForm";
 import Order from "./pages/Order";
 import EditWorker from "./pages/WorkerForm/EditWorker";
 import EditProduct from "./pages/ProductUpload/EditProduct";
-import RawMaterialsStock from "./pages/RawMaterialsStock/RawMaterialsStock";
 
 const MyContext = createContext();
 function App() {
@@ -65,12 +64,6 @@ function App() {
                 path="/editProduct"
                 exact={true}
                 element={<EditProduct />}
-              ></Route>
-
-              <Route
-                path="/rawMaterials"
-                exact={true}
-                element={<RawMaterialsStock />}
               ></Route>
             </Routes>
           </div>
