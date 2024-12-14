@@ -5,8 +5,7 @@ const workersModel = require("../models/workersModel");
 const predict = require("../knn");
 
 const assginWorkerHandler = async (req, res, next) => {
-  const { orderId } = req.params;
-
+  const { orderId } = req.body;
   try {
     const work = await assignedWorkerModel.findOne({ orderId });
     if (work)
@@ -51,17 +50,25 @@ const assginWorkerHandler = async (req, res, next) => {
 
     await Promise.all(
       workingWorker.map(async (workerId) => {
-        const popularity = await workersModel.findById(
+        const workerDetails = await workersModel.findById(
           { _id: workerId },
           { popularity: 1 }
         );
+        // console.log(workerDetails, workingWorker);
+        if (!workerDetails) {
+          // console.log(`Worker with ID ${workerId} not found`);
+          return; // Skip to the next worker
+        }
 
         const totalNumberOfWorks = await assignedWorkerModel.countDocuments({
           workerId: workerId,
           status: "Working",
         });
 
-        const answer = predict(totalNumberOfWorks, popularity.popularity || 0);
+        const answer = predict(
+          totalNumberOfWorks,
+          workerDetails?.popularity || 0
+        );
 
         if (answer === "yes") elligableWorker.push(workerId);
       })
@@ -69,12 +76,17 @@ const assginWorkerHandler = async (req, res, next) => {
 
     if (!elligableWorker?.length)
       return res.status(200).json({ message: "No Feee Worker Found" });
-    console.log(elligableWorker);
+    // console.log(elligableWorker);
 
     const workerId = elligableWorker[0];
-    const workerDetails = await workersModel.findById(workerId, { name: 1 });
-    const workerName = workerDetails.name;
+    const elligableWorkerDetails = await workersModel.find({
+      _id: { $in: elligableWorker },
+    }).map((elligableWorker)=>)
+    console.log(elligableWorkerDetails);
+    const workerDetails = await workersModel.findById(workerId);
+    const workerName = workerDetails?.name;
     await assignedWorkerModel.create({ orderId, workerId });
+    // console.log(workerDetails, workerName);
     const updatedOrder = await orderModel.updateOne(
       { _id: orderId },
       { assignedWorkerId: workerId }

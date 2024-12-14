@@ -28,6 +28,8 @@ import { MdOutlineAssignmentInd } from "react-icons/md";
 import axios from "axios";
 const Order = () => {
   const [orders, setOrders] = useState([]);
+  const [workerName, setWorkerName] = useState("");
+  console.log(orders);
   useEffect(() => {
     const fetchAllOrders = async () => {
       try {
@@ -40,6 +42,17 @@ const Order = () => {
     };
     fetchAllOrders();
   }, []);
+  const handleAssign = async (orderId) => {
+    try {
+      console.log(orderId);
+      const response = await axios.post("http://localhost:3010/api/workers", {
+        orderId,
+      });
+      console.log(response);
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <>
       <div className="right-content w-100">
@@ -97,7 +110,11 @@ const Order = () => {
                   <td>$38k</td> */}
                       <td>
                         <div className="actions d-flex align-items-center">
-                          <Button className="secondary" color="secondary">
+                          <Button
+                            className="secondary"
+                            color="secondary"
+                            onClick={() => handleAssign(info._id)}
+                          >
                             <MdOutlineAssignmentInd />
                           </Button>
                         </div>
