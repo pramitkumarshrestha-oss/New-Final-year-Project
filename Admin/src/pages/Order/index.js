@@ -92,7 +92,7 @@ const Order = () => {
                           </div>
                         </div>
                       </td>
-                      <td>1</td>
+                      <td>{info.assignedWorkerId.name}</td>
 
                       <td>{info.createdAt}</td>
 
