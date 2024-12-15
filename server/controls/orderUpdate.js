@@ -15,6 +15,8 @@ const orderUpdate = async (req, res) => {
     );
     // console.log(update);
     res.status(200).json({ message: "updated" });
-  } catch (error) {}
+  } catch (error) {
+    console.log(error);
+  }
 };
 module.exports = orderUpdate;
