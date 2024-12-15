@@ -30,16 +30,16 @@ const Order = () => {
   const [orders, setOrders] = useState([]);
   const [workerName, setWorkerName] = useState("");
   console.log(orders);
+  const fetchAllOrders = async () => {
+    try {
+      const response = await axios.get("http://localhost:3010/list");
+      console.log(response.data);
+      setOrders(response.data);
+    } catch (error) {
+      console.error("Error fetching orders:", error);
+    }
+  };
   useEffect(() => {
-    const fetchAllOrders = async () => {
-      try {
-        const response = await axios.get("http://localhost:3010/list");
-        console.log(response.data);
-        setOrders(response.data);
-      } catch (error) {
-        console.error("Error fetching orders:", error);
-      }
-    };
     fetchAllOrders();
   }, []);
   const handleAssign = async (orderId) => {
@@ -48,6 +48,7 @@ const Order = () => {
       const response = await axios.post("http://localhost:3010/api/workers", {
         orderId,
       });
+      fetchAllOrders();
       console.log(response);
     } catch (error) {
       console.log(error);
@@ -92,7 +93,8 @@ const Order = () => {
                           </div>
                         </div>
                       </td>
-                      <td>{info.assignedWorkerId.name}</td>
+                      <td>{info.assignedWorkerId?.name}</td>
+                      {/* <td>1</td> */}
 
                       <td>{info.createdAt}</td>
 
