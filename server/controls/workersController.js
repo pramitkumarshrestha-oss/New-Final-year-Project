@@ -4,7 +4,7 @@ const assignedWorkerModel = require("../models/assignedWorkerModel");
 const workersModel = require("../models/workersModel");
 const predict = require("../knn");
 
-const assginWorkerHandler = async (req, res, next) => {
+const assignWorkerHandler = async (req, res, next) => {
   const { orderId } = req.body;
   try {
     const work = await assignedWorkerModel.findOne({ orderId });
@@ -30,7 +30,7 @@ const assginWorkerHandler = async (req, res, next) => {
       });
       const workerName = workerDetails.name;
       await assignedWorkerModel.create({ orderId, workerId });
-      const updatedOrder = await orderModel.updateOne(
+      await orderModel.updateOne(
         { _id: orderId },
         { assignedWorkerId: workerId }
       );
@@ -39,26 +39,21 @@ const assginWorkerHandler = async (req, res, next) => {
         { $inc: { totalNumberOfWorks: 1 } }
       );
       return res.status(200).json({
-        message: "Worker assigned sucessfully",
+        message: "Worker assigned successfully",
         workerId,
         workerName,
       });
     }
 
-    //if no free worker is found use knn to aasign a worker
-    const elligableWorker = [];
+    // If no free worker is found, use knn to assign a worker
+    const eligibleWorkers = [];
 
     await Promise.all(
       workingWorker.map(async (workerId) => {
-        const workerDetails = await workersModel.findById(
-          { _id: workerId },
-          { popularity: 1 }
-        );
-        // console.log(workerDetails, workingWorker);
-        if (!workerDetails) {
-          // console.log(`Worker with ID ${workerId} not found`);
-          return; // Skip to the next worker
-        }
+        const workerDetails = await workersModel.findById(workerId, {
+          popularity: 1,
+        });
+        if (!workerDetails) return;
 
         const totalNumberOfWorks = await assignedWorkerModel.countDocuments({
           workerId: workerId,
@@ -70,24 +65,34 @@ const assginWorkerHandler = async (req, res, next) => {
           workerDetails?.popularity || 0
         );
 
-        if (answer === "yes") elligableWorker.push(workerId);
+        if (answer === "yes") {
+          eligibleWorkers.push({
+            workerId,
+            popularity: workerDetails.popularity,
+            totalNumberOfWorks,
+          });
+        }
       })
     );
 
-    if (!elligableWorker?.length)
-      return res.status(200).json({ message: "No Feee Worker Found" });
-    // console.log(elligableWorker);
+    if (!eligibleWorkers?.length)
+      return res.status(200).json({ message: "No Free Worker Found" });
 
-    const workerId = elligableWorker[0];
-    const elligableWorkerDetails = await workersModel.find({
-      _id: { $in: elligableWorker },
-    }).map((elligableWorker)=>)
-    console.log(elligableWorkerDetails);
-    const workerDetails = await workersModel.findById(workerId);
-    const workerName = workerDetails?.name;
+    // Sort by totalNumberOfWorks first, then by popularity if equal
+    eligibleWorkers.sort((a, b) => {
+      if (a.totalNumberOfWorks !== b.totalNumberOfWorks) {
+        return a.totalNumberOfWorks - b.totalNumberOfWorks;
+      }
+      return b.popularity - a.popularity; // Higher popularity if works are the same
+    });
+
+    const workerDetails = eligibleWorkers[0];
+    const workerId = workerDetails.workerId;
+    const workerRecord = await workersModel.findById(workerId);
+    const workerName = workerRecord?.name;
+
     await assignedWorkerModel.create({ orderId, workerId });
-    // console.log(workerDetails, workerName);
-    const updatedOrder = await orderModel.updateOne(
+    await orderModel.updateOne(
       { _id: orderId },
       { assignedWorkerId: workerId }
     );
@@ -95,13 +100,16 @@ const assginWorkerHandler = async (req, res, next) => {
       { _id: workerId },
       { $inc: { totalNumberOfWorks: 1 } }
     );
+
     return res.status(200).json({
-      message: "Worker assigned sucessfully",
+      message: "Worker assigned successfully",
       workerId,
       workerName,
     });
   } catch (error) {
     console.log(error);
+    res.status(500).json({ message: "An error occurred", error });
   }
 };
-module.exports = assginWorkerHandler;
+
+module.exports = assignWorkerHandler;
