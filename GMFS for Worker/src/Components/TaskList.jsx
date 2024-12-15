@@ -1,14 +1,37 @@
 // src/Components/TaskList.jsx
-import React, { useContext } from "react";
-import { WorkerContext } from "../Contexts/WorkerContext";
-import styles from "./TaskList.module.css"; // Use CSS modules
+import React, { useState, useEffect } from "react";
+import styles from "./TaskList.module.css";
 
 const TaskList = () => {
-  const { tasks, setTasks } = useContext(WorkerContext);
+  const [tasks, setTasks] = useState([]);
+  const token = localStorage.getItem('workerToken');
 
-  const updateTaskStatus = (id, newStatus) => {
+  useEffect(() => {
+    const fetchTasks = async () => {
+      try {
+        const res = await fetch("http://localhost:3010/fetchWorks", {
+          method: 'GET',
+          headers: {
+            'Authorization': `Bearer ${token}`,
+            'Content-Type': 'application/json',
+          },
+        });
+        const data = await res.json();
+        console.log(data);
+        if (data.workers && data.workers[0].orders) {
+          setTasks(data.workers[0].orders);
+        }
+      } catch (error) {
+        console.error("Error fetching tasks:", error);
+      }
+    };
+
+    fetchTasks();
+  }, []);
+
+  const updateTaskStatus = (orderId, newStatus) => {
     const updatedTasks = tasks.map((task) =>
-      task.id === id ? { ...task, status: newStatus } : task
+      task.orderId === orderId ? { ...task, orderStatus: newStatus } : task
     );
     setTasks(updatedTasks);
   };
@@ -18,15 +41,16 @@ const TaskList = () => {
       <h2 className={styles.title}>Task List</h2>
       {tasks.length > 0 ? (
         tasks.map((task) => (
-          <div key={task.id} className={styles.taskItem}>
-            <p>{task.description}</p>
-            <p>Deadline: {task.deadline}</p>
-            <p>Status: {task.status}</p>
+          <div key={task.orderId} className={styles.taskItem}>
+            <p>Ordered Item: {task.orderedItems[0].name}</p>
+            <p>Total Amount: {task.totalAmount}</p>
+            <p>Status: {task.orderStatus}</p>
             <select
-              value={task.status}
-              onChange={(e) => updateTaskStatus(task.id, e.target.value)}
+              value={task.orderStatus}
+              onChange={(e) => updateTaskStatus(task.orderId, e.target.value)}
               className={styles.statusSelect}
             >
+              <option value="processedWithPayment">Processed with Payment</option>
               <option value="In Progress">In Progress</option>
               <option value="Completed">Completed</option>
             </select>
