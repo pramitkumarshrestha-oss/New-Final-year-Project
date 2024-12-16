@@ -2,7 +2,7 @@ const order = require("../models/orderModel");
 const user = require("../models/user");
 const customersOrder = async (req, res) => {
   const { userId } = req.user;
-  console.log(userId);
+  // console.log(userId);
   try {
     const orders = await order.find({ userId: userId });
     // console.log(orders);

@@ -43,7 +43,7 @@ const getCart = async (req, res) => {
   try {
     let userData = await user.findById(req.user.userId);
     let cartData = await userData.cart;
-    console.log(cartData, userData);
+    // console.log(cartData, userData);
 
     res.json({ cartData });
   } catch (err) {
