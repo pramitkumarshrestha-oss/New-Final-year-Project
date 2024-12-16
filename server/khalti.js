@@ -27,7 +27,7 @@ const khalti = async (req, res) => {
       }
     );
 
-    console.log(response.data);
+    // console.log(response.data);
     // console.log(response.data.payment_url);
     // console.log(response.data);
     if (response.data) {

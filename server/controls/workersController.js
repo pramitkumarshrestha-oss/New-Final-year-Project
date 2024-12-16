@@ -79,14 +79,14 @@ const assignWorkerHandler = async (req, res, next) => {
       return res.status(200).json({ message: "No Free Worker Found" });
 
     // Sort by totalNumberOfWorks first, then by popularity if equal
-    eligibleWorkers.sort((a, b) => {
+    const ab = eligibleWorkers.sort((a, b) => {
       if (a.totalNumberOfWorks !== b.totalNumberOfWorks) {
         return a.totalNumberOfWorks - b.totalNumberOfWorks;
       }
       return b.popularity - a.popularity; // Higher popularity if works are the same
     });
 
-    const workerDetails = eligibleWorkers[0];
+    const workerDetails = ab[0];
     const workerId = workerDetails.workerId;
     const workerRecord = await workersModel.findById(workerId);
     const workerName = workerRecord?.name;
