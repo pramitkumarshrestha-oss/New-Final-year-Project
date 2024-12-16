@@ -81,7 +81,6 @@ const assignWorkerHandler = async (req, res, next) => {
         }
       })
     );
-    console.log("raw" + JSON.stringify(eligibleWorkers));
 
     if (!eligibleWorkers?.length)
       return res.status(200).json({ message: "No Free Worker Found" });
@@ -93,7 +92,7 @@ const assignWorkerHandler = async (req, res, next) => {
       }
       return b.popularity - a.popularity; // Higher popularity if works are the same
     });
-    console.log("refined" + JSON.stringify(ab));
+
     const workerDetails = ab[0];
     const workerId = workerDetails.workerId;
     const workerRecord = await workersModel.findById(workerId);
