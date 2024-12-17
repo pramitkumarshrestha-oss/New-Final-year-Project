@@ -70,13 +70,13 @@ const Dashboard = () => {
               <DashboardBox
                 title="Total pending orders"
                 count={dashBoarddata.totalPendingOrders}
-                color={["#f4cd", "#f3cd29"]}
+                color={["#46211A", "#1995AD"]}
                 icon={<GiStarsStack />}
               />
               <DashboardBox
                 title="Total Workers"
                 count={dashBoarddata.totalWorkers}
-                color={["#e1950e", "#f3cd29"]}
+                color={["#B85042", "#2F3C7E"]}
                 icon={<GiStarsStack />}
               />
 
@@ -90,7 +90,7 @@ const Dashboard = () => {
               <DashboardBox
                 title="Total Product"
                 count={dashBoarddata.totalProduct}
-                color={["#e1950e", "#f3cd29"]}
+                color={["#A1BE95", "#F98866"]}
                 icon={<GiStarsStack />}
               />
             </div>
