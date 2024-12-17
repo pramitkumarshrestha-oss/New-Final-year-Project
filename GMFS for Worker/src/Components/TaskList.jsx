@@ -16,7 +16,7 @@ const TaskList = () => {
         },
       });
       const data = await res.json();
-      console.log(data);
+
       if (data.workers && data.workers[0].orders) {
         setTasks(data.workers[0].orders);
       }
@@ -60,8 +60,6 @@ const TaskList = () => {
                 onChange={(e) => updateTaskStatus(task.orderId, e.target.value)}
                 className={styles.statusSelect}
               >
-                {console.log(task.orderStatus)}
-
                 {task.orderStatus === "processedWithPayment" && (
                   <>
                     <option value="processedWithPayment" disabled>

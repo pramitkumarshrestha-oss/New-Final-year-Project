@@ -23,7 +23,7 @@ const Workerloginpage = async (req, res) => {
         const token = jwt.sign(
           { workerId: result.id, username: username },
           secretKey,
-          { expiresIn: "1h" }
+          { expiresIn: "24h" }
         );
         console.log("Login Successful");
         res.status(200).json({ message: "login sucessfully", token: token });

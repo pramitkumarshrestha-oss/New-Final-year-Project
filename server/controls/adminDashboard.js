@@ -3,6 +3,7 @@ const user = require("../models/user");
 const addProduct = require("../models/addProduct");
 const workersModel = require("../models/workersModel");
 const adminDashboard = async (req, res) => {
+  
   try {
     let amount = 0;
     const orders = await orderModel.find();

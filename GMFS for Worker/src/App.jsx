@@ -31,12 +31,9 @@ const App = () => {
   };
 
   const handleLogout = () => {
-    
-
     setIsAuthenticated(false);
-    localStorage.removeItem("isAuthenticated"); 
-    localStorage.removeItem("workerToken");// Remove authentication status from localStorage
-    
+    localStorage.removeItem("isAuthenticated");
+    localStorage.removeItem("workerToken"); // Remove authentication status from localStorage
   };
 
   useEffect(() => {
@@ -44,7 +41,6 @@ const App = () => {
     // const token = localStorage.getItem('workerToken');
 
     if (token) {
-      console.log(token);
       // setIsAuthenticated(true);
       handleLoginSuccess();
     }
