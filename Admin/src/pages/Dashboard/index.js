@@ -3,23 +3,12 @@ import DashboardBox from "./components/dashboardBox";
 import { FaShoppingCart } from "react-icons/fa";
 import { FaShoppingBag } from "react-icons/fa";
 import { GiStarsStack } from "react-icons/gi";
-import Menu from "@mui/material/Menu";
-import MenuItem from "@mui/material/MenuItem";
+
 import { useContext, useState, useEffect } from "react";
-import { IoIosTimer } from "react-icons/io";
-import Button from "@mui/material/Button";
-import { BsThreeDotsVertical } from "react-icons/bs";
-import { Chart } from "react-google-charts";
+
 import WorkIcon from "@mui/icons-material/Work";
 import axios from "axios";
 
-export const data = [
-  ["Year", "Sales", "Expenses"],
-  ["2013", 1000, 400],
-  ["2014", 1170, 460],
-  ["2015", 660, 1120],
-  ["2016", 1030, 540],
-];
 export const options = {
   backgroundColor: "transparent",
   chartArea: { width: "100%", height: "100%" },
@@ -57,7 +46,7 @@ const Dashboard = () => {
     <>
       <div className="right-content w-100">
         <div className="row dashboardBoxWrapperRow">
-          <div className="col-md-8">
+          <div className="">
             <div className="dashboardBoxWrapper d-flex">
               <DashboardBox
                 title="Total Customers"
@@ -93,7 +82,7 @@ const Dashboard = () => {
 
               <DashboardBox
                 title="Total Amount"
-                count={dashBoarddata.totalAmount}
+                count={`Rs ${dashBoarddata.totalAmount}`}
                 color={["#e1950e", "#f3cd29"]}
                 icon={<GiStarsStack />}
               />

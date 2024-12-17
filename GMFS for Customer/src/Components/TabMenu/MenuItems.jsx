@@ -41,7 +41,7 @@ const MenuItems = ({ items }) => {
                       </div>
                       <div className="menu-price-book">
                         <div className="price-book-divide d-flex justify-content-between">
-                          <h2>{price}</h2>
+                          <h2>Rs.{price}</h2>
                           <button
                             className="btn btn-primary"
                             onClick={() => handleAddToCart(_id)}
