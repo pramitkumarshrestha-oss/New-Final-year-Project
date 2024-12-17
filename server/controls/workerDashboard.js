@@ -1,6 +1,6 @@
 const workersModel = require("../models/workersModel");
 const workerDashboard = async (req, res) => {
-  const workerId = req.user;
+  const { workerId } = req.user;
   try {
     const workers = await workersModel.findById(
       workerId,
