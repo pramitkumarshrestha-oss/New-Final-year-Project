@@ -13,6 +13,7 @@ import { OrderPlaced } from "./Pages/OrderPlaced";
 import { AuthProvider } from "./Contexts/AuthContext";
 import { PaymentSuccess } from "./Pages/PaymentSuccess";
 import { Payment } from "./Pages/KhaltiDashboard";
+// import ProductPage from "./Pages/ProductPage";
 
 const App = () => {
   return (
