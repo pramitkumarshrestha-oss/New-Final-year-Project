@@ -1,6 +1,6 @@
-const mongoose = require("mongoose")
+const mongoose = require("mongoose");
 
-const { ObjectId } = mongoose.Schema.Types
+const { ObjectId } = mongoose.Schema.Types;
 const assignedWorkerSchema = new mongoose.Schema(
   {
     orderId: {
@@ -16,11 +16,12 @@ const assignedWorkerSchema = new mongoose.Schema(
       enum: ["Working", "Done"],
       default: "Working",
     },
+    timeTakenToCompleteWorks: { type: String },
   },
   { timestamps: true }
-)
+);
 const assignedWorkerModel = mongoose.model(
   "assignedWorker",
   assignedWorkerSchema
-)
-module.exports = assignedWorkerModel
+);
+module.exports = assignedWorkerModel;

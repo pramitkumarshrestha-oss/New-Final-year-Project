@@ -89,8 +89,14 @@ const assignWorkerHandler = async (req, res, next) => {
     const ab = eligibleWorkers.sort((a, b) => {
       if (a.totalNumberOfWorks !== b.totalNumberOfWorks) {
         return a.totalNumberOfWorks - b.totalNumberOfWorks;
+      } else if (
+        b.popularity - a.popularity &&
+        b.averageTimeTaken - a.averageTimeTaken
+      ) {
+        return b;
+      } else {
+        return a;
       }
-      return b.popularity - a.popularity; // Higher popularity if works are the same
     });
 
     const workerDetails = ab[0];

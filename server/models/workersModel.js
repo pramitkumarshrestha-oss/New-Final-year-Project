@@ -33,6 +33,7 @@ const workersSchema = new mongoose.Schema({
     type: String,
   },
   totalNumberOfCompletedWorks: { type: Number, default: 0 },
+  averageTimeTaken: { type: String },
 });
 const workersModel = mongoose.model("Workers", workersSchema);
 module.exports = workersModel;
