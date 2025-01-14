@@ -1,11 +1,7 @@
-import { BsThreeDotsVertical } from "react-icons/bs";
 import Button from "@mui/material/Button";
 import { FaArrowTrendUp } from "react-icons/fa6";
-import { FaArrowTrendDown } from "react-icons/fa6";
-import Menu from "@mui/material/Menu";
-import MenuItem from "@mui/material/MenuItem";
+
 import { useState } from "react";
-import { IoIosTimer } from "react-icons/io";
 
 const DashboardBox = (props) => {
   const [anchorEl, setAnchorEl] = useState(null);
@@ -49,7 +45,6 @@ const DashboardBox = (props) => {
           )}
         </div>
       </div>
-    
     </Button>
   );
 };
