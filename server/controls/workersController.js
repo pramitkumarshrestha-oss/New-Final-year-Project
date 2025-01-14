@@ -6,7 +6,9 @@ const predict = require("../knn");
 
 const assignWorkerHandler = async (req, res, next) => {
   const { orderId } = req.body;
+  console.log("sandesh");
   try {
+    console.log("hahahhaha");
     const work = await assignedWorkerModel.findOne({ orderId });
     if (work)
       return res.status(200).json({
@@ -52,6 +54,8 @@ const assignWorkerHandler = async (req, res, next) => {
       workingWorker.map(async (workerId) => {
         const workerDetails = await workersModel.findById(workerId, {
           popularity: 1,
+          totalNumberOfWorks: 1,
+          averageTimeTaken: 1,
         });
         if (!workerDetails) return;
 
@@ -69,7 +73,8 @@ const assignWorkerHandler = async (req, res, next) => {
 
         const answer = predict(
           totalNumberOfWorks,
-          workerDetails?.popularity || 0
+          workerDetails?.popularity || 0,
+          workerDetails?.averageTimeTaken || 1
         );
 
         if (answer === "yes") {
@@ -77,6 +82,7 @@ const assignWorkerHandler = async (req, res, next) => {
             workerId,
             popularity: workerDetails.popularity,
             totalNumberOfWorks,
+            averageTimeTaken: workerDetails.averageTimeTaken,
           });
         }
       })
@@ -85,18 +91,19 @@ const assignWorkerHandler = async (req, res, next) => {
     if (!eligibleWorkers?.length)
       return res.status(200).json({ message: "No Free Worker Found" });
 
-    // Sort by totalNumberOfWorks first, then by popularity if equal
     const ab = eligibleWorkers.sort((a, b) => {
+      // First, compare by totalNumberOfWorks (ascending)
       if (a.totalNumberOfWorks !== b.totalNumberOfWorks) {
         return a.totalNumberOfWorks - b.totalNumberOfWorks;
-      } else if (
-        b.popularity - a.popularity &&
-        b.averageTimeTaken - a.averageTimeTaken
-      ) {
-        return b;
-      } else {
-        return a;
       }
+
+      // If totalNumberOfWorks are the same, compare by popularity (descending)
+      if (b.popularity !== a.popularity) {
+        return b.popularity - a.popularity;
+      }
+
+      // If both totalNumberOfWorks and popularity are the same, compare by averageTimeTaken (ascending)
+      return a.averageTimeTaken - b.averageTimeTaken;
     });
 
     const workerDetails = ab[0];

@@ -25,10 +25,19 @@ const orderUpdate = async (req, res) => {
       const workerId = orderDetails.assignedWorkerId; // Assuming `workerId` is stored in the order model
 
       if (workerId) {
+        const id = orderId;
+        const filter = new mongoose.Types.ObjectId(id);
         // Calculate the total time taken
-        const createdAt = new Date(assignedWorkerModel.createdAt); // Assuming `createdAt` is stored in the order model
+        const workerAssignedDetails = await assignedWorkerModel.findOne({
+          orderId: filter,
+        });
+        // Calculate the total time taken
+        const createdAt = new Date(workerAssignedDetails.createdAt); // A
         const currentTime = new Date();
         const timeTaken = Math.floor((currentTime - createdAt) / (1000 * 60)); // Time in minutes
+        console.log("Created At:", createdAt);
+        console.log("Current Time:", currentTime);
+        console.log("Time Taken (minutes):", timeTaken);
 
         // Update total work stats
         const worker = await workerModel.findByIdAndUpdate(
@@ -45,10 +54,9 @@ const orderUpdate = async (req, res) => {
         const { ObjectId } = require("mongodb"); // or mongoose.Types.ObjectId if you're using Mongoose
 
         // Example
-        const id = orderId;
-        const filter = new mongoose.Types.ObjectId(id);
+
         const workerAssigned = await assignedWorkerModel.findOneAndUpdate(
-          filter,
+          { orderId: filter },
           {
             $set: { timeTakenToCompleteWorks: timeTaken, status: "Done" },
           }

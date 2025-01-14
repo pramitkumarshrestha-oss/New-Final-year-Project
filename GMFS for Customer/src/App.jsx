@@ -13,7 +13,7 @@ import { OrderPlaced } from "./Pages/OrderPlaced";
 import { AuthProvider } from "./Contexts/AuthContext";
 import { PaymentSuccess } from "./Pages/PaymentSuccess";
 import { Payment } from "./Pages/KhaltiDashboard";
-import ProductPage from "./Pages/ProductPage";
+// import ProductPage from "./Pages/ProductPage";
 
 const App = () => {
   return (
@@ -24,7 +24,7 @@ const App = () => {
           <Route path="/" element={<Landing />} />
           <Route path="/about" element={<About />} />
           <Route path="/products" element={<Gallery />} />
-          <Route path="/product/:id" element={<ProductPage />} />{" "}
+          {/* <Route path="/product/:id" element={<ProductPage />} />{" "} */}
           {/* Route for product details */}
           <Route path="/orders" element={<Orders />} />
           <Route path="/login" element={<Login />} />
