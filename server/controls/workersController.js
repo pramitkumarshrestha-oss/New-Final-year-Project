@@ -18,12 +18,13 @@ const assignWorkerHandler = async (req, res, next) => {
     // find a worker that is not working currently
     const allWorkers = await workersModel.find({}, { _id: 1 });
     const workingWorker = (
-      await assignedWorkerModel.find({}, { workerId: 1 })
+      await assignedWorkerModel.find({ status: "Working" }, { workerId: 1 })
     ).map((worker) => worker.workerId.toString());
 
     const freeWorkers = allWorkers.filter(
       (worker) => !workingWorker.includes(worker.id)
     );
+    console.log(freeWorkers);
 
     if (freeWorkers?.length) {
       const workerId = freeWorkers[0].id;

@@ -73,18 +73,22 @@ const orderUpdate = async (req, res) => {
         for (let i = 0; i < completedWorks.length; i++) {
           const work = completedWorks[i];
           if (work.timeTakenToCompleteWorks) {
-            totalTimeTaken += work.timeTakenToCompleteWorks;
+            console.log(i + "    " + work.timeTakenToCompleteWorks);
+            totalTimeTaken += parseInt(work.timeTakenToCompleteWorks);
             completedCount++;
           }
         }
 
         // Calculate average time taken
+        console.log(totalTimeTaken);
+        console.log(completedCount);
         const averageTimeTaken =
           completedCount > 0 ? Math.floor(totalTimeTaken / completedCount) : 0;
+        console.log(averageTimeTaken);
 
         // Update the worker's average time taken
         await workerModel.findByIdAndUpdate(workerId, {
-          $set: { averageTimeTaken },
+          $set: { averageTimeTaken: averageTimeTaken },
         });
 
         if (worker) {
