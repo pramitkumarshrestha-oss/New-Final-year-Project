@@ -165,3 +165,49 @@ h1 {
 .haveAccount a:hover {
   text-decoration: underline;
 }
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .login_container {
+    flex-direction: column;
+    height:700px;
+    width:300px;
+
+  }
+
+  .left_container {
+    display: none;
+  }
+
+  .right_container {
+    width: 100%;
+    padding: 1.5rem;
+  }
+
+  h1 {
+    font-size: 2rem;
+  }
+
+  .sub_head {
+    font-size: 1.2rem;
+  }
+}
+
+/* @media (max-width: 480px) {
+  .main_container {
+    margin-bottom: 2vw;
+    margin-top: 0;
+  }
+
+  .left_container {
+    display: none;
+  }
+
+  .input_field {
+    padding: 8px 8px 8px 35px;
+  }
+
+  .submit_button {
+    font-size: 0.9rem;
+  }
+} */

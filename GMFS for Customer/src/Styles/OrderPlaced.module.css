@@ -142,7 +142,7 @@
   }
 
   .cart_bottom button {
-    max-width: 90%; /* Adjust the width of the button on smaller screens */
+    max-width: 900%; /* Adjust the width of the button on smaller screens */
   }
 }
 
@@ -159,5 +159,6 @@
 
   .cart_bottom button {
     width: 100%;
+    margin-bottom: 15vh;
   }
 }

@@ -144,3 +144,31 @@ h1 {
 .already_account a:hover {
   text-decoration: underline;
 }
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .signup_container {
+    flex-direction: column;
+    height: 700px;
+    width: 300px;
+  }
+
+  .left_container {
+   display: none;
+  }
+
+  .right_container {
+    width: 100%;
+    padding: 1.5rem;
+  }
+
+  h1 {
+    font-size: 2rem;
+  }
+
+  .sub_head {
+    font-size: 1.2rem;
+  }
+}
+
+
