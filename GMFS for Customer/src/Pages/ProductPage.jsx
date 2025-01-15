@@ -9,23 +9,23 @@ const ProductPage = () => {
   const [product, setProduct] = useState(null);
 
   // Access context functions
-  const { addToCart, products } = useContext(StoreContext); // Access products from context
-  const { isLoggedIn } = useAuth(); // Get login status from AuthContext
-  const navigate = useNavigate(); // Initialize navigate for routing
+  const { addToCart, products } = useContext(StoreContext); 
+  const { isLoggedIn } = useAuth(); 
+  const navigate = useNavigate(); 
 
   // Fetch product from the menu based on the ID
   useEffect(() => {
     const fetchedProduct = products.find((item) => item._id === id); // Use products from context
 
     setProduct(fetchedProduct);
-  }, [id, products]); // Dependencies include products to re-run the effect when it changes
+  }, [id, products]); 
 
   const handleAddToCart = () => {
     if (!isLoggedIn) {
-      // Redirect to login page if the user is not logged in
+      
       navigate("/login");
     } else {
-      // Add product to cart if logged in
+     
       addToCart(id);
     }
   };
@@ -44,7 +44,7 @@ const ProductPage = () => {
           className={styles.productImage}
         />
         <p className={styles.productDescription}>{product.description}</p>
-        <p>Price: Rs {new Intl.NumberFormat().format(product.price)}</p>{" "}
+        <p>Price: Rs {new Intl.NumberFormat().format(products.price)}</p>{" "}
       </div>
 
       <button className={styles.btnPrimary} onClick={handleAddToCart}>
