@@ -1,35 +1,29 @@
-// Importing React and useContext hook for accessing context data.
-import React, { useContext } from "react";
 
-// Importing icons for add and remove functionalities.
+import React, { useContext } from "react";
 import { IoIosAddCircleOutline } from "react-icons/io";
 import { CiCircleMinus } from "react-icons/ci";
 
-// Importing CSS module for styling the cart component.
 import styles from "../Styles/Cart.module.css";
 
-// Importing StoreContext to access global state for cart functionalities.
+
 import { StoreContext } from "../Contexts/StoreContext";
 
-// Importing useNavigate hook for navigation.
 import { useNavigate } from "react-router-dom";
 
-// Cart Component definition
 export const Cart = () => {
   // Destructuring variables and functions from StoreContext.
   const {
-    cartItems,          // Object with product IDs as keys and quantities as values.
-    setCartItems,       // Function to update the cart items.
-    addToCart,          // Function to increment the quantity of a product.
-    removeFromCart,     // Function to decrement the quantity of a product.
-    Menu,               // Placeholder for additional menu data (not used here).
-    getTotalCartAmount, // Function to calculate the total amount in the cart.
-    cartData,           // Object holding the current cart data.
-    setCartData,        // Function to update cartData.
-    products,           // Array of product details.
+    cartItems,          
+    setCartItems,       
+    addToCart,          
+    removeFromCart,     
+                   
+    getTotalCartAmount,
+    cartData,           
+    setCartData,       
+    products,           
   } = useContext(StoreContext);
 
-  // Hook for navigating between pages.
   const navigate = useNavigate();
 
   // Boolean to check if the cart is empty.
@@ -44,11 +38,11 @@ export const Cart = () => {
       console.log(item);
 
       return {
-        id: item._id,                        // Product ID.
-        name: item.name,                     // Product name.
-        price: item.price,                   // Product price.
-        quantity: cartItems[item._id],       // Quantity of the product in the cart.
-        total: item.price * cartItems[item._id], // Total cost for this product.
+        id: item._id,                        
+        name: item.name,                    
+        price: item.price,                   
+        quantity: cartItems[item._id],      
+        total: item.price * cartItems[item._id], 
       };
     });
 
@@ -65,10 +59,10 @@ export const Cart = () => {
     setCartData(orderData);
 
     try {
-      // Navigating to the "OrderPlaced" page.
+   
       navigate("/OrderPlaced");
     } catch (err) {
-      // Logging any errors that occur.
+     
       console.log(err);
     }
   };

@@ -131,9 +131,29 @@ const EditProduct = () => {
                         <MenuItem value="" disabled>
                           Select Category
                         </MenuItem>
-                        <MenuItem value="Silk">Silk</MenuItem>
-                        <MenuItem value="Cotton">Cotton</MenuItem>
-                        <MenuItem value="Chiffon">Chiffon</MenuItem>
+                        <MenuItem className="text-capitalize" value="Shirt">
+                          Shirt
+                        </MenuItem>
+
+                        <MenuItem className="text-capitalize" value="Pant">
+                          Pant
+                        </MenuItem>
+
+                        <MenuItem className="text-capitalize" value="Coat">
+                          Coat
+                        </MenuItem>
+
+                        <MenuItem className="text-capitalize" value="Jacket">
+                          Jacket
+                        </MenuItem>
+
+                        <MenuItem className="text-capitalize" value="Hoodie">
+                          Hoodie
+                        </MenuItem>
+
+                        <MenuItem className="text-capitalize" value="Random">
+                          Random
+                        </MenuItem>
                       </Select>
                     </div>
                   </div>

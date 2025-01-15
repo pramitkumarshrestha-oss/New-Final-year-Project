@@ -1,4 +1,4 @@
-// Importing necessary libraries and components.
+
 import React, { createContext, useState, useContext, useEffect } from "react";
 import axios from "axios";
 import Menu from "../Components/TabMenu/menu.jsx";
@@ -24,9 +24,8 @@ export const StoreContextProvider = (props) => {
   const [searchItem, setSearchItem] = useState("");
   const [cartItems, setCartItems] = useState({});
 
-  // Debugging cartItems state on mount.
   useEffect(() => {
-    // console.log(Object.keys(cartItems));
+    
   }, []);
 
   // State for cart data including items, total amount, and delivery fee.
@@ -160,25 +159,25 @@ export const StoreContextProvider = (props) => {
 
   // Context value to provide global state and actions to child components.
   const contextValue = {
-    Menu, // Menu component or data.
-    addToCart, // Function to add items to the cart.
-    removeFromCart, // Function to remove items from the cart.
-    token, // User authentication token.
-    setToken, // Function to update token.
-    cartItems, // State for cart items.
-    setCartItems, // Function to update cart items.
-    getTotalCartAmount, // Function to calculate cart total.
-    searchItem, // Search term state.
-    setSearchItem, // Function to update search term.
-    cartItemCount, // Total number of items in the cart.
-    setCartData, // Function to update cart data.
-    cartData, // Cart data state.
-    deliveryInfo, // Delivery information state.
-    setDeliveryInfo, // Function to update delivery information.
-    setProducts, // Function to update products.
-    products, // List of available products.
-    paymentDetails, // Payment details state.
-    setPaymentDetails, // Function to update payment details.
+    Menu, 
+    addToCart, 
+    removeFromCart, 
+    token, 
+    setToken,
+    cartItems, 
+    setCartItems, 
+    getTotalCartAmount, 
+    searchItem, 
+    setSearchItem, 
+    cartItemCount, 
+    setCartData, 
+    cartData, 
+    deliveryInfo, 
+    setDeliveryInfo, 
+    setProducts,
+    products, 
+    paymentDetails, 
+    setPaymentDetails, 
   };
 
   return (
