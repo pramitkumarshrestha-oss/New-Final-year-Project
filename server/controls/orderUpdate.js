@@ -73,7 +73,7 @@ const orderUpdate = async (req, res) => {
         for (let i = 0; i < completedWorks.length; i++) {
           const work = completedWorks[i];
           if (work.timeTakenToCompleteWorks) {
-            console.log(i + "    " + work.timeTakenToCompleteWorks);
+            // console.log(i + "    " + work.timeTakenToCompleteWorks);
             totalTimeTaken += parseInt(work.timeTakenToCompleteWorks);
             completedCount++;
           }
@@ -84,7 +84,7 @@ const orderUpdate = async (req, res) => {
         console.log(completedCount);
         const averageTimeTaken =
           completedCount > 0 ? Math.floor(totalTimeTaken / completedCount) : 0;
-        console.log(averageTimeTaken);
+        // console.log(averageTimeTaken);
 
         // Update the worker's average time taken
         await workerModel.findByIdAndUpdate(workerId, {
@@ -96,7 +96,7 @@ const orderUpdate = async (req, res) => {
         }
 
         // Recalculate popularity based on total completed work
-        const scalingFactor = 10; // Define how many works correspond to one popularity increment
+        const scalingFactor = 3; // Define how many works correspond to one popularity increment
         const newPopularity = Math.min(
           5,
           Math.max(
