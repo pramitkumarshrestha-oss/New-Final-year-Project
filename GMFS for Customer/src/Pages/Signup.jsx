@@ -33,7 +33,7 @@ const Signup = () => {
     let formErrors = {};
     if (!formData.userName.trim()) {
       formErrors.userName = "Username is required *";
-    } else if (!/[A-Za-z]+[A-Za-z]*/.test(formData.userName)) {
+    } else if (!/^[a-zA-Z][a-zA-Z0-9]{2,15}$/.test(formData.userName)) {
       formErrors.userName = "Invalid UserName";
     }
 
@@ -49,7 +49,7 @@ const Signup = () => {
 
     if (!formData.phoneNumber.trim()) {
       formErrors.phoneNumber = "Phone Number is required *";
-    } else if (!/^[0-9]{10}$/.test(formData.phoneNumber)) {
+    } else if (!/^(98|97|96)[0-9]{8}$/.test(formData.phoneNumber)) {
       formErrors.phoneNumber = "Invalid phone Number";
     }
 
