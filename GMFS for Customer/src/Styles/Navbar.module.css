@@ -4,10 +4,10 @@
   align-items: center;
   padding: 1rem 3vw;
 
-  /* background-color: #76aee9; */
+  
   background: linear-gradient(to right, #76aee9, #a378d9);
   color: white;
-  /* position: fixed; */
+
 }
 
 .para {
@@ -33,13 +33,6 @@
   margin-left: 2rem;
   color: white;
   text-decoration: none;
-  /* float: left;
-  margin-right: auto;
-  overflow: hidden; */
-  /* display: block; */
-  /* text-align: center; */
-
-  /* text-decoration: none; */
 }
 
 .link:hover {
@@ -85,29 +78,6 @@
   text-align: top;
 }
 
-/* Apply same styles for logout button to look like links
-.link,
-.logoutButton {
-  margin-left: 2rem;
-  color: white;
-  text-decoration: none;
-  background: none; /* Remove button's default background */
-  /* border: none; /* Remove button border */
-  /* cursor: pointer; /* Make cursor pointer like a link */
-  /*font-size: inherit; /* Make sure font size matches */
-  /*display: inline-block; /* Ensures it behaves like a link */
-  /*padding: 0;
-  line-height: inherit; */ 
-/*}
-
-.link:hover,
-.logoutButton:hover {
-  text-decoration: underline;
-} */
-
-/* Add to Navbar.module.css */
-
-/* Profile Menu Container */
 .profileMenu {
   position: relative;
   display: inline-block;
@@ -128,17 +98,12 @@
   margin-top: 1px;
 }
 
-.iconButton:hover{
-
-  
+.iconButton:hover {
   color: #76aee9; /* New color for the icon when hovered */
   background-color: white; /* Background color change on hover */
   border-radius: 10%;
   padding: 10px;
- 
-
 }
-
 
 /* Show dropdown when hovering over profile menu or dropdown */
 .profileMenu:hover .dropdown,
@@ -146,13 +111,12 @@
   display: block; /* Make the dropdown visible */
 }
 
-
 /* Dropdown Menu */
 .dropdown {
   display: none; /* Hidden by default */
   position: absolute;
   top: 40px;
-  left:11px;
+  left: 11px;
   background-color: whitesmoke;
   color: black;
   border-radius: 8px;
@@ -161,7 +125,6 @@
   width: 70px;
   z-index: 10;
 }
-
 
 /* Dropdown Items */
 .dropdownItem {
@@ -190,4 +153,37 @@ button.dropdownItem {
   text-align: left;
   padding: 10px;
   cursor: pointer;
+}
+
+/* Responsive Navbar */
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 1rem;
+  }
+
+  .links {
+    flex-direction: column;
+    gap: 1rem;
+    width: 100%;
+  }
+
+  .link {
+    margin-left: 0;
+  }
+
+  .button {
+    width: 100%;
+    margin-left: 0;
+    margin-top: 10px;
+  }
+
+  .profileMenu {
+    margin-right:7.5vh;
+  }
+
+  .logo {
+    display: none;
+  }
 }

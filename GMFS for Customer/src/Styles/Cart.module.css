@@ -211,14 +211,17 @@
   .cart_items_item img {
     width: 25vw;
     height: auto;
+    margin-bottom: 0vh;
   }
 
   .cart_total {
     width: 100%;
+    margin-bottom: 10vh;
+    
   }
 
   .cart_bottom button {
-    width: 90vw;
+    width: 50vw;
     font-size: 2vh;
   }
 

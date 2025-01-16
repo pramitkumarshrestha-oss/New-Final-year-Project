@@ -124,16 +124,28 @@ const ProductUplaod = () => {
                         inputProps={{ "aria-label": "Without label" }}
                         className="w-100"
                       >
-                        <MenuItem className="text-capitalize" value="Silk">
-                          Silk
+                        <MenuItem className="text-capitalize" value="Shirt">
+                          Shirt
                         </MenuItem>
 
-                        <MenuItem className="text-capitalize" value="Cotton">
-                          Cotton
+                        <MenuItem className="text-capitalize" value="Pant">
+                          Pant
                         </MenuItem>
 
-                        <MenuItem className="text-capitalize" value="Chiffon">
-                          Chiffon
+                        <MenuItem className="text-capitalize" value="Coat">
+                          Coat
+                        </MenuItem>
+
+                        <MenuItem className="text-capitalize" value="Jacket">
+                          Jacket
+                        </MenuItem>
+
+                        <MenuItem className="text-capitalize" value="Hoodie">
+                          Hoodie
+                        </MenuItem>
+
+                        <MenuItem className="text-capitalize" value="Random">
+                          Random
                         </MenuItem>
                       </Select>
                     </div>

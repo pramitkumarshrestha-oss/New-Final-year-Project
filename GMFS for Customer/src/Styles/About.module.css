@@ -42,7 +42,7 @@
   font-size: 1rem;
   padding: 0.5rem 1.5rem;
   border-radius: 5px;
-  background-color:  #deb887;
+  background-color: #deb887;
   color: white;
   border: none;
   cursor: pointer;
@@ -51,4 +51,56 @@
 
 .learn:hover {
   background-color: rgb(100, 150, 110);
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .fabric {
+    height: 600px;
+  }
+
+  .heading {
+    font-size: 2rem;
+  }
+
+  .aboutus_content {
+    font-size: 1rem;
+  }
+
+  .learn {
+    font-size: 0.9rem;
+    padding: 0.4rem 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+.container{
+  padding: 25px;
+    width: 100%;
+    margin-bottom: 10vh;
+}
+
+  .fabric {
+    height: 350px;
+  }
+
+  .heading {
+    font-size: 1.5rem;
+  }
+
+  .aboutus_content {
+    font-size: 0.9rem;
+    line-height: 1.5;
+  }
+
+  .learn {
+    
+    margin-bottom: 2.5vh;
+    font-size: 0.8rem;
+    padding: 0.3rem 0.8rem;
+  }
+
+  .text {
+    max-width: 90%;
+  }
 }

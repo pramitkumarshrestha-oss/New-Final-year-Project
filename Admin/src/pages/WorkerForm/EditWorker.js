@@ -41,7 +41,11 @@ const EditWorker = () => {
     const newErrors = {};
 
     // Name validation
-    if (!formData.name) newErrors.name = "Name is required.";
+    if (!formData.name.trim()) {
+      newErrors.name = "Username is required *";
+    } else if (!/^[a-zA-Z][a-zA-Z0-9]{2,15}$/.test(formData.name)) {
+      newErrors.name = "Invalid UserName";
+    }
 
     // Age validation
     if (!formData.age) {
@@ -62,10 +66,12 @@ const EditWorker = () => {
     if (!formData.address) newErrors.address = "Address is required.";
 
     // Phone number validation
-    if (!formData.phoneNumber)
-      newErrors.phoneNumber = "Phone number is required.";
-    else if (!/^\d{10}$/.test(formData.phoneNumber))
-      newErrors.phoneNumber = "Phone number must be 10 digits.";
+    // Phone number validation
+    if (!formData.phoneNumber.trim()) {
+      newErrors.phoneNumber = "Phone Number is required *";
+    } else if (!/^(98|97|96)[0-9]{8}$/.test(formData.phoneNumber)) {
+      newErrors.phoneNumber = "Invalid phone Number";
+    }
 
     // Username validation
     if (!formData.username) newErrors.username = "Username is required.";

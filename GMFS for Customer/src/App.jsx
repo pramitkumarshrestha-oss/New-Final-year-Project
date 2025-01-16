@@ -8,6 +8,7 @@ import Orders from "./Pages/Orders";
 import Login from "./Pages/Login";
 import Signup from "./Pages/Signup";
 import Gallery from "./Components/TabMenu/Gallery";
+import ProductPage from "./Pages/ProductPage";
 import { Cart } from "./Pages/Cart";
 import { OrderPlaced } from "./Pages/OrderPlaced";
 import { AuthProvider } from "./Contexts/AuthContext";
@@ -24,7 +25,7 @@ const App = () => {
           <Route path="/" element={<Landing />} />
           <Route path="/about" element={<About />} />
           <Route path="/products" element={<Gallery />} />
-          {/* <Route path="/product/:id" element={<ProductPage />} />{" "} */}
+          <Route path="/product/:id" element={<ProductPage />} />{" "}
           {/* Route for product details */}
           <Route path="/orders" element={<Orders />} />
           <Route path="/login" element={<Login />} />

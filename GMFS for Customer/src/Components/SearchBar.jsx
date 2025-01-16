@@ -63,8 +63,8 @@ const SearchBar = () => {
                 </li>
               ))}
             </ul>
-          ) : input && (
-            <div className={styles.noResults}>No Results Found</div>
+          ) : (
+            input && <div className={styles.noResults}>No Results Found</div>
           )}
         </div>
       )}

@@ -109,3 +109,39 @@ p1 {
   color: #00796b;
   font-size: 1.4rem;
 }
+
+@media (max-width: 480px) {
+  /* Smaller screens adjustments */
+  .payment_containers {
+    padding: 15px;
+    width: 95%;
+   
+    margin-bottom: 22vh;
+  }
+
+  .options {
+    width: 100%;
+    padding: 15px;
+  }
+
+  .payment_logos {
+    width: 100px;
+    height: 80px;
+  }
+
+  .subheadings {
+    font-size: 1.3rem;
+  }
+
+  .order_summarys {
+    padding: 5px;
+  }
+
+  .total_amts {
+    font-size: 1rem;
+  }
+
+  .total_amts p:last-child {
+    font-size: 1.1rem;
+  }
+}

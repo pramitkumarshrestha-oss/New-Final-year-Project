@@ -1,6 +1,5 @@
 import React from "react";
 
-// Defining a functional component 'CateMenu' that takes 'filterMenu' and 'catItems' as props
 const CateMenu = ({ filterMenu, catItems }) => {
   return (
     <>
