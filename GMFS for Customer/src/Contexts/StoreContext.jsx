@@ -143,7 +143,7 @@ export const StoreContextProvider = (props) => {
     try {
       const response = await axios.get("http://localhost:3010/addProducts");
       setProducts(response.data); // Update products state with fetched data.
-      // console.log(response.data);
+     
     } catch (error) {
       console.log(error.message);
     }

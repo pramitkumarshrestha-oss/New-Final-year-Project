@@ -38,7 +38,7 @@ const Orders = () => {
     if (token) {
       fetchOrders();
     } else {
-      console.log("radii");
+      console.log("orders");
     }
   }, [token]);
 
