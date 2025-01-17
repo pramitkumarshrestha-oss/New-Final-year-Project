@@ -43,7 +43,7 @@ const ProductPage = () => {
           className={styles.productImage}
         />
         <p className={styles.productDescription}>{product.description}</p>
-        <p>Price: Rs {product.price}</p>{" "}
+        <p className={styles.productPrice}>Price: Rs {product.price}</p>{" "}
       </div>
 
       <button className={styles.btnPrimary} onClick={handleAddToCart}>
