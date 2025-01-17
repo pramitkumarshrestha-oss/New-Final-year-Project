@@ -26,7 +26,7 @@ const editWorker = async (req, res) => {
         citizenshipNumber: citizenshipNumber,
       },
     });
-    console.log(updatedWorker);
+    // console.log(updatedWorker);
     if (updatedWorker) {
       console.log("Worker updated successfully");
       res.status(200).json({ message: "Worker updated successfully" });
@@ -45,7 +45,7 @@ const deleteWorker = async (req, res) => {
   }
 
   try {
-    console.log(id);
+    // console.log(id);
 
     const deletedWorker = await workersModel.findByIdAndDelete(id);
     if (deletedWorker) {

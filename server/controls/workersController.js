@@ -6,9 +6,9 @@ const predict = require("../knn");
 
 const assignWorkerHandler = async (req, res, next) => {
   const { orderId } = req.body;
-  console.log("sandesh");
+  // console.log("sandesh");
   try {
-    console.log("hahahhaha");
+    // console.log("hahahhaha");
     const work = await assignedWorkerModel.findOne({ orderId });
     if (work)
       return res.status(200).json({
