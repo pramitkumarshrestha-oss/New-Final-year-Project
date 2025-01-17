@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { StoreContext } from "../../Contexts/StoreContext";
 import { useAuth } from "../../Contexts/AuthContext";
-import { useNavigate } from "react-router-dom";
+import { useNavigate , Link} from "react-router-dom";
 
 const MenuItems = ({ items }) => {
   const { addToCart } = useContext(StoreContext);
@@ -28,11 +28,14 @@ const MenuItems = ({ items }) => {
                 <div className="item1" key={_id}>
                   <div className="Item-inside">
                     <div className="col-12 col-md-12 col-lg-4 img-div">
-                      <img
-                        src={`${url}/${image}`}
-                        alt={name}
-                        className="img-fluid"
-                      />
+                      {/* 🔗 Link added here to navigate to ProductPage */}
+                      <Link to={`/product/${_id}`}>
+                        <img
+                          src={`${url}/${image}`}
+                          alt={name}
+                          className="img-fluid"
+                        />
+                      </Link>
                     </div>
                     <div className="col-12 col-md-12 col-lg-8">
                       <div className="main-title pt-4 pb-3">
