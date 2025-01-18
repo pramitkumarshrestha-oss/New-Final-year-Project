@@ -65,7 +65,6 @@ const TaskList = () => {
 
   const openModal = (task) => {
     setSelectedTask(task);
-    // Initialize with completed items if they exist
     setSelectedItems(task.completedItems ? task.completedItems.map(item => item.name) : []);
     setIsModalOpen(true);
   };

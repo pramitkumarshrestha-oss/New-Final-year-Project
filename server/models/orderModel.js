@@ -26,6 +26,9 @@ const orderSchema = new mongoose.Schema(
     paymentDetails: {
       type: Object,
     },
+    averageTime: {
+      type: Number,
+    },
     assignedWorkerId: {
       type: ObjectId,
       ref: "Workers",

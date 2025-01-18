@@ -17,6 +17,7 @@ const orderUpdate = async (req, res) => {
       const completedItems = req.body.items;
       console.log("Partially Completed Items:",completedItems);
       // update.completedItems.push(completedItems);
+      update
     }
 
     if (orderStatus === "Completed") {
