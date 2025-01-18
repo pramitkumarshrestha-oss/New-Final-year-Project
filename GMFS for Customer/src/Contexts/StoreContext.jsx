@@ -67,38 +67,40 @@ export const StoreContextProvider = (props) => {
 
   // Function to add an item to the cart.
   const addToCart = async (itemId) => {
-    // Update cart items state to increment quantity or add a new item.
+    // Update cart items state to set default quantity to 10 or increment by 1.
     if (!cartItems[itemId]) {
-      setCartItems((prev) => ({ ...prev, [itemId]: 1 }));
+      setCartItems((prev) => ({ ...prev, [itemId]: 10 }));  // Default quantity is 10
     } else {
       setCartItems((prev) => ({ ...prev, [itemId]: prev[itemId] + 1 }));
     }
-
+  
     // Send the updated cart data to the backend if a token is present.
     if (token) {
       await axios.post(
         "http://localhost:3010/cart/add",
-        { itemId },
+        { itemId, quantity: cartItems[itemId] ? cartItems[itemId] + 1 : 10 },  // Pass correct quantity to the backend
         { headers: { Authorization: `Bearer ${token}` } }
       );
     }
   };
-
-  // Function to remove or decrement an item from the cart.
+  
+//Remove from cart
   const removeFromCart = async (itemId) => {
     setCartItems((prevCartItems) => {
       const updatedCart = { ...prevCartItems };
-      if (updatedCart[itemId] > 1) {
-        // Decrement quantity if greater than 1.
+  
+      if (updatedCart[itemId] > 10) {
+        // Decrement quantity only if it's above 10
         updatedCart[itemId] -= 1;
       } else {
-        // Remove item from cart if quantity is 1.
+        // Remove the item from the cart if quantity is 10 or less
         delete updatedCart[itemId];
       }
+  
       return updatedCart;
     });
-
-    // Update the backend about the removed item.
+  
+    // Notify the backend about the removed item or decremented quantity.
     if (token) {
       try {
         await axios.post(
@@ -111,6 +113,7 @@ export const StoreContextProvider = (props) => {
       }
     }
   };
+  
 
   // Calculate the total number of items in the cart.
   const cartItemCount = Object.values(cartItems).reduce(

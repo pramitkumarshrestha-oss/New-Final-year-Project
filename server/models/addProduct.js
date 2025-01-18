@@ -5,6 +5,8 @@ const productSchema = new mongoose.Schema({
   description: { type: String },
   category: { type: String },
   price: { type: Number },
+  standardTime : {type : Number},
+  minTime : {type : Number},
 });
 const productDetials = mongoose.model("productDetilas", productSchema);
 module.exports = productDetials;
