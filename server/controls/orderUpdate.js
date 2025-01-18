@@ -9,17 +9,26 @@ const orderUpdate = async (req, res) => {
 
   try {
     // Update the order status
-    const update = await order.findByIdAndUpdate(
-      orderId,
-      {
-        $set: {
-          orderStatus: orderStatus,
-        },
-      },
-      { new: true }
+    const update = await order.findById(
+      orderId
     );
 
+    if(orderStatus === "Partially Completed"){
+      const completedItems = req.body.items;
+      console.log("Partially Completed Items:",completedItems);
+      // update.completedItems.push(completedItems);
+    }
+
     if (orderStatus === "Completed") {
+      const update = await order.findByIdAndUpdate(
+        orderId,
+        {
+          $set: {
+            orderStatus: orderStatus,
+          },
+        },
+        { new: true }
+      );
       // Find the worker associated with this order
       const orderDetails = await order.findById(orderId);
       const workerId = orderDetails.assignedWorkerId; // Assuming `workerId` is stored in the order model

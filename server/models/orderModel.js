@@ -15,6 +15,8 @@ const orderSchema = new mongoose.Schema(
 
     deliveryFee: { type: String },
 
+    completedItems: { type: Array },
+
     deliveryInfo: {
       type: Object,
     },

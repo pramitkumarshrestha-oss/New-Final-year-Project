@@ -5,7 +5,11 @@ import axios from "axios";
 
 const TaskList = () => {
   const [tasks, setTasks] = useState([]);
+  const [selectedTask, setSelectedTask] = useState(null);
+  const [selectedItems, setSelectedItems] = useState([]);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const token = localStorage.getItem("workerToken");
+
   const fetchTasks = async () => {
     try {
       const res = await fetch("http://localhost:3010/fetchWorks", {
@@ -24,24 +28,62 @@ const TaskList = () => {
       console.error("Error fetching tasks:", error);
     }
   };
+
+  const updateTaskStatus = async (orderId, newStatus, items = []) => {
+    try {
+      await axios.post("http://localhost:3010/api/updateOrder", {
+        orderId,
+        newStatus,
+        items,
+      });
+      fetchTasks();
+      closeModal();
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const submitModal = async (orderId, newStatus, items) => {
+    try{
+      await axios.post("http://localhost:3010/api/updateOrder", {
+        orderId,
+        newStatus,
+        items,
+      });
+      fetchTasks();
+      closeModal();
+    }
+    catch (error) {
+      console.log(error);
+      
+    }
+  };
+
   useEffect(() => {
     fetchTasks();
   }, []);
 
-  const updateTaskStatus = async (orderId, newStatus) => {
-    // const updatedTasks = tasks.map((task) =>
-    //   task.orderId === orderId ? { ...task, orderStatus: newStatus } : task
-    // );
+  const openModal = (task) => {
+    setSelectedTask(task);
+    // Initialize with completed items if they exist
+    setSelectedItems(task.completedItems ? task.completedItems.map(item => item.name) : []);
+    setIsModalOpen(true);
+  };
 
-    // setTasks(updatedTasks);
-    try {
-      const res = await axios.post("http://localhost:3010/api/updateOrder", {
-        orderId,
-        newStatus,
-      });
-      fetchTasks();
-    } catch (error) {
-      console.log(error);
+  const closeModal = () => {
+    setSelectedTask(null);
+    setSelectedItems([]);
+    setIsModalOpen(false);
+  };
+
+  const handleItemSelect = (item) => {
+    if (selectedItems.includes(item)) {
+      setSelectedItems(selectedItems.filter((i) => i !== item));
+    } else {
+      // Prevent selecting all items
+      if (selectedItems.length + 1 < selectedTask.orderedItems.length) {
+        setSelectedItems([...selectedItems, item]);
+      }
     }
   };
 
@@ -51,13 +93,20 @@ const TaskList = () => {
       {tasks.length > 0 ? (
         tasks.map((task) => (
           <div key={task.orderId} className={styles.taskItem}>
-            <p>Ordered Item: {task.orderedItems[0].name}</p>
+            <p>Ordered Items: {task.orderedItems.map((item) => item.name).join(", ")}</p>
             <p>Total Amount: {task.totalAmount}</p>
             <p>Status: {task.orderStatus}</p>
             {task.orderStatus !== "Completed" && (
               <select
                 value={task.orderStatus}
-                onChange={(e) => updateTaskStatus(task.orderId, e.target.value)}
+                onChange={(e) => {
+                  const newStatus = e.target.value;
+                  if (newStatus === "Partially Completed") {
+                    openModal(task);
+                  } else {
+                    updateTaskStatus(task.orderId, newStatus);
+                  }
+                }}
                 className={styles.statusSelect}
               >
                 {task.orderStatus === "processedWithPayment" && (
@@ -73,17 +122,54 @@ const TaskList = () => {
                     <option value="inProgress" disabled>
                       In Progress
                     </option>
+                    {task.orderedItems.length > 1 && (
+                      <option value="Partially Completed">Partially Completed</option>
+                    )}
                     <option value="Completed">Completed</option>
                   </>
                 )}
-
-                {/* <option value="Completed">Completed</option> */}
               </select>
             )}
           </div>
         ))
       ) : (
         <p>No tasks assigned.</p>
+      )}
+
+      {isModalOpen && selectedTask && (
+        <div className={styles.modal}>
+          <div className={styles.modalContent}>
+            <h3>Select Items for Partial Completion</h3>
+            <p className={styles.note}>Note: You cannot select all items</p>
+            <div className={styles.itemList}>
+              {selectedTask.orderedItems.map((item) => (
+                <div key={item.name}>
+                  <label>
+                    <input
+                      type="checkbox"
+                      value={item.name}
+                      onChange={() => handleItemSelect(item.name)}
+                      checked={selectedItems.includes(item.name)}
+                      disabled={!selectedItems.includes(item.name) && 
+                               selectedItems.length + 1 >= selectedTask.orderedItems.length}
+                    />
+                    {item.name}
+                  </label>
+                </div>
+              ))}
+            </div>
+            <button
+              onClick={() => submitModal(selectedTask.orderId, "Partially Completed", selectedItems)}
+              className={styles.submitButton}
+              disabled={selectedItems.length === 0}
+            >
+              Submit
+            </button>
+            <button onClick={closeModal} className={styles.cancelButton}>
+              Cancel
+            </button>
+          </div>
+        </div>
       )}
     </div>
   );
