@@ -28,6 +28,7 @@ const orderSchema = new mongoose.Schema(
     },
     averageTime: {
       type: Number,
+      default: 0,
     },
     assignedWorkerId: {
       type: ObjectId,

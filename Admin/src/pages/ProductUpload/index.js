@@ -18,6 +18,8 @@ const ProductUplaod = () => {
     description: "",
     price: "",
     category: "",
+    standardTime: "",
+    minTime: "",
   });
   const handleOnChange = (e) => {
     const { name, value } = e.target;
@@ -37,6 +39,9 @@ const ProductUplaod = () => {
     formData.append("price", data.price);
     formData.append("category", data.category);
     formData.append("image", image);
+    formData.append("standardTime", data.standardTime);
+    formData.append("minTime", data.minTime);
+
 
     for (let [key, value] of formData.entries()) {
       console.log(`Key: ${key}, Value: ${value}`);
