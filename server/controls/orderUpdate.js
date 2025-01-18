@@ -176,7 +176,7 @@ const orderUpdate = async (req, res) => {
         console.log("Total Average Time:", totalAverageTime);
         const averageTime = totalAverageTime / completedWorks.length;
         console.log("Average Time:", averageTime);
-        worker.averageTime = averageTime;
+        worker.averageTimeTaken = averageTime;
         await worker.save();
 
         // Recalculate popularity based on total completed work
