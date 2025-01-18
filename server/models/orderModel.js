@@ -15,6 +15,8 @@ const orderSchema = new mongoose.Schema(
 
     deliveryFee: { type: String },
 
+    completedItems: { type: Array },
+
     deliveryInfo: {
       type: Object,
     },
@@ -23,6 +25,9 @@ const orderSchema = new mongoose.Schema(
     },
     paymentDetails: {
       type: Object,
+    },
+    averageTime: {
+      type: Number,
     },
     assignedWorkerId: {
       type: ObjectId,

@@ -13,7 +13,7 @@ const assignedWorkerSchema = new mongoose.Schema(
     },
     status: {
       type: String,
-      enum: ["Working", "Done"],
+      enum: ["Working","Partially Completed","Done"],
       default: "Working",
     },
     timeTakenToCompleteWorks: { type: String },
