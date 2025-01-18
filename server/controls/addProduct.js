@@ -30,6 +30,8 @@ const addProduct = async (req, res) => {
         description: description,
         category: category,
         price: price,
+        standardTime: 0,
+        minTime:0 
       });
 
       await newItem.save();
