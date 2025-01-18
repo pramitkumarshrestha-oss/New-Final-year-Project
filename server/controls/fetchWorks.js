@@ -12,7 +12,6 @@ const getAllWorkersWithOrdersHandler = async (req, res, next) => {
       .find({})
       .populate("orderId")
       .populate("workerId");
-
     const result = workers.map((worker) => {
       const workerOrders = assignedOrders
         .filter((assignment) => {
@@ -24,13 +23,12 @@ const getAllWorkersWithOrdersHandler = async (req, res, next) => {
         })
         .map((assignment) => ({
           orderId: assignment.orderId._id,
-          orderId: assignment.orderId._id,
           orderedItems: assignment.orderId.orderedItems,
           totalAmount: assignment.orderId.totalAmount,
           orderStatus: assignment.orderId.orderStatus,
           paymentStatus: assignment.orderId.paymentStatus,
+          completedItems: assignment.orderId.completedItems,
           deliveryFee: assignment.orderId.deliveryFee,
-          assignedAt: assignment.createdAt,
           assignedAt: assignment.createdAt,
         }));
 
@@ -40,6 +38,7 @@ const getAllWorkersWithOrdersHandler = async (req, res, next) => {
         orders: workerOrders,
       };
     });
+
     const filteredWorkers = result.filter(worker => worker.workerId.toString() === workerId);
 
     return res.status(200).json({
@@ -51,4 +50,5 @@ const getAllWorkersWithOrdersHandler = async (req, res, next) => {
     res.status(500).json({ message: "An error occurred", error });
   }
 };
+
 module.exports = getAllWorkersWithOrdersHandler;
