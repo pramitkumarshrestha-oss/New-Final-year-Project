@@ -21,57 +21,61 @@ const orderUpdate = async (req, res) => {
       );
     }
 
-    if(orderStatus === "Partially Completed") {
+    if (orderStatus === "Partially Completed") {
       const update = await order.findById(orderId);
       console.log("Partially Completed Items:", req.body.items);
       const completedItems = req.body.items;
-    
+
       // Logging completed items
       console.log("Completed Items:", completedItems);
-    
+
       const standardTime = []; // To store standard time values from productDetails
       const actualTimes = []; // To store actual times taken for each completed item
       const deviations = []; // To store the deviation for each item
-    
+
       // Iterate through completedItems to get the standard time and actual time
       for (const item of completedItems) {
         try {
-          const timedata = await productDetials.findOne({name: item});
+          const timedata = await productDetials.findOne({ name: item });
           if (timedata) {
             standardTime.push(timedata.standardTime);
-  
+
             const workerAssignedDetails = await assignedWorkerModel.findOne({
               orderId: orderId,
               workerId: update.assignedWorkerId,
             });
             const createdAt = new Date(workerAssignedDetails.createdAt);
             const currentTime = new Date();
-            let actualTime = Math.floor((currentTime - createdAt) / (1000 * 60 * 60));
+            let actualTime = Math.floor(
+              (currentTime - createdAt) / (1000 * 60 * 60)
+            );
             if (actualTime <= 0) {
               actualTime = 1;
             }
             actualTimes.push(actualTime);
-  
-            const deviation = (actualTime - timedata.standardTime);
+
+            const deviation = actualTime - timedata.standardTime;
             deviations.push(deviation);
           }
         } catch (error) {
           console.error("Error fetching product details:", error);
         }
       }
-      const totalDeviation = deviations.reduce((sum, deviation) => sum + deviation, 0);
+      const totalDeviation = deviations.reduce(
+        (sum, deviation) => sum + deviation,
+        0
+      );
       const averageDeviation = totalDeviation / deviations.length;
-    
+
       console.log("Standard Time for each item:", standardTime);
       console.log("Actual Time for each item:", actualTimes);
       console.log("Deviations for each item:", deviations);
       console.log("Average Deviation:", averageDeviation);
-    
+
       update.completedItems = completedItems;
       update.averageTime += averageDeviation;
-      // await update.save();
+      await update.save();
     }
-    
 
     if (orderStatus === "Completed") {
       const update = await order.findByIdAndUpdate(
@@ -84,41 +88,48 @@ const orderUpdate = async (req, res) => {
         { new: true }
       );
       //Check the remaing items in completedItems
-      const missingInCompletedItems = update.orderedItems.filter(item => !update.completedItems.includes(item));
+      const missingInCompletedItems = update.orderedItems.filter(
+        (item) => !update.completedItems.includes(item)
+      );
       console.log("Missing Items in Completed Items:", missingInCompletedItems);
       const standardTime = []; // To store standard time values from productDetails
       const actualTimes = []; // To store actual times taken for each completed item
       const deviations = []; // To store the deviation for each item
-    
+
       // Iterate through completedItems to get the standard time and actual time
       for (const item of missingInCompletedItems) {
         try {
-          const timedata = await productDetials.findOne({name: item.name});
+          const timedata = await productDetials.findOne({ name: item.name });
           if (timedata) {
             standardTime.push(timedata.standardTime);
-  
+
             const workerAssignedDetails = await assignedWorkerModel.findOne({
               orderId: orderId,
               workerId: update.assignedWorkerId,
             });
             const createdAt = new Date(workerAssignedDetails.createdAt);
             const currentTime = new Date();
-            let actualTime = Math.floor((currentTime - createdAt) / (1000 * 60 * 60));
+            let actualTime = Math.floor(
+              (currentTime - createdAt) / (1000 * 60 * 60)
+            );
             if (actualTime <= 0) {
               actualTime = 1;
             }
             actualTimes.push(actualTime);
-  
-            const deviation = (actualTime - timedata.standardTime);
+
+            const deviation = actualTime - timedata.standardTime;
             deviations.push(deviation);
           }
         } catch (error) {
           console.error("Error fetching product details:", error);
         }
       }
-      const totalDeviation = deviations.reduce((sum, deviation) => sum + deviation, 0);
+      const totalDeviation = deviations.reduce(
+        (sum, deviation) => sum + deviation,
+        0
+      );
       const averageDeviation = totalDeviation / deviations.length;
-    
+
       console.log("Standard Time for each item:", standardTime);
       console.log("Actual Time for each item:", actualTimes);
       console.log("Deviations for each item:", deviations);
@@ -149,9 +160,8 @@ const orderUpdate = async (req, res) => {
           { new: true }
         );
         // Retrieve all completed works for the worker
-        const completedWorks = await assignedWorkerModel.find(
-          { workerId, status: "Done" }
-        )
+        const completedWorks = await assignedWorkerModel
+          .find({ workerId, status: "Done" })
           .populate("orderId");
 
         // Calculate the average time taken for the worker
