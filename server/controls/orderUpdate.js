@@ -69,7 +69,7 @@ const orderUpdate = async (req, res) => {
     
       update.completedItems = completedItems;
       update.averageTime += averageDeviation;
-      // await update.save();
+      await update.save();
     }
     
 
@@ -84,7 +84,7 @@ const orderUpdate = async (req, res) => {
         { new: true }
       );
       //Check the remaing items in completedItems
-      const missingInCompletedItems = update.orderedItems.filter(item => !update.completedItems.includes(item));
+      const missingInCompletedItems = update.orderedItems.filter(item => !update.completedItems.includes(item.name));
       console.log("Missing Items in Completed Items:", missingInCompletedItems);
       const standardTime = []; // To store standard time values from productDetails
       const actualTimes = []; // To store actual times taken for each completed item
@@ -148,17 +148,24 @@ const orderUpdate = async (req, res) => {
 
           { new: true }
         );
+        const aWorker = await assignedWorkerModel.findOne({
+          orderId: id,
+          workerId: workerId,
+        });
+        aWorker.status = "Done";
+        await aWorker.save();
         // Retrieve all completed works for the worker
         const completedWorks = await assignedWorkerModel.find(
           { workerId, status: "Done" }
         )
           .populate("orderId");
-
+        console.log("Completed Works:", completedWorks);
         // Calculate the average time taken for the worker
         let totalAverageTime = 0;
         for (const work of completedWorks) {
           totalAverageTime += work.orderId.averageTime;
         }
+        console.log("Total Average Time:", totalAverageTime);
         const averageTime = totalAverageTime / completedWorks.length;
         console.log("Average Time:", averageTime);
         worker.averageTime = averageTime;
