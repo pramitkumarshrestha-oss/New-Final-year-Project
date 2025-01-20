@@ -1,5 +1,4 @@
-
-import React, { useContext , useState } from "react";
+import React, { useContext, useState } from "react";
 import { IoIosAddCircleOutline } from "react-icons/io";
 import { CiCircleMinus } from "react-icons/ci";
 import styles from "../Styles/Cart.module.css";
@@ -9,40 +8,39 @@ import { useNavigate } from "react-router-dom";
 export const Cart = () => {
   // Destructuring variables and functions from StoreContext.
   const {
-    cartItems,          
-    setCartItems,       
-    addToCart,          
-    removeFromCart,                 
+    cartItems,
+    setCartItems,
+    addToCart,
+    removeFromCart,
     getTotalCartAmount,
-    cartData,           
-    setCartData,       
-    products,           
+    cartData,
+    setCartData,
+    products,
   } = useContext(StoreContext);
 
   const navigate = useNavigate();
-  
+
   const isCartEmpty = Object.keys(cartItems).length === 0;
 
   const [selectedSizes, setSelectedSizes] = useState({});
   const handleSizeSelect = (productId, size) => {
-    setSelectedSizes((prevSizes) => ({ ...prevSizes, [productId]: size }));//changes gareko yaha
+    setSelectedSizes((prevSizes) => ({ ...prevSizes, [productId]: size })); //changes gareko yaha
   };
 
   // Function to handle the checkout process.
   const handleProceedOrder = async () => {
     // Preparing cart data for backend by transforming cartItems to include product details.
     const itemsInCart = Object.keys(cartItems).map((id) => {
-      
       const item = products.find((curItem) => curItem._id === id);
       console.log(item);
 
       return {
-        id: item._id,                        
-        name: item.name,                    
-        price: item.price,                   
-        quantity: cartItems[item._id],      
-        total: item.price * cartItems[item._id], 
-        size: selectedSizes[item._id] || "N/A",//yaha changes gareko
+        id: item._id,
+        name: item.name,
+        price: item.price,
+        quantity: cartItems[item._id],
+        total: item.price * cartItems[item._id],
+        size: selectedSizes[item._id], //yaha changes gareko
       };
     });
 
@@ -55,10 +53,8 @@ export const Cart = () => {
 
     setCartData(orderData);
     try {
-   
       navigate("/OrderPlaced");
     } catch (err) {
-     
       console.log(err);
     }
   };
@@ -66,9 +62,9 @@ export const Cart = () => {
   // Function to remove a product entirely from the cart without decrementing.
   const handleremoveFromCart = (id) => {
     setCartItems((prevItems) => {
-      const updatedCart = { ...prevItems }; 
-      delete updatedCart[id];              
-      return updatedCart;                  
+      const updatedCart = { ...prevItems };
+      delete updatedCart[id];
+      return updatedCart;
     });
   };
 
@@ -131,11 +127,13 @@ export const Cart = () => {
 
                     <div className={styles.size_selector}>
                       <p>Size:</p>
-                      {['S', 'M', 'L', 'XL', 'XXL'].map((size) => (
+                      {["S", "M", "L", "XL", "XXL"].map((size) => (
                         <button
                           key={size}
                           className={`${styles.size_button} ${
-                            selectedSizes[curItem._id] === size ? styles.selected : ""
+                            selectedSizes[curItem._id] === size
+                              ? styles.selected
+                              : ""
                           }`}
                           onClick={() => handleSizeSelect(curItem._id, size)}
                         >

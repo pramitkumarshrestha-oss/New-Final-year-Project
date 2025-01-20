@@ -1,3 +1,4 @@
+const orderModel = require("../models/orderModel");
 const order = require("../models/orderModel");
 const user = require("../models/user");
 const customersOrder = async (req, res) => {
@@ -11,4 +12,25 @@ const customersOrder = async (req, res) => {
     console.log(err);
   }
 };
-module.exports = customersOrder;
+const userProfile = async (req, res) => {
+  const { userId } = req.user;
+  try {
+    const users = await user.findById(userId);
+    if (!users) {
+      return res.status(404).send("User not found");
+    }
+    // const orders = orderModel.findById(userId);
+    const totalPendingOrders = await orderModel.countDocuments({
+      orderStatus: { $in: ["inProgress", "processedWithPayment"] },
+    });
+    const totalOrdersCompleted = await orderModel.countDocuments({
+      orderStatus: "Completed",
+    });
+    res.status(200).json({
+      userName: users.userName,
+      totalPendingOrders: totalPendingOrders,
+      totalOrdersCompleted: totalOrdersCompleted,
+    });
+  } catch (error) {}
+};
+module.exports = { customersOrder, userProfile };
