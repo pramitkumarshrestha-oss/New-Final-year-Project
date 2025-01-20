@@ -25,10 +25,8 @@ const ProductPage = () => {
   const handleAddToCart = () => {
     if (!isLoggedIn) {
       navigate("/login");
-    } else if (!selectedSize) {
-      alert("Please select a size before adding to cart.");
     } else {
-      addToCart(id, selectedSize); // Pass selected size
+      addToCart(id); // Pass selected size
     }
   };
 
@@ -50,7 +48,7 @@ const ProductPage = () => {
       </div>
 
       {/* Size Selector */}
-      <div className={styles.sizeSelector}>
+      {/* <div className={styles.sizeSelector}>
         <p>Select Size:</p>
         {["S", "M", "L", "XL"].map((size) => (
           <button
@@ -63,7 +61,7 @@ const ProductPage = () => {
             {size}
           </button>
         ))}
-      </div>
+      </div> */}
 
       <button className={styles.btnPrimary} onClick={handleAddToCart}>
         Add to Cart

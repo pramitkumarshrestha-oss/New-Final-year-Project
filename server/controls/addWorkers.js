@@ -7,13 +7,12 @@ const addWorker = async (req, res) => {
     const {
       name,
       phoneNumber,
-      email,
       address,
       username,
       password,
       gender,
       age,
-      citizenshipNumber,
+      email,
       joinedDate,
     } = req.body;
 
@@ -21,13 +20,12 @@ const addWorker = async (req, res) => {
     if (
       !name ||
       !phoneNumber ||
-      !email ||
       !address ||
       !username ||
       !password ||
       !gender ||
       !age ||
-      !citizenshipNumber ||
+      !email ||
       !joinedDate
     ) {
       return res.status(400).json({ message: "Missing required fields" });
@@ -58,26 +56,26 @@ const addWorker = async (req, res) => {
         .json({ message: "Worker age must be between 16 and 65." });
     }
 
-    // Citizenship number validation
-    if (!/^[A-Z0-9]{5,15}$/.test(citizenshipNumber)) {
+    // email validation
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
       return res.status(400).json({
-        message:
-          "Citizenship number must be alphanumeric and between 5-15 characters.",
+        message: "Invalid email format. Please provide a valid email address.",
       });
     }
+    
 
-    // Check if username or citizenship number already exists
+    // Check if username or email number already exists
     const existingWorker = await workersModel.findOne({
-      $or: [{ username }, { citizenshipNumber }],
+      $or: [{ username }, { email }],
     });
     if (existingWorker) {
       if (existingWorker.username === username) {
         return res.status(400).json({ message: "Username already exists." });
       }
-      if (existingWorker.citizenshipNumber === citizenshipNumber) {
+      if (existingWorker.email === email) {
         return res
           .status(400)
-          .json({ message: "Citizenship number already exists." });
+          .json({ message: "email already exists." });
       }
     }
 
@@ -89,13 +87,12 @@ const addWorker = async (req, res) => {
     const newWorker = new workersModel({
       name,
       phoneNumber,
-      email,
       address,
       username,
       password: hashedPassword,
       gender,
       age,
-      citizenshipNumber,
+      email,
       joinedDate: joinedDate,
     });
 

@@ -38,12 +38,11 @@ export const Login = () => {
         const result = await axios.post(
           "http://localhost:3010/login",
           formData
-        ); // API for customer login
-        // console.log(result.data);
+        ); 
         if (result.data.message === "login sucessfully") {
-          // console.log("hello");
+          
           toast.success(result.data.message);
-          // console.log("hello");
+        
           const needToken = result.data.token;
           localStorage.setItem("token", needToken);
           console.log(localStorage.getItem("token"));

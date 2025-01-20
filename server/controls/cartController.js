@@ -50,5 +50,20 @@ const getCart = async (req, res) => {
     console.log("Error!");
   }
 };
+//for deleting
+const deleteCart = async (req, res) => {
+  try {
+    let userData = await user.findById(req.user.userId);
+    let cartData = await userData.cart;
 
-module.exports = { addToCart, removeFromCart, getCart };
+    if (cartData[req.body.itemId]) {
+      await user.findByIdAndUpdate(req.user.userId, {
+        $unset: { [`cart.${req.body.itemId}`]: 0 }, // Remove the item from the cart
+      });
+    }
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+module.exports = { addToCart, removeFromCart, getCart, deleteCart };

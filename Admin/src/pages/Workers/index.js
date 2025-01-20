@@ -1,16 +1,9 @@
-import {
-  FaUserCircle,
-  FaShoppingCart,
-  FaShoppingBag,
-  FaEye,
-  FaPencilAlt,
-} from "react-icons/fa";
+import { FaPencilAlt } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
 import Button from "@mui/material/Button";
 import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
-import EditWorker from "../WorkerForm/EditWorker";
 
 const Workers = () => {
   const [workers, setWorkers] = useState([]);
@@ -76,7 +69,7 @@ const Workers = () => {
               <th>JOINED DATE</th>
               <th>ADDRESS</th>
               <th>PHONE NUMBER</th>
-              <th>CITIZENSHIP NUMBER</th>
+              <th>EMAIL</th>
               <th>ACTION</th>
             </tr>
           </thead>
@@ -94,7 +87,7 @@ const Workers = () => {
                 </td>
                 <td>{worker.address || "N/A"}</td>
                 <td>{worker.phoneNumber || "N/A"}</td>
-                <td>{worker.citizenshipNumber || "N/A"}</td>
+                <td>{worker.email || "N/A"}</td>
                 <td>
                   <div className="actions d-flex align-items-center">
                     <Button

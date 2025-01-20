@@ -28,6 +28,8 @@ const userProfile = async (req, res) => {
     });
     res.status(200).json({
       userName: users.userName,
+      email: users.email,
+      phoneNumber: users.phoneNumber,
       totalPendingOrders: totalPendingOrders,
       totalOrdersCompleted: totalOrdersCompleted,
     });

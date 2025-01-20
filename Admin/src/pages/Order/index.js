@@ -1,29 +1,6 @@
-import { FaUserCircle } from "react-icons/fa";
-import { FaShoppingCart } from "react-icons/fa";
-import { FaShoppingBag } from "react-icons/fa";
-import { GiStarsStack } from "react-icons/gi";
-import Menu from "@mui/material/Menu";
-import MenuItem from "@mui/material/MenuItem";
-import { useContext, useEffect, useState } from "react";
-import { IoIosTimer } from "react-icons/io";
-import Button from "@mui/material/Button";
-import { BsThreeDotsVertical } from "react-icons/bs";
-import { Chart } from "react-google-charts";
-import InputLabel from "@mui/material/InputLabel";
-import FormHelperText from "@mui/material/FormHelperText";
-import FormControl from "@mui/material/FormControl";
-import Select, { SelectChangeEvent } from "@mui/material/Select";
-import { FaEye } from "react-icons/fa";
-import { FaPencilAlt } from "react-icons/fa";
-import { MdDelete } from "react-icons/md";
-import chiffonImage from "../../assets/images/Chiffon.jpeg";
-import purpleImage from "../../assets/images/purple.jpeg";
 
-import { emphasize, styled } from "@mui/material/styles";
-import Breadcrumbs from "@mui/material/Breadcrumbs";
-import Chip from "@mui/material/Chip";
-import HomeIcon from "@mui/icons-material/Home";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import { useContext, useEffect, useState } from "react";
+import Button from "@mui/material/Button";
 import { MdOutlineAssignmentInd } from "react-icons/md";
 import axios from "axios";
 const Order = () => {
@@ -70,6 +47,7 @@ const Order = () => {
                 <tr>
                   <th>CUSTOMER NAME</th>
                   <th>PRODUCT NAME</th>
+                  <th>SIZE</th>
                   <th>WORKERS</th>
                   <th>ORDER ON</th>
                   <th>PRICE IN NRS</th>
@@ -93,6 +71,9 @@ const Order = () => {
                           </div>
                         </div>
                       </td>
+                      <td>{info.orderedItems.map((item, index) => {
+                              return <h6 key={index}>{item.size}</h6>;
+                            })}</td>
                       <td>{info.assignedWorkerId?.name}</td>
                       {/* <td>1</td> */}
 

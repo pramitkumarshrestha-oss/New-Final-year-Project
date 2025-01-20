@@ -38,7 +38,7 @@ export const PaymentSuccess = () => {
       text: "Order has been placed successfully📃",
       icon: "success",
       confirmButtonText: "OK",
-    })
+    });
   };
   const handleNavigate = () => {
     navigate("/");
@@ -46,7 +46,6 @@ export const PaymentSuccess = () => {
   };
   useEffect(() => {
     showPaymentSuccessful();
-    
   }, []);
   return (
     <div className={styles.main_container}>

@@ -14,7 +14,7 @@ const WorkerForm = () => {
     phoneNumber: "",
     username: "",
     password: "",
-    citizenshipNumber: "",
+    email: "",
   });
 
   const [errors, setErrors] = useState({});
@@ -86,12 +86,10 @@ const WorkerForm = () => {
       newErrors.password =
         "Password must include uppercase, lowercase, a number, and a special character.";
 
-    // Citizenship number validation
-    if (!formData.citizenshipNumber)
-      newErrors.citizenshipNumber = "Citizenship number is required.";
-    else if (!/^[A-Z0-9]{5,15}$/.test(formData.citizenshipNumber))
-      newErrors.citizenshipNumber =
-        "Citizenship number must be alphanumeric (5-15 characters).";
+    // Email validation
+    if (!formData.email) newErrors.email = "Email is required.";
+    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email))
+      newErrors.email = "Please provide a valid email address.";
 
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
@@ -125,7 +123,7 @@ const WorkerForm = () => {
         phoneNumber: "",
         username: "",
         password: "",
-        citizenshipNumber: "",
+        email: "",
       });
       setErrors({});
       setSuccessMessage(result.data || "Worker added successfully!");
@@ -289,15 +287,15 @@ const WorkerForm = () => {
                 </div>
                 <div className="col">
                   <div className="form-group">
-                    <h6>CITIZENSHIP NUMBER</h6>
+                    <h6>EMAIL</h6>
                     <input
                       type="text"
-                      name="citizenshipNumber"
-                      value={formData.citizenshipNumber}
+                      name="email"
+                      value={formData.email}
                       onChange={handleChange}
                     />
-                    {errors.citizenshipNumber && (
-                      <p className="error-text">{errors.citizenshipNumber}</p>
+                    {errors.email && (
+                      <p className="error-text">{errors.email}</p>
                     )}
                   </div>
                 </div>

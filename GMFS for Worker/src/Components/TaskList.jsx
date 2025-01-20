@@ -49,7 +49,7 @@ const TaskList = () => {
     try {
       // Find only newly selected items that weren't in oldSelectedItems
       const newlySelectedItems = selectedItems.filter(
-        item => !oldselectedItems.includes(item)
+        (item) => !oldselectedItems.includes(item)
       );
 
       // Only make the API call if there are new items
@@ -75,8 +75,12 @@ const TaskList = () => {
     setSelectedTask(task);
     // Set both initial selected items and old selected items from completedItems
     // const completedItems = task.completedItems?.map(item => item.name) || [];
-    setSelectedItems(Array.isArray(task.completedItems) ? task.completedItems : []);
-    setOldSelectedItems(Array.isArray(task.completedItems) ? task.completedItems : []);
+    setSelectedItems(
+      Array.isArray(task.completedItems) ? task.completedItems : []
+    );
+    setOldSelectedItems(
+      Array.isArray(task.completedItems) ? task.completedItems : []
+    );
 
     // setSelectedItems(completedItems);
     // setOldSelectedItems(completedItems);
@@ -106,7 +110,14 @@ const TaskList = () => {
       {tasks.length > 0 ? (
         tasks.map((task) => (
           <div key={task.orderId} className={styles.taskItem}>
-            <p>Ordered Items: {task.orderedItems.map((item) => item.name).join(", ")}</p>
+            {/* <p>Ordered Items: {task.orderedItems.map((item) => item.name).join(", ")}</p> */}
+            <p>
+              Ordered Items:{" "}
+              {task.orderedItems
+                .map((item) => `${item.name} (Size: ${item.size})`)
+                .join(", ")}
+            </p>
+
             <p>Total Amount: {task.totalAmount}</p>
             <p>Status: {task.orderStatus}</p>
             {task.orderStatus !== "Completed" && (
@@ -136,7 +147,9 @@ const TaskList = () => {
                       In Progress
                     </option>
                     {task.orderedItems.length > 0 && (
-                      <option value="Partially Completed">Partially Completed</option>
+                      <option value="Partially Completed">
+                        Partially Completed
+                      </option>
                     )}
                     <option value="Completed">Completed</option>
                   </>
@@ -149,44 +162,50 @@ const TaskList = () => {
         <p>No tasks assigned.</p>
       )}
 
-{isModalOpen && selectedTask && (
-  <div className={styles.modal}>
-    <div className={styles.modalContent}>
-      <h3>Select Items for Partial Completion</h3>
-      <p className={styles.note}>Note: You cannot select all items</p>
-      <div className={styles.itemList}>
-        {selectedTask.orderedItems.map((item) => (
-          <div key={item.name}>
-            <label>
-              <input
-                type="checkbox"
-                value={item.name}
-                onChange={() => handleItemSelect(item.name)}
-                checked={selectedItems.includes(item.name)} // Checking directly in selectedItems
-                disabled={
-                  !selectedItems.includes(item.name) &&
-                  selectedItems.length >= selectedTask.orderedItems.length - 1 // Prevent selecting all items
-                }
-              />
-              {item.name}
-            </label>
+      {isModalOpen && selectedTask && (
+        <div className={styles.modal}>
+          <div className={styles.modalContent}>
+            <h3>Select Items for Partial Completion</h3>
+            <p className={styles.note}>Note: You cannot select all items</p>
+            <div className={styles.itemList}>
+              {selectedTask.orderedItems.map((item) => (
+                <div key={item.name}>
+                  <label>
+                    <input
+                      type="checkbox"
+                      value={item.name}
+                      onChange={() => handleItemSelect(item.name)}
+                      checked={selectedItems.includes(item.name)} // Checking directly in selectedItems
+                      disabled={
+                        !selectedItems.includes(item.name) &&
+                        selectedItems.length >=
+                          selectedTask.orderedItems.length - 1 // Prevent selecting all items
+                      }
+                    />
+                    {item.name}
+                  </label>
+                </div>
+              ))}
+            </div>
+            <button
+              onClick={() =>
+                submitModal(
+                  selectedTask.orderId,
+                  "Partially Completed",
+                  selectedItems
+                )
+              }
+              className={styles.submitButton}
+              disabled={selectedItems.length === 0}
+            >
+              Submit
+            </button>
+            <button onClick={closeModal} className={styles.cancelButton}>
+              Cancel
+            </button>
           </div>
-        ))}
-      </div>
-      <button
-        onClick={() => submitModal(selectedTask.orderId, "Partially Completed", selectedItems)}
-        className={styles.submitButton}
-        disabled={selectedItems.length === 0}
-      >
-        Submit
-      </button>
-      <button onClick={closeModal} className={styles.cancelButton}>
-        Cancel
-      </button>
-    </div>
-  </div>
-)}
-
+        </div>
+      )}
     </div>
   );
 };

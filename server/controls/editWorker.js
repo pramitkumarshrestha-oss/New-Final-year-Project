@@ -4,12 +4,11 @@ const editWorker = async (req, res) => {
     name,
     age,
     gender,
-
     address,
     phoneNumber,
     username,
     password,
-    citizenshipNumber,
+    email,
     id,
   } = req.body;
 
@@ -23,7 +22,7 @@ const editWorker = async (req, res) => {
         password: password,
         gender: gender,
         age: age,
-        citizenshipNumber: citizenshipNumber,
+        email: email,
       },
     });
     // console.log(updatedWorker);
@@ -58,7 +57,5 @@ const deleteWorker = async (req, res) => {
     res.status(500).json({ message: "Error deleting Worker" });
   }
 };
-
-module.exports = { deleteWorker };
 
 module.exports = { editWorker, deleteWorker };

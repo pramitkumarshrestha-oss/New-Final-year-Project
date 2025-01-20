@@ -53,7 +53,23 @@ export const Payment = () => {
     // }
   };
 
-  const handleCodPayment = () => {};
+  const handleCodPayment = async () => {
+    try {
+      const token = localStorage.getItem("token");
+      console.log(token);
+      const res = await axios.post(
+        "http://localhost:5010/api/cod",
+        {
+          paymentMethod: "COD",
+        },
+        { headers: { Authorization: `Bearer ${token}` } }
+      );
+      console.log(res.data.message);
+      showCodSuccessful(res.data.message)
+    } catch (err) {
+      console.log(err);
+    }
+  };
   return (
     <div className={styles.payment_containers}>
       <div className={styles.payment_wrappers}>

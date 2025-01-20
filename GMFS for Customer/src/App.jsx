@@ -14,6 +14,8 @@ import { OrderPlaced } from "./Pages/OrderPlaced";
 import { AuthProvider } from "./Contexts/AuthContext";
 import { PaymentSuccess } from "./Pages/PaymentSuccess";
 import { Payment } from "./Pages/KhaltiDashboard";
+import Profile from "./Pages/profile";
+
 // import ProductPage from "./Pages/ProductPage";
 
 const App = () => {
@@ -28,6 +30,7 @@ const App = () => {
           <Route path="/product/:id" element={<ProductPage />} />{" "}
           {/* Route for product details */}
           <Route path="/orders" element={<Orders />} />
+          <Route path="/profile" element={<Profile />} />
           <Route path="/login" element={<Login />} />
           <Route path="/logout" element={<Landing />} />
           <Route path="/signup" element={<Signup />} />

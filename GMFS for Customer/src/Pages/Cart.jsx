@@ -40,7 +40,7 @@ export const Cart = () => {
         price: item.price,
         quantity: cartItems[item._id],
         total: item.price * cartItems[item._id],
-        size: selectedSizes[item._id], //yaha changes gareko
+        size: selectedSizes[item._id], 
       };
     });
 
