@@ -3,6 +3,7 @@ const orderModel = require("../models/orderModel");
 const assignedWorkerModel = require("../models/assignedWorkerModel");
 const workersModel = require("../models/workersModel");
 const predict = require("../knn");
+const mail = require("../controls/mail");
 
 const assignWorkerHandler = async (req, res, next) => {
   const { orderId } = req.body;
@@ -30,8 +31,10 @@ const assignWorkerHandler = async (req, res, next) => {
       const workerId = freeWorkers[0].id;
       const workerDetails = await workersModel.findById(workerId, {
         name: 1,
+        email: 1,
       });
       const workerName = workerDetails.name;
+      const workerEmail = workerDetails.email;
       await assignedWorkerModel.create({ orderId, workerId });
       await orderModel.updateOne(
         { _id: orderId },
@@ -40,6 +43,11 @@ const assignWorkerHandler = async (req, res, next) => {
       await workersModel.updateOne(
         { _id: workerId },
         { $inc: { totalNumberOfWorks: 1 } }
+      );
+      await mail(
+        workerEmail,
+        workerName,
+        `You have been assigned a new order with ID: ${orderId}`
       );
       return res.status(200).json({
         message: "Worker assigned successfully",
@@ -111,6 +119,7 @@ const assignWorkerHandler = async (req, res, next) => {
     const workerId = workerDetails.workerId;
     const workerRecord = await workersModel.findById(workerId);
     const workerName = workerRecord?.name;
+    const workerEmail = workerRecord?.email;
 
     await assignedWorkerModel.create({ orderId, workerId });
     await orderModel.updateOne(
@@ -121,7 +130,11 @@ const assignWorkerHandler = async (req, res, next) => {
       { _id: workerId },
       { $inc: { totalNumberOfWorks: 1 } }
     );
-
+    await mail(
+      workerEmail,
+      workerName,
+      `You have been assigned a new order with ID: ${orderId}`
+    );
     return res.status(200).json({
       message: "Worker assigned successfully",
       workerId,

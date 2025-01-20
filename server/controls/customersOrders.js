@@ -31,6 +31,8 @@ const userProfile = async (req, res) => {
       totalPendingOrders: totalPendingOrders,
       totalOrdersCompleted: totalOrdersCompleted,
     });
-  } catch (error) {}
+  } catch (error) {
+    res.status(500).json(error);
+  }
 };
 module.exports = { customersOrder, userProfile };

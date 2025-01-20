@@ -7,6 +7,7 @@ const addWorker = async (req, res) => {
     const {
       name,
       phoneNumber,
+      email,
       address,
       username,
       password,
@@ -20,6 +21,7 @@ const addWorker = async (req, res) => {
     if (
       !name ||
       !phoneNumber ||
+      !email ||
       !address ||
       !username ||
       !password ||
@@ -87,6 +89,7 @@ const addWorker = async (req, res) => {
     const newWorker = new workersModel({
       name,
       phoneNumber,
+      email,
       address,
       username,
       password: hashedPassword,
