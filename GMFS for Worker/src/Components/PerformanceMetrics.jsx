@@ -47,6 +47,11 @@ const PerformanceMetrics = () => {
               <h3>Popularity</h3>
               <p className={styles.metricValue}>{workerData.popularity}</p>
             </div>
+
+            <div className={styles.metricCard}>
+              <h3>Average Time of Worker</h3>
+              <p className={styles.metricValue}>{workerData.averageTimeTaken}</p>
+            </div>
           </div>
         </>
       )}

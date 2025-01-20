@@ -173,9 +173,9 @@ const orderUpdate = async (req, res) => {
         for (const work of completedWorks) {
           totalAverageTime += work.orderId.averageTime;
         }
-        console.log("Total Average Time:", totalAverageTime);
+        console.log(" order Vitra ko Total Average Time:", totalAverageTime);
         const averageTime = totalAverageTime / completedWorks.length;
-        console.log("Average Time:", averageTime);
+        console.log(" Worker Average Time:", averageTime);
         worker.averageTimeTaken = averageTime;
         await worker.save();
 
