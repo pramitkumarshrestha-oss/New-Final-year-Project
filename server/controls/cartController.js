@@ -6,7 +6,7 @@ const addToCart = async (req, res) => {
     let userData = await user.findById(req.user.userId);
     let cartData = await userData.cart;
     if (!cartData[req.body.itemId]) {
-      cartData[req.body.itemId] = 1;
+      cartData[req.body.itemId] = 10;
     } else {
       cartData[req.body.itemId] += 1;
     }
@@ -24,10 +24,10 @@ const removeFromCart = async (req, res) => {
   try {
     let userData = await user.findById(req.user.userId);
     let cartData = await userData.cart;
-    if (cartData[req.body.itemId] > 1) {
+    if (cartData[req.body.itemId] > 10) {
       cartData[req.body.itemId] -= 1;
       await user.findByIdAndUpdate(req.user.userId, { cart: cartData });
-    } else if (cartData[req.body.itemId] == 1) {
+    } else if (cartData[req.body.itemId] == 10) {
       await user.findByIdAndUpdate(req.user.userId, {
         $unset: { [`cart.${req.body.itemId}`]: 0 }, // Remove the item from the cart
       });

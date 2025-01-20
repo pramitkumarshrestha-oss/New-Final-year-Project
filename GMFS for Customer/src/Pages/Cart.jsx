@@ -4,6 +4,7 @@ import { CiCircleMinus } from "react-icons/ci";
 import styles from "../Styles/Cart.module.css";
 import { StoreContext } from "../Contexts/StoreContext";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 export const Cart = () => {
   // Destructuring variables and functions from StoreContext.
@@ -16,6 +17,7 @@ export const Cart = () => {
     cartData,
     setCartData,
     products,
+    token,
   } = useContext(StoreContext);
 
   const navigate = useNavigate();
@@ -40,7 +42,7 @@ export const Cart = () => {
         price: item.price,
         quantity: cartItems[item._id],
         total: item.price * cartItems[item._id],
-        size: selectedSizes[item._id], 
+        size: selectedSizes[item._id],
       };
     });
 
@@ -60,12 +62,16 @@ export const Cart = () => {
   };
 
   // Function to remove a product entirely from the cart without decrementing.
-  const handleremoveFromCart = (id) => {
-    setCartItems((prevItems) => {
-      const updatedCart = { ...prevItems };
-      delete updatedCart[id];
-      return updatedCart;
-    });
+
+  const handleremoveFromCart = async (itemId) => {
+    console.log(token);
+
+    window.location.reload();
+    await axios.post(
+      "http://localhost:3010/cart/delete",
+      { itemId },
+      { headers: { Authorization: `Bearer ${token}` } }
+    );
   };
 
   return (

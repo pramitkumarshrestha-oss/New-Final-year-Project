@@ -123,16 +123,16 @@ export const StoreContextProvider = (props) => {
 
   // Function to calculate the total cart amount based on item prices and quantities.
   const getTotalCartAmount = () => {
-    console.log(cartItems);
+    
 
     let totalAmount = 0;
     for (const item in cartItems) {
       if (cartItems[item] > 0) {
         let itemInfo = products.find((product) => product._id === item);
-        console.log(itemInfo);
+        // console.log(itemInfo);
 
         totalAmount += itemInfo.price * cartItems[item];
-        console.log(totalAmount);
+        // console.log(totalAmount);
       }
     }
     return totalAmount;

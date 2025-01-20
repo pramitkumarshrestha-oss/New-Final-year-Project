@@ -10,5 +10,5 @@ const router = express.Router();
 router.post("/add", jwtToken, addToCart);
 router.post("/remove", jwtToken, removeFromCart);
 router.get("/get", jwtToken, getCart);
-router.get("/get", jwtToken, deleteCart);
+router.post("/delete", jwtToken, deleteCart);
 module.exports = router;
