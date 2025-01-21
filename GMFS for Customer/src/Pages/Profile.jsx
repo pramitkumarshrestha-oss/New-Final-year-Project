@@ -31,10 +31,25 @@ const Profile = () => {
     <div className={styles.profile_container}>
       {profile ? (
         <div className={styles.profile_card}>
-          <h2>{profile.userName}</h2>
-          <h2>{profile.email}</h2>
-          <h2>{profile.phoneNumber}</h2>
-          <p>Total Purchase Completed: {profile.totalOrdersCompleted}</p>
+          <div className={styles.profile_header}>
+            <div className={styles.profile_avatar}>
+              {profile.userName.charAt(0).toUpperCase()}
+            </div>
+            <div className={styles.profile_info}>
+              <h2>{profile.userName}</h2>
+              <span>{profile.email}</span>
+            </div>
+          </div>
+          <div className={styles.profile_body}>
+            <div className={styles.profile_body_item}>
+              <span>Phone Number:</span>
+              <strong>{profile.phoneNumber}</strong>
+            </div>
+            <div className={styles.profile_body_item}>
+              <span>Total Purchases Completed:</span>
+              <strong>{profile.totalOrdersCompleted}</strong>
+            </div>
+          </div>
         </div>
       ) : (
         <p>Loading profile...</p>
