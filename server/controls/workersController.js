@@ -3,7 +3,7 @@ const orderModel = require("../models/orderModel");
 const assignedWorkerModel = require("../models/assignedWorkerModel");
 const workersModel = require("../models/workersModel");
 const predict = require("../knn");
-const mail = require("../controls/mail");
+const sendEmail = require("./mail");
 
 const assignWorkerHandler = async (req, res, next) => {
   const { orderId } = req.body;
@@ -44,9 +44,8 @@ const assignWorkerHandler = async (req, res, next) => {
         { _id: workerId },
         { $inc: { totalNumberOfWorks: 1 } }
       );
-      await mail(
+      await sendEmail(
         workerEmail,
-        workerName,
         `You have been assigned a new order with ID: ${orderId}`
       );
       return res.status(200).json({
@@ -130,9 +129,8 @@ const assignWorkerHandler = async (req, res, next) => {
       { _id: workerId },
       { $inc: { totalNumberOfWorks: 1 } }
     );
-    await mail(
+    await sendEmail(
       workerEmail,
-      workerName,
       `You have been assigned a new order with ID: ${orderId}`
     );
     return res.status(200).json({

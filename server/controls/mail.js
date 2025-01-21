@@ -1,32 +1,28 @@
 const nodemailer = require("nodemailer");
+const workerModel = require("../models/workersModel");
 
-const sendMail = async (workerEmail) => {
+async function sendEmail(email, text) {
+  const transporter = nodemailer.createTransport({
+    service: "gmail",
+    auth: {
+      user: "mrkazi2110@gmail.com",
+      pass: "edmn elnj vwfb afon",
+    },
+  });
+  const mailOptions = {
+    from: "mrkazi2110@gmail.com",
+    to: email,
+    subject: "Work Assigned",
+    text: text,
+  };
   try {
-    // Create a transporter object
-    const transporter = nodemailer.createTransport({
-      service: "gmail",
-      auth: {
-        user: "solusandesh@gmail.com", // Your email
-        pass: "iloveplaying@123", // Replace with an app password (not your email password)
-      },
-    });
-
-    // Define email options
-    const mailOptions = {
-      from: "solusandesh@gmail.com", // Sender email
-      to: workerEmail, // Receiver email
-      subject: `Work Assignment Notification`,
-      text: "New Work Has Been Assign To You",
-    };
-
-    // Send email
-    const info = await transporter.sendMail(mailOptions);
-    console.log("Email sent successfully:", info.response);
-    return { success: true, response: info.response };
+    await transporter.sendMail(mailOptions);
+    console.log("Email sent successfully to", email);
+    return true;
   } catch (error) {
-    console.error("Error while sending email:", error);
-    return { success: false, error };
+    console.error("Error sending Email:", error);
+    return false;
   }
-};
+}
 
-module.exports = sendMail;
+module.exports = sendEmail;
