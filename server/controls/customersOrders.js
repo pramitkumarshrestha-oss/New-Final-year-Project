@@ -21,9 +21,11 @@ const userProfile = async (req, res) => {
     }
     // const orders = orderModel.findById(userId);
     const totalPendingOrders = await orderModel.countDocuments({
+      userId,
       orderStatus: { $in: ["inProgress", "processedWithPayment"] },
     });
     const totalOrdersCompleted = await orderModel.countDocuments({
+      userId,
       orderStatus: "Completed",
     });
     res.status(200).json({
