@@ -36,6 +36,7 @@ const fetchWorks = require("./routes/fetchWorksRoute.js");
 const updateOrder = require("./routes/orderUpdateRoute.js");
 const adminDashboard = require("./routes/adminDashboardRoute.js");
 const workerDashboard = require("./routes/workerDashboard.js");
+const cashOnDelivery = require("./routes/cashOnDelivery.js");
 app.use("/signup", signupRoute);
 app.use("/login", loginRoute);
 app.use("/cart", cartRoute);
@@ -65,6 +66,7 @@ app.use("/fetchWorks", fetchWorks);
 app.use("/api/updateOrder", updateOrder);
 app.use("/api/adminDashboard", adminDashboard);
 app.use("/api/workerDashboard", workerDashboard);
+app.use("/api/cod", cashOnDelivery);
 
 app.listen(port, () => {
   console.log(`Server Started At ${port}`);
