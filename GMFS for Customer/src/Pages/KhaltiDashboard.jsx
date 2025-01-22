@@ -27,6 +27,7 @@ export const Payment = () => {
           },
         }
       );
+      console.log(response);
       const paymentUrl = await response.data.data.payment_url;
       console.log(paymentUrl);
 

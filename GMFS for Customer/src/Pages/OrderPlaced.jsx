@@ -14,7 +14,7 @@ export const OrderPlaced = () => {
     token,
     setDeliveryInfo,
   } = useContext(StoreContext);
-  console.log(deliveryInfo);
+  // console.log(deliveryInfo);
   const navigate = useNavigate(); // Initialize useNavigate
 
   //Validation garna ko lagi delivery information ko

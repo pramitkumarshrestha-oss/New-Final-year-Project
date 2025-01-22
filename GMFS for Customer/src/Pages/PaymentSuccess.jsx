@@ -27,11 +27,27 @@ export const PaymentSuccess = () => {
         { headers: { Authorization: `Bearer ${token}` } }
       );
       console.log(tryK);
+      if (tryK && tryK.data.status === "Completed") {
+        showPaymentSuccessful();
+      } else {
+        showPaymentTerminated();
+      }
+      console.log(tryK);
     } catch (err) {
       console.log(err);
     }
   };
   const navigate = useNavigate();
+
+  const showPaymentTerminated = () => {
+    Swal.fire({
+      title: "Payment Canceled!",
+      text: "Your order has been terminated.",
+      icon: "error",
+      confirmButtonText: "OK",
+    });
+  };
+
   const showPaymentSuccessful = () => {
     Swal.fire({
       title: "Your Payment Is Successfully Received🫰",
@@ -44,9 +60,6 @@ export const PaymentSuccess = () => {
     navigate("/");
     window.location.reload();
   };
-  useEffect(() => {
-    showPaymentSuccessful();
-  }, []);
   return (
     <div className={styles.main_container}>
       <button onClick={handleNavigate} className={styles.go_home_btn}>
