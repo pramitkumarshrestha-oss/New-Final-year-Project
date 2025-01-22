@@ -181,7 +181,10 @@ export const Cart = () => {
             <button
               type="submit"
               onClick={handleProceedOrder} // Trigger checkout process.
-              disabled={isCartEmpty} // Disable button if cart is empty.
+              disabled={
+                isCartEmpty ||
+                Object.keys(cartItems).some((id) => !selectedSizes[id])
+              } // Disable button if cart is empty or size not selected.
             >
               Proceed To Checkout
             </button>

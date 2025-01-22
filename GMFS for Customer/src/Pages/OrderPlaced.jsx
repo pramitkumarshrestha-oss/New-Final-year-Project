@@ -45,7 +45,7 @@ export const OrderPlaced = () => {
 
     if (!deliveryInfo.phoneNumber.trim()) {
       formErrors.phoneNumber = "Phone number is Required *";
-    } else if (!/^[0-9]{10}$/.test(deliveryInfo.phoneNumber)) {
+    } else if (!/^(98|97|96)[0-9]{8}$/.test(deliveryInfo.phoneNumber)) {
       formErrors.phoneNumber = "Invalid phone Number";
     }
 

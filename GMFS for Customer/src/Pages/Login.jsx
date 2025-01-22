@@ -172,9 +172,9 @@ export const Login = () => {
                     </button>
                   </div>
 
-                  <p className={styles.forgot_password}>
+                  {/* <p className={styles.forgot_password}>
                     Forgot your password?
-                  </p>
+                  </p> */}
                 </form>
 
                 <p className={styles.haveAccount}>
