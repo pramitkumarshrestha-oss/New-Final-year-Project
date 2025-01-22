@@ -2,6 +2,7 @@ const order = require("../models/orderModel");
 const user = require("../models/user");
 
 const cashOnDelivery = async (req, res) => {
+  
   const { paymentMethod } = req.body;
   const { userId } = req.user;
   const orderStatus = "Onprocess";

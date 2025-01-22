@@ -1,9 +1,13 @@
 import axios from "axios";
 import { StoreContext } from "../Contexts/StoreContext";
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import styles from "../Styles/KhaltiDashboard.module.css";
+import { Navigate, useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 export const Payment = () => {
+  const navigate = useNavigate();
+
   const { cartData, deliveryInfo, setPaymentDetails, token } =
     useContext(StoreContext);
   const handlePayment = async () => {
@@ -25,7 +29,7 @@ export const Payment = () => {
       );
       const paymentUrl = await response.data.data.payment_url;
       console.log(paymentUrl);
-      
+
       setPaymentDetails(response.data.data);
       localStorage.setItem(
         "paymentDetails",
@@ -35,37 +39,37 @@ export const Payment = () => {
     } catch (err) {
       console.log(err);
     }
-    // try {
-    //   // console.log(cartData);
-    //   const res = await axios.post(
-    //     "http://localhost:3010/api/khalti/init",
-    //     { cartData, deliveryInfo },
-    //     { headers: { Authorization: `Bearer ${token}` } }
-    //   );
-    //   const paymentUrl = await res.data.data.payment_url;
-    //   // setPaymentDetails(response.data.data);
-    //   localStorage.setItem("paymentDetails", JSON.stringify(res.data.data));
-    //   console.log(paymentUrl);
-    //   window.location.href = paymentUrl;
-    //   // console.log(cartData);
-    // } catch (error) {
-    //   console.log(error);
-    // }
+  };
+
+  const showCodSuccessful = (message) => {
+    Swal.fire({
+      title: message,
+      text: "Order has been placed successfully📃",
+      icon: "success",
+      confirmButtonText: "OK",
+    }).then((Result) => {
+      if (Result.isConfirmed) {
+        navigate("/");
+        window.location.reload();
+      }
+    });
   };
 
   const handleCodPayment = async () => {
+    console.log("hello");
+
     try {
       const token = localStorage.getItem("token");
       console.log(token);
       const res = await axios.post(
-        "http://localhost:5010/api/cod",
+        "http://localhost:3010/api/cod",
         {
           paymentMethod: "COD",
         },
         { headers: { Authorization: `Bearer ${token}` } }
       );
       console.log(res.data.message);
-      showCodSuccessful(res.data.message)
+      showCodSuccessful(res.data.message);
     } catch (err) {
       console.log(err);
     }
